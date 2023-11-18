@@ -1,15 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IUserReg } from "./usersTypes";
-import { activateCode, registerUser } from "./usersActions";
+import { activateCode, loginUser, registerUser } from "./usersActions";
+import { addTokensToLocalStorage, updateTokens } from "../../helpers/functions";
 
 interface UsersState {
-  users: IUserReg[];
   loading: boolean;
   error: boolean;
 }
 
 const initialState: UsersState = {
-  users: [],
   loading: false,
   error: false,
 };
@@ -24,6 +22,7 @@ const usersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      //? registration
       .addCase(registerUser.pending, (state) => {
         state.loading = true;
       })
@@ -34,6 +33,7 @@ const usersSlice = createSlice({
         state.error = true;
         state.loading = false;
       })
+      //? aactivateCode
       .addCase(activateCode.pending, (state) => {
         state.loading = true;
       })
@@ -42,6 +42,20 @@ const usersSlice = createSlice({
         action.payload.navigate("/sign-in");
       })
       .addCase(activateCode.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
+      })
+      //? authorization
+      .addCase(loginUser.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.loading = false;
+        addTokensToLocalStorage(action.payload.data);
+        updateTokens();
+        action.payload.navigate("/");
+      })
+      .addCase(loginUser.rejected, (state) => {
         state.loading = false;
         state.error = true;
       });

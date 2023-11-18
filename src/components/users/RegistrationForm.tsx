@@ -42,7 +42,7 @@ const RegistrationForm = () => {
           ) : (
             <>
               {modal && <ActivateCodeForm setModal={setModal} />}
-              <div className="h-auto p-4 w-1/4 gap-y-3 bg-gray-400 flex flex-col ">
+              <div className="p-4 w-1/4 gap-y-3 bg-gray-400 flex flex-col">
                 <input
                   type="text"
                   placeholder="email"
@@ -82,7 +82,7 @@ const RegistrationForm = () => {
                   <option value="Human">user</option>
                   <option value="Company">company</option>
                 </select>
-                <button onClick={handleReg}>Register</button>
+                <button onClick={handleReg}>Create</button>
                 <p>
                   Already have account?{" "}
                   <Link to="/sign-in" className="text-blue-600 underline">

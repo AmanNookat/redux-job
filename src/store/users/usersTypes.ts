@@ -10,3 +10,13 @@ export interface IUserActivate {
   email: string;
   code: string;
 }
+
+export interface IUserLogin {
+  email: string;
+  password: string;
+}
+
+export interface ITokens {
+  access: string;
+  refresh: string;
+}
