@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { IUserActivate, IUserReg } from "./usersTypes";
+import { IUserActivate, IUserLogin, IUserReg } from "./usersTypes";
 import { USERS_API } from "../../helpers/consts";
 import axios from "axios";
 
@@ -34,5 +34,23 @@ export const activateCode = createAsyncThunk(
     await axios.post(`${USERS_API}/activate_code/`, formData);
     alert("Аккаунт активирован");
     return { navigate };
+  }
+);
+
+export const loginUser = createAsyncThunk(
+  "users/loginUser",
+  async ({
+    userLogin,
+    navigate,
+  }: {
+    userLogin: IUserLogin;
+    navigate: (value: string) => void;
+  }) => {
+    const formData = new FormData();
+    formData.append("email", userLogin.email);
+    formData.append("password", userLogin.password);
+    const { data } = await axios.post(`${USERS_API}/login/`, formData);
+
+    return { data, navigate };
   }
 );
