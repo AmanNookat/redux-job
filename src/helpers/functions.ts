@@ -22,16 +22,16 @@ export const checkUserLogin = () => {
 
 export const updateTokens = () => {
   let updateFunc: NodeJS.Timer | null = setInterval(async () => {
-    const storedTokensString = localStorage.getItem("reduxTokens");
+    const storedTokens = localStorage.getItem("reduxTokens");
 
-    if (!storedTokensString) {
+    if (!storedTokens) {
       if (updateFunc !== null) {
         clearInterval(updateFunc);
       }
       return;
     }
 
-    const tokens = JSON.parse(storedTokensString);
+    const tokens = JSON.parse(storedTokens);
 
     if (!tokens) {
       if (updateFunc !== null) {
@@ -58,4 +58,11 @@ export const updateTokens = () => {
   }, 1000 * 60 * 60 * 12);
 
   return updateFunc;
+};
+
+export const getAccessToken = () => {
+  const storedTokens = localStorage.getItem("reduxTokens");
+  if (!storedTokens) return;
+  const tokens = JSON.parse(storedTokens);
+  return tokens.access;
 };

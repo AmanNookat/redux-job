@@ -12,13 +12,13 @@ const RegistrationForm = () => {
     password: "",
     password_confirm: "",
     phone_number: "",
-    type_user: "",
+    type_user: "" as "Human" | "Company",
   });
   const [modal, setModal] = useState(false);
 
   const { loading, error } = useSelector((state: RootState) => state.users);
 
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch();
 
   const handleReg = () => {
     for (let key in user) {
@@ -27,7 +27,6 @@ const RegistrationForm = () => {
       }
     }
 
-    // @ts-ignore
     dispatch(registerUser({ user }));
   };
 
@@ -72,13 +71,17 @@ const RegistrationForm = () => {
                   }}
                 />
                 <select
-                  name=""
-                  id=""
+                  value={user.type_user}
                   onChange={(e) => {
-                    setUser({ ...user, type_user: e.target.value });
+                    setUser({
+                      ...user,
+                      type_user: e.target.value as "Human" | "Company",
+                    });
                   }}
                 >
-                  <option hidden>account type</option>
+                  <option value="" disabled>
+                    Select account type
+                  </option>
                   <option value="Human">user</option>
                   <option value="Company">company</option>
                 </select>
@@ -86,7 +89,7 @@ const RegistrationForm = () => {
                 <p>
                   Already have account?{" "}
                   <Link to="/sign-in" className="text-blue-600 underline">
-                    Log In
+                    Sign In
                   </Link>
                 </p>
                 <button
