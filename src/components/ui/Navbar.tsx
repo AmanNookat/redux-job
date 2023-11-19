@@ -7,13 +7,17 @@ const Navbar = () => {
     <div>
       <NavLink to="/">Home</NavLink>
       {checkUserLogin() ? (
-        <span
-          onClick={() => {
-            logout();
-          }}
-        >
-          LogOut
-        </span>
+        <>
+          <NavLink to="/chats">Chats</NavLink>
+          <span
+            onClick={() => {
+              logout();
+            }}
+            className="cursor-pointer"
+          >
+            LogOut
+          </span>
+        </>
       ) : (
         <>
           <NavLink to="/sign-up">Registration</NavLink>
