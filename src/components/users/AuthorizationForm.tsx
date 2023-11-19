@@ -24,7 +24,7 @@ const AuthorizationForm = () => {
           {error ? (
             <Error />
           ) : (
-            <div className="p-4 w-1/4 gap-y-3 bg-gray-400 flex flex-col">
+            <form className="p-4 w-1/4 gap-y-3 bg-gray-400 flex flex-col">
               <input
                 type="text"
                 placeholder="email"
@@ -50,7 +50,7 @@ const AuthorizationForm = () => {
                   Sign Up
                 </Link>
               </p>
-            </div>
+            </form>
           )}
         </>
       )}

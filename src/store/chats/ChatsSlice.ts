@@ -23,6 +23,7 @@ const chatsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      //? get chatrooms
       .addCase(getChatrooms.pending, (state) => {
         state.loading = true;
       })
@@ -34,6 +35,7 @@ const chatsSlice = createSlice({
         state.error = true;
         state.loading = false;
       });
+    //? add chatroom
   },
 });
 

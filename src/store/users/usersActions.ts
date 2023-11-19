@@ -54,3 +54,8 @@ export const loginUser = createAsyncThunk(
     return { data, navigate };
   }
 );
+
+export const getUsers = createAsyncThunk("users/getUsers", async () => {
+  const { data } = await axios.get(`${USERS_API}/users/`);
+  return data;
+});

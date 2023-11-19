@@ -1,22 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { checkUserLogin, logout } from "../../helpers/functions";
 
 const Navbar = () => {
+  const [navClick, setNavClick] = useState(false);
+
   return (
-    <div>
+    <div onClick={() => setNavClick(!navClick)}>
       <NavLink to="/">Home</NavLink>
       {checkUserLogin() ? (
         <>
           <NavLink to="/chats">Chats</NavLink>
-          <span
+          <NavLink
+            to="/"
             onClick={() => {
               logout();
             }}
-            className="cursor-pointer"
           >
             LogOut
-          </span>
+          </NavLink>
         </>
       ) : (
         <>
