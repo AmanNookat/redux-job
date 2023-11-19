@@ -9,25 +9,6 @@ export const getChatrooms = createAsyncThunk("chats/getChatrooms", async () => {
   return data;
 });
 
-// export const createChatroom = createAsyncThunk(
-//   "chats/createChatroom",
-//   async ({ chatroom }: { chatroom: IChatRoom }) => {
-//     const formData = new FormData();
-//     console.log(chatroom);
-
-//     formData.append("title", chatroom.title);
-//     // @ts-ignore
-//     formData.append("participants", chatroom.participants);
-
-//     const Authorization = `Bearer ${getAccessToken()}`;
-//     await axios.post(`${CHATS_API}/chatrooms/`, {
-//       headers: { Authorization, "Content-Type": "application/json" },
-//     });
-
-//     alert("комната чата создана");
-//   }
-// );
-
 export const createChatroom = createAsyncThunk(
   "chats/createChatroom",
   async ({ chatroom }: { chatroom: IChatRoom }) => {
@@ -45,5 +26,13 @@ export const createChatroom = createAsyncThunk(
     });
 
     alert("Chat room created");
+  }
+);
+
+export const getOneChat = createAsyncThunk(
+  "chats/getOneChat",
+  async ({ chatroomId }: { chatroomId: number }) => {
+    const { data } = await axios.get(`${CHATS_API}/chatrooms/${chatroomId}/`);
+    return data;
   }
 );

@@ -10,14 +10,14 @@ const Navbar = () => {
       <NavLink to="/">Home</NavLink>
       {checkUserLogin() ? (
         <>
-          <NavLink to="/chats">Chats</NavLink>
+          <NavLink to="/chatrooms">Chats</NavLink>
           <NavLink
             to="/"
             onClick={() => {
               logout();
             }}
           >
-            LogOut
+            Log Out
           </NavLink>
         </>
       ) : (
