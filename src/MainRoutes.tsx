@@ -4,6 +4,8 @@ import HomePage from "./pages/home/HomePage";
 import RegistrationPage from "./pages/users/RegistrationPage";
 import AuthorizationPage from "./pages/users/AuthorizationPage";
 import ChatRoomsPage from "./pages/chats/ChatRoomsPage";
+import CreateResume from "./components/resume/CreateResume";
+import RoadmapsMain from "./components/roadmaps/RoadmapsMain";
 
 const MainRoutes = () => {
   return (
@@ -12,6 +14,8 @@ const MainRoutes = () => {
       <Route path="/sign-up" element={<RegistrationPage />} />
       <Route path="/sign-in" element={<AuthorizationPage />} />
       <Route path="/chats" element={<ChatRoomsPage />} />
+      <Route path="/resume" element={<CreateResume />} />
+      <Route path="/roadmaps" element={<RoadmapsMain />} />
     </Routes>
   );
 };
