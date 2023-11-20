@@ -11,6 +11,7 @@ const Navbar = () => {
       {checkUserLogin() ? (
         <>
           <NavLink to="/chatrooms">Chats</NavLink>
+          <NavLink to="/projects">Projects</NavLink>
           <NavLink
             to="/"
             onClick={() => {

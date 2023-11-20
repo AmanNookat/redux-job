@@ -5,7 +5,12 @@ import { IChatRoom } from "./ChatsTypes";
 import { getAccessToken } from "../../helpers/functions";
 
 export const getChatrooms = createAsyncThunk("chats/getChatrooms", async () => {
-  const { data } = await axios.get(`${CHATS_API}/chatrooms/`);
+  const Authorization = `Bearer ${getAccessToken()}`;
+  const { data } = await axios.get(`${CHATS_API}/chatrooms/`, {
+    headers: {
+      Authorization,
+    },
+  });
   return data;
 });
 
@@ -32,7 +37,13 @@ export const createChatroom = createAsyncThunk(
 export const getOneChat = createAsyncThunk(
   "chats/getOneChat",
   async ({ chatroomId }: { chatroomId: number }) => {
-    const { data } = await axios.get(`${CHATS_API}/chatrooms/${chatroomId}/`);
+    const Authorization = `Bearer ${getAccessToken()}`;
+
+    const { data } = await axios.get(`${CHATS_API}/chatrooms/${chatroomId}/`, {
+      headers: {
+        Authorization,
+      },
+    });
     return data;
   }
 );
