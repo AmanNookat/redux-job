@@ -4,6 +4,9 @@ import { checkUserLogin, logout } from "../../helpers/functions";
 import UsersModal from "./UsersModal";
 
 const Navbar = () => {
+
+  const [navClick, setNavClick] = useState(false);
+
   const [usersModal, setUsersModal] = useState(false);
 
   const toggleMenu = () => {
@@ -14,20 +17,22 @@ const Navbar = () => {
     setUsersModal(false);
   }
 
+
   return (
-    <div>
+    <div onClick={() => setNavClick(!navClick)}>
       <NavLink to="/">Home</NavLink>
       {checkUserLogin() ? (
         <>
-          <NavLink to="/chats">Chats</NavLink>
-          <span
+          <NavLink to="/chatrooms">Chats</NavLink>
+          <NavLink to="/projects">Projects</NavLink>
+          <NavLink
+            to="/"
             onClick={() => {
               logout();
             }}
-            className="cursor-pointer"
           >
-            LogOut
-          </span>
+            Log Out
+          </NavLink>
         </>
       ) : (
         <>

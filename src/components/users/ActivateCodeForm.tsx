@@ -14,7 +14,7 @@ const ActivateCodeForm = ({ setModal }: IActivateCodeFormProps) => {
   const { loading } = useSelector((state: RootState) => state.users);
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch();
 
   return (
     <>
@@ -68,7 +68,6 @@ const ActivateCodeForm = ({ setModal }: IActivateCodeFormProps) => {
                 <button
                   type="button"
                   onClick={() => {
-                    // @ts-ignore
                     dispatch(activateCode({ userActivate, navigate }));
                     setModal(false);
                   }}
