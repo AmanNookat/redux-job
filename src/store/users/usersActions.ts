@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { IUserActivate, IUserLogin, IUserReg } from "./usersTypes";
+import { IUser, IUserActivate, IUserLogin, IUserReg } from "./usersTypes";
 import { USERS_API } from "../../helpers/consts";
 import axios from "axios";
 
@@ -49,6 +49,9 @@ export const loginUser = createAsyncThunk(
     const formData = new FormData();
     formData.append("email", userLogin.email);
     formData.append("password", userLogin.password);
+
+    localStorage.setItem("reduxEmail", JSON.stringify(userLogin.email));
+
     const { data } = await axios.post(`${USERS_API}/login/`, formData);
 
     return { data, navigate };
@@ -59,3 +62,17 @@ export const getUsers = createAsyncThunk("users/getUsers", async () => {
   const { data } = await axios.get(`${USERS_API}/users/`);
   return data;
 });
+
+export const getCurrentUser = createAsyncThunk(
+  "user/getCurrentUser",
+  async () => {
+    const storedData = localStorage.getItem("reduxEmail");
+    if (storedData) {
+      const userEmail = JSON.parse(storedData);
+      const { data } = await axios.get(`${USERS_API}/users/`);
+      const email = data.find((user: IUser) => user.email === userEmail);
+      console.log(email);
+      return email;
+    }
+  }
+);
