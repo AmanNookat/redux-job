@@ -10,7 +10,8 @@ import ProjectsPage from "./pages/projects/ProjectsPage";
 
 import CreateResume from "./components/resume/CreateResume";
 import RoadmapsMain from "./components/roadmaps/RoadmapsMain";
-
+import PostsPage from "./pages/posts/PostsPage";
+import { PostsCreate } from "./components/posts/PostsCreate";
 
 const MainRoutes = () => {
   return (
@@ -27,6 +28,8 @@ const MainRoutes = () => {
       <Route path="/resume" element={<CreateResume />} />
       <Route path="/roadmaps" element={<RoadmapsMain />} />
 
+      <Route path="/posts" element={<PostsPage />} />
+      <Route path="/add-post" element={<PostsCreate />} />
     </Routes>
   );
 };

@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./users/usersSlice";
 import chatReducer from "./chats/ChatsSlice";
+import postReducer from "./posts/postsSlice";
 
 export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
@@ -10,6 +11,7 @@ export const store = configureStore({
   reducer: {
     users: userReducer,
     chats: chatReducer,
+    posts: postReducer,
   },
 });
 
