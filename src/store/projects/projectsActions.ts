@@ -76,7 +76,7 @@ export const editProject = createAsyncThunk(
       fetch(project.image_project)
         .then((response) => response.blob())
         .then((blob) => {
-          const file = new File([blob], "filename.png", { type: "image/png" });
+          new File([blob], "filename.png", { type: "image/png" });
         })
         .catch((error) =>
           console.error("Ошибка при загрузке изображения:", error)

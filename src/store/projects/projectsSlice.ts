@@ -28,7 +28,7 @@ const projectsSlice = createSlice({
       })
       .addCase(getProjects.fulfilled, (state, action) => {
         state.loading = false;
-        state.projects = action.payload;
+        state.projects = action.payload.reverse();
       })
       .addCase(getProjects.rejected, (state) => {
         state.loading = false;

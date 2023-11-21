@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { getProjects } from "../../store/projects/projectsActions";
 import { IProject } from "../../store/projects/projectsTypes";
 import ProjectCreate from "./ProjectCreate";
-import ProjectCard from "./ProjectCard";
+
+const ProjectCard = lazy(() => import("./ProjectCard"));
 
 const ProjectsList = () => {
   const [modal, setModal] = useState(false);
@@ -27,9 +28,11 @@ const ProjectsList = () => {
         <div>
           <button onClick={() => setModal(true)}>Add Project</button>
           <>{modal && <ProjectCreate setModal={setModal} />}</>
-          {projects.map((project: IProject) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
+          <Suspense fallback={<div>Loading ProjectCard...</div>}>
+            {projects.map((project: IProject) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </Suspense>
         </div>
       )}
     </>

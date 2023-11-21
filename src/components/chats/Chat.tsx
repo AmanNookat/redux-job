@@ -1,11 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { AppDispatch, RootState } from "../../store/store";
-import { getOneChat } from "../../store/chats/ChatsActions";
+import { addMessage, getOneChat } from "../../store/chats/ChatsActions";
 
 const Chat = () => {
   const { chatroom, loading } = useSelector((state: RootState) => state.chats);
+  const [message, setMessage] = useState({
+    chatroom: 0,
+    content: "",
+  });
+  const [prikol, setPrikol] = useState(false);
   const { id } = useParams();
 
   const dispatch: AppDispatch = useDispatch();
@@ -13,8 +18,17 @@ const Chat = () => {
   useEffect(() => {
     if (id) {
       dispatch(getOneChat({ chatroomId: parseInt(id) }));
+      setMessage({ ...message, chatroom: parseInt(id) });
     }
-  }, [id, dispatch]);
+  }, [id, dispatch, prikol]);
+
+  // useEffect(() => {
+  //   const realTime = setInterval(() => {
+  //     setPrikol(!prikol);
+  //   }, 5000);
+
+  //   return () => clearInterval(realTime);
+  // }, [prikol]);
 
   return (
     <>
@@ -36,13 +50,34 @@ const Chat = () => {
 
                 {chatroom.messages.length ? (
                   chatroom.messages.map((message) => (
-                    <>
-                      <p>{message.text}</p>
-                    </>
+                    <p key={message.id}>
+                      <span className="bg-gray-300">{message.sender}</span>{" "}
+                      {message.text}
+                    </p>
                   ))
                 ) : (
                   <></>
                 )}
+              </div>
+              <div className="flex fixed bottom-5 left-3">
+                <input
+                  type="text"
+                  placeholder="Введите текст..."
+                  className="w-96 border-2 border-black p-1"
+                  onChange={(e: any) =>
+                    setMessage({ ...message, content: e.target.value })
+                  }
+                  value={message.content}
+                />
+                <button
+                  onClick={() => {
+                    dispatch(addMessage({ message }));
+                    setMessage({ ...message, content: "" });
+                    setPrikol(!prikol);
+                  }}
+                >
+                  Send
+                </button>
               </div>
             </div>
           )}
