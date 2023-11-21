@@ -10,6 +10,8 @@ import ProjectsPage from "./pages/projects/ProjectsPage";
 
 import CreateResume from "./components/resume/CreateResume";
 import RoadmapsMain from "./components/roadmaps/RoadmapsMain";
+import ProjectDetails from "./components/projects/ProjectDetails";
+import ProjectEdit from "./components/projects/ProjectEdit";
 
 const MainRoutes = () => {
   return (
@@ -23,6 +25,8 @@ const MainRoutes = () => {
       <Route path="/chats" element={<ChatRoomsPage />} />
       <Route path="/resume" element={<CreateResume />} />
       <Route path="/roadmaps" element={<RoadmapsMain />} />
+      <Route path="/project/:id" element={<ProjectDetails />} />
+      <Route path="/project-edit/:id" element={<ProjectEdit />} />
     </Routes>
   );
 };

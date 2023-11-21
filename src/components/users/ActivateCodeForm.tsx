@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { RootState } from "../../store/store";
+import { AppDispatch, RootState } from "../../store/store";
 import { activateCode } from "../../store/users/usersActions";
 
 interface IActivateCodeFormProps {
@@ -14,7 +14,7 @@ const ActivateCodeForm = ({ setModal }: IActivateCodeFormProps) => {
   const { loading } = useSelector((state: RootState) => state.users);
 
   const navigate = useNavigate();
-  const dispatch: any = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   return (
     <>

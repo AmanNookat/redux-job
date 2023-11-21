@@ -17,6 +17,9 @@ const ProjectCreate = ({ setModal }: IModalProps) => {
     link: "",
   });
 
+  const { currentUser } = useSelector((state: RootState) => state.users);
+  console.log(currentUser);
+
   const dispatch: AppDispatch = useDispatch();
 
   const handleClick = () => {

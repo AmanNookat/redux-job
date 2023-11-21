@@ -1,7 +1,10 @@
 import React from "react";
 import { IProject } from "../../store/projects/projectsTypes";
+import { useNavigate } from "react-router-dom";
 
 const ProjectCard = ({ project }: { project: IProject }) => {
+  const navigate = useNavigate();
+
   return (
     <div key={project.id} className="border-2 border-black w-[300px]">
       <img src={project.image_project} alt="image" width="100" />
@@ -15,6 +18,9 @@ const ProjectCard = ({ project }: { project: IProject }) => {
       >
         Ссылка
       </a>
+      <button onClick={() => navigate(`/project/${project.id}`)}>
+        Details
+      </button>
     </div>
   );
 };
