@@ -1,13 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { activateCode, loginUser, registerUser } from "./usersActions";
+import {
+  activateCode,
+  getUsers,
+  loginUser,
+  registerUser,
+} from "./usersActions";
 import { addTokensToLocalStorage, updateTokens } from "../../helpers/functions";
 
 interface UsersState {
+  users: [];
   loading: boolean;
   error: boolean;
 }
 
 const initialState: UsersState = {
+  users: [],
   loading: false,
   error: false,
 };
@@ -56,6 +63,18 @@ const usersSlice = createSlice({
         action.payload.navigate("/");
       })
       .addCase(loginUser.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
+      })
+      //? get users
+      .addCase(getUsers.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getUsers.fulfilled, (state, action) => {
+        state.loading = false;
+        state.users = action.payload;
+      })
+      .addCase(getUsers.rejected, (state) => {
         state.loading = false;
         state.error = true;
       });

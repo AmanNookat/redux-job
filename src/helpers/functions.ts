@@ -66,3 +66,18 @@ export const getAccessToken = () => {
   const tokens = JSON.parse(storedTokens);
   return tokens.access;
 };
+
+export const randomString = () => {
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const firstCharacter = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  let result = firstCharacter.charAt(
+    Math.floor(Math.random() * firstCharacter.length)
+  );
+
+  for (let i = 1; i < 16; i++) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+
+  return result;
+};
