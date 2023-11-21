@@ -19,11 +19,9 @@ const MainRoutes = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/sign-up" element={<RegistrationPage />} />
       <Route path="/sign-in" element={<AuthorizationPage />} />
-
       <Route path="/chatrooms" element={<ChatRoomsPage />} />
       <Route path="/chat/:id" element={<ChatPage />} />
       <Route path="/projects" element={<ProjectsPage />} />
-
       <Route path="/chats" element={<ChatRoomsPage />} />
       <Route path="/resume" element={<CreateResume />} />
       <Route path="/roadmaps" element={<RoadmapsMain />} />
