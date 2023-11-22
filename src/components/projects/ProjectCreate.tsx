@@ -18,7 +18,6 @@ const ProjectCreate = ({ setModal }: IModalProps) => {
   });
 
   const { currentUser } = useSelector((state: RootState) => state.users);
-  console.log(currentUser);
 
   const dispatch: AppDispatch = useDispatch();
 

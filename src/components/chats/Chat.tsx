@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { AppDispatch, RootState } from "../../store/store";
 import { addMessage, getOneChat } from "../../store/chats/ChatsActions";
+import ChatMessages from "./ChatMessages";
 
 const Chat = () => {
   const { chatroom, loading } = useSelector((state: RootState) => state.chats);
@@ -49,14 +50,9 @@ const Chat = () => {
                 <h3>messages</h3>
 
                 {chatroom.messages.length ? (
-                  chatroom.messages.map((message) => (
-                    <p key={message.id}>
-                      <span className="bg-gray-300">{message.sender}</span>{" "}
-                      {message.text}
-                    </p>
-                  ))
+                  <ChatMessages messages={chatroom.messages} />
                 ) : (
-                  <></>
+                  <h2>No messages</h2>
                 )}
               </div>
               <div className="flex fixed bottom-5 left-3">
