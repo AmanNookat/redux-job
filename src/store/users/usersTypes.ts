@@ -20,3 +20,14 @@ export interface ITokens {
   access: string;
   refresh: string;
 }
+
+export interface IUser {
+  id: number;
+  email: string;
+  type_user: "Human" | "Company";
+  phone_number: string;
+  is_superuser: boolean;
+  is_staff: boolean;
+  date_joined: string;
+  is_active: boolean;
+}

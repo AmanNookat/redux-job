@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../store/users/usersActions";
-import { RootState } from "../../store/store";
+import { AppDispatch, RootState } from "../../store/store";
 import { Link, useNavigate } from "react-router-dom";
 import Error from "../ui/Error";
 
@@ -12,7 +12,7 @@ const AuthorizationForm = () => {
   });
   const { loading, error } = useSelector((state: RootState) => state.users);
 
-  const dispatch: any = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
 
   return (
@@ -24,7 +24,7 @@ const AuthorizationForm = () => {
           {error ? (
             <Error />
           ) : (
-            <div className="p-4 w-1/4 gap-y-3 bg-gray-400 flex flex-col">
+            <form className="p-4 w-1/4 gap-y-3 bg-gray-400 flex flex-col">
               <input
                 type="text"
                 placeholder="email"
@@ -50,7 +50,7 @@ const AuthorizationForm = () => {
                   Sign Up
                 </Link>
               </p>
-            </div>
+            </form>
           )}
         </>
       )}
