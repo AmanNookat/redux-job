@@ -34,7 +34,7 @@ const ForumPostAdd = () => {
       <input
         type="file"
         onChange={(e: any) => {
-          const selectedFile = e.target.files[0];
+          const selectedFile = e.target.files![0];
           setForumPost({ ...forumPost, file: selectedFile });
         }}
       />

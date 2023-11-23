@@ -39,7 +39,7 @@ export const createProject = createAsyncThunk(
 
 export const getOneProject = createAsyncThunk(
   "projects/getOneProject",
-  async ({ id }: { id: any }) => {
+  async ({ id }: { id: number | string | undefined }) => {
     const Authorization = `Bearer ${getAccessToken()}`;
     const { data } = await axios.get(`${PROJECTS_API}/project/${id}`, {
       headers: {
@@ -52,7 +52,7 @@ export const getOneProject = createAsyncThunk(
 
 export const deleteProject = createAsyncThunk(
   "projects/deleteProject",
-  async ({ id }: { id: any }, { dispatch }) => {
+  async ({ id }: { id: number | string | undefined }, { dispatch }) => {
     const Authorization = `Bearer ${getAccessToken()}`;
     await axios.delete(`${PROJECTS_API}/project/${id}`, {
       headers: {
