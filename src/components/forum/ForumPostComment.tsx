@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addCommentToForumPost,
   deleteCommentFromForumPost,
-  editForumPost,
   editForumPostComment,
 } from "../../store/forum/forumActions";
 import { IForumPostComment } from "../../store/forum/forumSlice";
@@ -44,7 +43,7 @@ const ForumPostComment = ({
               ) : (
                 <p>{comment.body}</p>
               )}
-              {comment.author === currentUser!.email && (
+              {comment.author === currentUser?.email && (
                 <>
                   {editedComment?.id == comment.id ? (
                     <button
