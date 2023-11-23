@@ -4,7 +4,6 @@ import { checkUserLogin, logout } from "../../helpers/functions";
 import UsersModal from "./UsersModal";
 
 const Navbar = () => {
-
   const [navClick, setNavClick] = useState(false);
 
   const [usersModal, setUsersModal] = useState(false);
@@ -17,7 +16,6 @@ const Navbar = () => {
     setUsersModal(false);
   }
 
-
   return (
     <div onClick={() => setNavClick(!navClick)}>
       <NavLink to="/">Home</NavLink>
@@ -25,6 +23,7 @@ const Navbar = () => {
         <>
           <NavLink to="/chatrooms">Chats</NavLink>
           <NavLink to="/projects">Projects</NavLink>
+          <NavLink to="/forum">Forum</NavLink>
           <NavLink
             to="/"
             onClick={() => {

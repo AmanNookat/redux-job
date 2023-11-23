@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./users/usersSlice";
 import chatReducer from "./chats/ChatsSlice";
 import projectReducer from "./projects/projectsSlice";
+import forumReducer from "./forum/forumSlice";
 
 export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
@@ -12,6 +13,7 @@ export const store = configureStore({
     users: userReducer,
     chats: chatReducer,
     projects: projectReducer,
+    forum: forumReducer,
   },
 });
 
