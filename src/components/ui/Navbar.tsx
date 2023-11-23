@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { checkUserLogin, logout } from "../../helpers/functions";
 import UsersModal from "./UsersModal";
 
@@ -13,6 +13,8 @@ const Navbar = () => {
   function closeUsersModal() {
     setUsersModal(false);
   }
+
+  const naivigate = useNavigate();
 
   return (
     <div>
