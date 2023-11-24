@@ -15,12 +15,21 @@
     margin-bottom: 0px;
 }
 
+.home_compani{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5rem;
+    font-size: 1.5rem;
+    width: 100%;
+}
+
 .company_home_page{
-    font-size: 9rem;
+    font-size: 12rem;
 }
 
 .company_home_page_p{
-    font-size: 5rem;
+    font-size: 6rem;
 }
 
 .company_home_arrow{
@@ -28,6 +37,11 @@
     transform: rotate(90deg);
     margin-left: 73vh;
     margin-top: 7rem;
+}
+
+.home_page_about{
+    width: 100%;
+    margin-top: 6rem;
 }
 
 .home_about{
@@ -57,6 +71,7 @@
 }
 
 .home_second_block{
+    width: 100%;
     display: flex;
     background-color: rgb(17 24 39);
     height: 80%;
@@ -66,19 +81,46 @@
 
 .home_second_block_text{
     color: rgb(36, 20, 45);
-    width: 60vh;
+    width: 55vh;
     position: absolute;
     z-index: 10;
-    top: 280vh;
-    left: 12vh;
-    font-size: 1.3rem;
+    top: 258vh;
+    left: 8vh;
+    font-size: 1.2rem;
 }
 
 .home_second_block_text_h5{
     color: rgb(17 24 39);
     position: absolute;
     z-index: 10;
-    top: 268vh;
+    top: 248vh;
     font-size: 7vh;
-    left: 10vh;
+    left: 8vh;
+}
+
+@media (max-width: 1615px) {
+    .home_page_first_block{
+        width: 184.4vh;
+    }
+    .home_compani{
+        width: 184.4vh;
+    }
+    .home_page_about{
+        width: 184.4vh;
+    }
+    .home_second_block{
+        width: 184.4vh;
+    }
+    .home_second_block_text{
+        top: 278vh;
+        left: 8vh;
+        font-size: 0.8rem;
+    }
+    .home_second_block_text_h5{
+        top: 267vh;
+    }
+}
+
+@media (min-width:470px) {
+    
 }

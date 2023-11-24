@@ -20,7 +20,8 @@ const Navbar = () => {
 
   return (
     <div onClick={() => setNavClick(!navClick)}>
-      <div className="max-w-full h-20 bg-slate-900 text-white flex gap-6 items-center text-lg ">
+      {/* max-w-full h-20 bg-slate-900 text-white flex gap-6 items-center text-lg */}
+      <div className={style.nav_oll}>
       <NavLink className={"ml-4"} to="/">Home</NavLink>
       {checkUserLogin() ? (
         <>
@@ -67,7 +68,7 @@ const Navbar = () => {
       )}
       <div><img className={style.nav_img} src={icon_logo} alt="" /></div>
       </div>
-      <div className="bg-black h-0.5"></div>
+      <div className={style.nav_line}></div>
     </div>
   );
 };

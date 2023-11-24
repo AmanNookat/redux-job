@@ -39,8 +39,7 @@ const HomePage = () => {
           <video id="video-nav"></video>
         </div>
       </div>
-
-      <div className="text-xl mt-20 flex items-center justify-center">
+      <div className={style.home_compani}>
         <p className="">
           Companies with which we <br /> started cooperation
         </p>
@@ -51,7 +50,7 @@ const HomePage = () => {
         <img className="w-22 h-14 ml-10" src={fissman} alt="nasa" />
       </div>
 
-      <div className="mt-24">
+      <div className={style.home_page_about}>
         <div className="flex flex-col items-center">
           <h3 className="text-7xl mb-6">What do we have on our website?</h3>
           <p className="text-xl">
@@ -158,29 +157,29 @@ const HomePage = () => {
           </p>
         </div>
         <div className="flex ml-10 items-end justify-center text-zinc-900">
-          <div className="w-64 h-96 bg-slate-100 mr-10 rounded-3xl mb-6 p-4">
+          <div className="w-96 h-96 bg-slate-100 mr-10 rounded-3xl mb-6 p-4">
             <div className="flex">
               <div>
-                <img className="h-16" src={girl} alt="girl" />
+                <img className="h-20" src={girl} alt="girl" />
               </div>
-              <div className="ml-4 mt-2">
+              <div className="ml-4 mt-2 text-base">
                 <p>Name: Anna</p>
                 <p>Age: 20 yers</p>
               </div>
             </div>
             <div className="mt-4">
-              <p className="text-sm">
-                <span className="text-violet-950 text-base">profesion:</span>{" "}
+              <p className="text-base">
+                <span className="text-violet-950 text-xl">profesion:</span>{" "}
                 <br />
                 i’m middle Front-end developer! <br />
-                <span className="text-violet-950 text-base">
+                <span className="text-violet-950 text-xl">
                   Professional profile:
                 </span>
                 <br />I strive to create efficient and intuitive web
                 applications using advanced front-end technologies. I have
                 experience in developing user interfaces, optimizing performance
                 and adapting designs for various devices. <br />
-                <span className="text-violet-950 text-base">
+                <span className="text-violet-950 text-xl">
                   Programming languages:
                 </span>{" "}
                 <br />
@@ -188,10 +187,10 @@ const HomePage = () => {
               </p>
             </div>
           </div>
-          <div className="w-64 h-96 bg-slate-100 rounded-3xl p-4 mb-6">
+          <div className="w-96 h-96 bg-slate-100 text-base rounded-3xl p-4 mb-6">
             <div className="flex">
               <div>
-                <img className="h-16" src={boy} alt="girl" />
+                <img className="h-20" src={boy} alt="girl" />
               </div>
               <div className="ml-4 mt-2">
                 <p>name: Aman</p>
@@ -199,18 +198,18 @@ const HomePage = () => {
               </div>
             </div>
             <div className="mt-4">
-              <p className="text-sm">
-                <span className="text-violet-950 text-base">profesion:</span>{" "}
+              <p className="text-base">
+                <span className="text-violet-950 text-xl">profesion:</span>{" "}
                 <br />
                 i’m middle Full Stack developer! <br />
-                <span className="text-violet-950 text-base">
+                <span className="text-violet-950 text-xl">
                   Professional profile:
                 </span>
                 <br />I am a Full Stack developer with experience in creating
                 effective web applications, capable of working with both
                 front-end and back-end. I have experience in developing scalable
                 and innovative projects.. <br />
-                <span className="text-violet-950 text-base">
+                <span className="text-violet-950 text-xl">
                   Programming languages:
                 </span>
                 <br />
