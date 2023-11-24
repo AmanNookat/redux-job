@@ -6,29 +6,28 @@ import { RootState } from "../../store/store";
 const UsersModal = () => {
   const navigate = useNavigate();
 
-  const { oneProfile, loading } = useSelector(
-    (state: RootState) => state.profile
-  );
+  const { currentUser } = useSelector((state: RootState) => state.users);
+
   return (
     <div>
       <div
         style={{ display: "flex", flexDirection: "column" }}
         className="users--modal__features"
       >
-        <a
+        <p
           style={{ cursor: "pointer" }}
-          onClick={() => navigate(`/profile/${oneProfile?.id}`)}
+          onClick={() => navigate(`/profiles/${currentUser?.id}`)}
         >
           My profile
-        </a>
-        <a href="">Your Post</a>
-        <a href="">Your Projects</a>
-        <a href="">Resume</a>
-        <a href="">Chats</a>
+        </p>
+        <p>Your Post</p>
+        <p>Your Projects</p>
+        <p>Resume</p>
+        <p>Chats</p>
       </div>
       <br />
       <div className="">
-        <a href="">Sign In</a>
+        <p>Sign In</p>
       </div>
     </div>
   );

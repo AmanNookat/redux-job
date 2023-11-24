@@ -3,7 +3,7 @@ import userReducer from "./users/usersSlice";
 import chatReducer from "./chats/ChatsSlice";
 import projectReducer from "./projects/projectsSlice";
 import forumReducer from "./forum/forumSlice";
-import profileReducer from "./profiles/profilesSlice";
+import profilesReducer from "./profiles/profilesSlice";
 
 export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
@@ -15,7 +15,7 @@ export const store = configureStore({
     chats: chatReducer,
     projects: projectReducer,
     forum: forumReducer,
-    profile: profileReducer,
+    profiles: profilesReducer,
   },
 });
 

@@ -1,6 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IProfile } from "./profilesTypes";
-import { getOneProfile, getProfiles } from "./profilesActions";
+import {
+  getCompaniesProfiles,
+  getOneProfile,
+  getUsersProfiles,
+} from "./profilesActions";
 
 interface IProjects {
   profiles: IProfile[];
@@ -22,18 +26,32 @@ const profilesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      //? get projects
-      .addCase(getProfiles.pending, (state) => {
+      //? гет на Профили Юзеров
+      .addCase(getUsersProfiles.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getProfiles.fulfilled, (state, action) => {
+      .addCase(getUsersProfiles.fulfilled, (state, action) => {
         state.loading = false;
-        state.profiles = action.payload.reverse();
+        state.profiles = action.payload;
       })
-      .addCase(getProfiles.rejected, (state) => {
+      .addCase(getUsersProfiles.rejected, (state) => {
         state.loading = false;
         state.error = true;
       })
+
+      //? гет на Профили Компаний
+      .addCase(getCompaniesProfiles.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getCompaniesProfiles.fulfilled, (state, action) => {
+        state.loading = false;
+        state.profiles = action.payload;
+      })
+      .addCase(getCompaniesProfiles.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
+      })
+
       //? get one projects
       .addCase(getOneProfile.pending, (state) => {
         state.loading = true;
