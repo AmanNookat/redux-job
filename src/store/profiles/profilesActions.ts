@@ -32,7 +32,7 @@ export const getCompaniesProfiles = createAsyncThunk(
 
 export const getOneProfile = createAsyncThunk(
   "profiles/getOneProfile",
-  async (user, { getState, dispatch }) => {
+  async ({ user }: { user: number }, { getState, dispatch }) => {
     const Authorization = `Bearer ${getAccessToken()}`;
 
     await dispatch(getCurrentUser());
