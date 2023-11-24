@@ -71,7 +71,6 @@ export const getCurrentUser = createAsyncThunk(
       const userEmail = JSON.parse(storedData);
       const { data } = await axios.get(`${USERS_API}/users/`);
       const email = data.find((user: IUser) => user.email === userEmail);
-      console.log(email);
       return email;
     }
   }
