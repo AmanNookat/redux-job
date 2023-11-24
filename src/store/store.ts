@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./users/usersSlice";
 import chatReducer from "./chats/ChatsSlice";
+import postReducer from "./posts/postsSlice";
 import projectReducer from "./projects/projectsSlice";
 import forumReducer from "./forum/forumSlice";
 
@@ -12,6 +13,7 @@ export const store = configureStore({
   reducer: {
     users: userReducer,
     chats: chatReducer,
+    posts: postReducer,
     projects: projectReducer,
     forum: forumReducer,
   },
