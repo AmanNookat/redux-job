@@ -23,13 +23,14 @@ const Navbar = () => {
   }
 
   return (
-    <div onClick={() => setNavClick(!navClick)}>
+    <div style={{ display: "flex" }} onClick={() => setNavClick(!navClick)}>
       <NavLink to="/">Home</NavLink>
       {checkUserLogin() ? (
         <>
           <NavLink to="/chatrooms">Chats</NavLink>
           <NavLink to="/projects">Projects</NavLink>
           <NavLink to="/forum">Forum</NavLink>
+          <NavLink to="/profiles">Profiles</NavLink>
           <NavLink
             to="/"
             onClick={() => {
@@ -38,19 +39,16 @@ const Navbar = () => {
           >
             Log Out
           </NavLink>
-        </>
-      ) : (
-        <>
-          <NavLink to="/sign-up">Registration</NavLink>
-          <NavLink to="/sign-in">Authorization</NavLink>
-          <NavLink to="/roadmaps">Road Maps</NavLink>
           {/* Оставляйте модалку последней */}
-          {/* хорошо, оставим */}
-          <div className="users--modal">
+
+          <div
+            style={{ position: "fixed", right: "5%" }}
+            className="users--modal"
+          >
             <button className="modalBtn" onClick={toggleMenu}>
               {usersModal ? (
                 <div className="close--modal">
-                  <p>Users name</p>
+                  <p>Your Account</p>
                 </div>
               ) : (
                 <div className="open--modal">
@@ -65,6 +63,12 @@ const Navbar = () => {
               </div>
             )}
           </div>
+        </>
+      ) : (
+        <>
+          <NavLink to="/sign-up">Registration</NavLink>
+          <NavLink to="/sign-in">Authorization</NavLink>
+          <NavLink to="/roadmaps">Road Maps</NavLink>
         </>
       )}
     </div>

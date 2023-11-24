@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { IUser, IUserActivate, IUserLogin, IUserReg } from "./usersTypes";
 import { USERS_API } from "../../helpers/consts";
 import axios from "axios";
+import { getAccessToken } from "../../helpers/functions";
 
 export const registerUser = createAsyncThunk(
   "users/registerUsers",
@@ -77,5 +78,25 @@ export const getCurrentUser = createAsyncThunk(
       const email = data.find((user: IUser) => user.email === userEmail);
       return email;
     }
+  }
+);
+
+export const changePassword = createAsyncThunk(
+  "users/changePassword",
+  async ({ password }: { password: any }) => {
+    const Authorization = `Bearer ${getAccessToken()}`;
+
+    const formData = new FormData();
+    formData.append("old_password", password.oldPassword);
+    formData.append("new_password", password.newPassword);
+    formData.append("new_password_confirm", password.newPasswordConfirm);
+
+    await axios.post(`${USERS_API}/change_password/`, formData, {
+      headers: {
+        Authorization,
+      },
+    });
+
+    alert("пароль успешно изменен");
   }
 );

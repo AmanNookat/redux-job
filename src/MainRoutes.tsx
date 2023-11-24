@@ -14,6 +14,8 @@ import ForumPage from "./pages/forum/ForumPage";
 import ForumPostAdd from "./components/forum/ForumPostAdd";
 import ForumPostDetails from "./components/forum/ForumPostDetails";
 import ForumEditPost from "./components/forum/ForumEditPost";
+import Profiles from "./components/profiles/Profiles";
+import OneProfile from "./components/profiles/OneProfile";
 
 const MainRoutes = () => {
   return (
@@ -33,6 +35,8 @@ const MainRoutes = () => {
       <Route path="/forum-add-post" element={<ForumPostAdd />} />
       <Route path="/forum/:id" element={<ForumPostDetails />} />
       <Route path="/forum-edit-post/:id" element={<ForumEditPost />} />
+      <Route path="/profiles" element={<Profiles />} />
+      <Route path="/profiles/:id" element={<OneProfile />} />
     </Routes>
   );
 };
