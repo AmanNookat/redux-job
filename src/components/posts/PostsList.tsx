@@ -38,18 +38,6 @@ export const PostsList = () => {
         </button>
         <button
           className="p-2 m-4 rounded-lg bg-blue-500 hover:bg-blue-700"
-          onClick={() => dispatch(getPosts(3))}
-        >
-          Support
-        </button>
-        <button
-          className="p-2 m-4 rounded-lg bg-blue-500 hover:bg-blue-700"
-          onClick={() => dispatch(getPosts(4))}
-        >
-          Forum
-        </button>
-        <button
-          className="p-2 m-4 rounded-lg bg-blue-500 hover:bg-blue-700"
           onClick={() => navigate("/add-post")}
         >
           Add Post

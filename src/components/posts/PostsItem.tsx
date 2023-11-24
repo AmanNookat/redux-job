@@ -9,7 +9,6 @@ export const PostsItem = ({ post }: { post: IPost }) => {
 
   return (
     <div>
-      description position
       <div className="w-full flex flex-col items-center">
         <div
           onClick={() => navigate(`/details-post/${post.id}`)}
