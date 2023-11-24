@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { checkUserLogin, logout } from "../../helpers/functions";
 import UsersModal from "./UsersModal";
+import icon_logo from "../../assets/icon_logo.png"
+import style from "./navbar.module.css"
 
 const Navbar = () => {
 
@@ -20,7 +22,8 @@ const Navbar = () => {
 
   return (
     <div onClick={() => setNavClick(!navClick)}>
-      <NavLink to="/">Home</NavLink>
+      <div className="max-w-full h-20 bg-slate-900 text-white flex gap-6 items-center text-lg ">
+      <NavLink className={"ml-4"} to="/">Home</NavLink>
       {checkUserLogin() ? (
         <>
           <NavLink to="/chatrooms">Chats</NavLink>
@@ -40,7 +43,7 @@ const Navbar = () => {
           <NavLink to="/sign-in">Authorization</NavLink>
           <NavLink to="/roadmaps">Road Maps</NavLink>
           {/* Оставляйте модалку последней */}
-          <div className="users--modal">
+          <div className="users--modal ">
             <button className="modalBtn" onClick={toggleMenu}>
               {usersModal ? (
                 <div className="close--modal">
@@ -60,7 +63,12 @@ const Navbar = () => {
             )}
           </div>
         </>
+
+              
       )}
+      <div><img className={style.nav_img} src={icon_logo} alt="" /></div>
+      </div>
+      <div className="bg-black h-0.5"></div>
     </div>
   );
 };
