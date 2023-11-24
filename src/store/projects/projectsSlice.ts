@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getProjects } from "./projectsActions";
+import { getOneProject, getProjects } from "./projectsActions";
 import { IProject } from "./projectsTypes";
 
 interface IProjects {
@@ -28,9 +28,21 @@ const projectsSlice = createSlice({
       })
       .addCase(getProjects.fulfilled, (state, action) => {
         state.loading = false;
-        state.projects = action.payload;
+        state.projects = action.payload.reverse();
       })
       .addCase(getProjects.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
+      })
+      //? get one projects
+      .addCase(getOneProject.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getOneProject.fulfilled, (state, action) => {
+        state.loading = false;
+        state.oneProject = action.payload;
+      })
+      .addCase(getOneProject.rejected, (state) => {
         state.loading = false;
         state.error = true;
       });

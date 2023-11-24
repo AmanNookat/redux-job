@@ -4,10 +4,8 @@ import HomePage from "./pages/home/HomePage";
 import RegistrationPage from "./pages/users/RegistrationPage";
 import AuthorizationPage from "./pages/users/AuthorizationPage";
 import ChatRoomsPage from "./pages/chats/ChatRoomsPage";
-
 import ChatPage from "./pages/chats/ChatPage";
 import ProjectsPage from "./pages/projects/ProjectsPage";
-
 import CreateResume from "./components/resume/CreateResume";
 import RoadmapsMain from "./components/roadmaps/RoadmapsMain";
 import PostsPage from "./pages/posts/PostsPage";
@@ -16,6 +14,12 @@ import { PostsDetails } from "./components/posts/PostsDetails";
 import { PostsEdit } from "./components/posts/PostsEdit";
 import { PostCreateDesc } from "./components/posts/postsDesc/PostCreateDesc";
 import { PostEditDesc } from "./components/posts/postsDesc/PostEditDesc";
+import ProjectDetails from "./components/projects/ProjectDetails";
+import ProjectEdit from "./components/projects/ProjectEdit";
+import ForumPage from "./pages/forum/ForumPage";
+import ForumPostAdd from "./components/forum/ForumPostAdd";
+import ForumPostDetails from "./components/forum/ForumPostDetails";
+import ForumEditPost from "./components/forum/ForumEditPost";
 
 const MainRoutes = () => {
   return (
@@ -36,6 +40,12 @@ const MainRoutes = () => {
       <Route path="/edit-post/:id" element={<PostsEdit />} />
       <Route path="/add-post-desc/:id" element={<PostCreateDesc />} />
       <Route path="/edit-post-desc/:id" element={<PostEditDesc />} />
+      <Route path="/project/:id" element={<ProjectDetails />} />
+      <Route path="/project-edit/:id" element={<ProjectEdit />} />
+      <Route path="/forum" element={<ForumPage />} />
+      <Route path="/forum-add-post" element={<ForumPostAdd />} />
+      <Route path="/forum/:id" element={<ForumPostDetails />} />
+      <Route path="/forum-edit-post/:id" element={<ForumEditPost />} />
     </Routes>
   );
 };

@@ -8,6 +8,7 @@ export const addTokensToLocalStorage = (tokens: ITokens) => {
 
 export const logout = () => {
   localStorage.removeItem("reduxTokens");
+  localStorage.removeItem("reduxEmail");
 };
 
 export const checkUserLogin = () => {

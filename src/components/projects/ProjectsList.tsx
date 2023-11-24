@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store/store";
+import { AppDispatch, RootState } from "../../store/store";
 import { getProjects } from "../../store/projects/projectsActions";
 import { IProject } from "../../store/projects/projectsTypes";
 import ProjectCreate from "./ProjectCreate";
+
+const ProjectCard = lazy(() => import("./ProjectCard"));
 
 const ProjectsList = () => {
   const [modal, setModal] = useState(false);
@@ -12,7 +14,7 @@ const ProjectsList = () => {
     (state: RootState) => state.projects
   );
 
-  const dispatch: any = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getProjects());
@@ -26,21 +28,11 @@ const ProjectsList = () => {
         <div>
           <button onClick={() => setModal(true)}>Add Project</button>
           <>{modal && <ProjectCreate setModal={setModal} />}</>
-          {projects.map((project: IProject) => (
-            <div key={project.id} className="border-2 border-black w-[300px]">
-              <img src={project.image_project} alt="image" width="100" />
-              <h3>title: {project.name_project}</h3>
-              <p>desc: {project.description}</p>
-              <p>user: {project.user}</p>
-              <a
-                href={project.link}
-                target="_blanck"
-                className="text-blue-500 underline"
-              >
-                Ссылка
-              </a>
-            </div>
-          ))}
+          <Suspense fallback={<div>Loading ProjectCard...</div>}>
+            {projects.map((project: IProject) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </Suspense>
         </div>
       )}
     </>
