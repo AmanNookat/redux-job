@@ -1,40 +1,53 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addTokensToLocalStorage, updateTokens } from "../../helpers/functions";
-import { getProfiles } from "./profilesActions";
+import { IProfile } from "./profilesTypes";
+import { getOneProfile, getProfiles } from "./profilesActions";
 
-interface ProfilesState {
+interface IProjects {
+  profiles: IProfile[];
+  oneProfile: IProfile | null;
   loading: boolean;
   error: boolean;
 }
 
-const initialState: ProfilesState = {
+const initialState: IProjects = {
+  profiles: [],
+  oneProfile: null,
   loading: false,
   error: false,
 };
 
-const usersSlice = createSlice({
-  name: "users",
+const profilesSlice = createSlice({
+  name: "profiles",
   initialState,
-  reducers: {
-    clearErrorState: (state) => {
-      state.error = false;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
-      //? registration
+      //? get projects
       .addCase(getProfiles.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getProfiles.fulfilled, (state) => {
+      .addCase(getProfiles.fulfilled, (state, action) => {
         state.loading = false;
+        state.profiles = action.payload.reverse();
       })
       .addCase(getProfiles.rejected, (state) => {
-        state.error = true;
         state.loading = false;
+        state.error = true;
+      })
+      //? get one projects
+      .addCase(getOneProfile.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getOneProfile.fulfilled, (state, action) => {
+        state.loading = false;
+        state.oneProfile = action.payload;
+      })
+      .addCase(getOneProfile.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
       });
   },
 });
 
-export const { clearErrorState } = usersSlice.actions;
-export default usersSlice.reducer;
+// export const {} = projectsSlice.actions;
+export default profilesSlice.reducer;
