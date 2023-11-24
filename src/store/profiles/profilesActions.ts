@@ -4,6 +4,7 @@ import { PROFILES_API } from "../../helpers/consts";
 import { getAccessToken } from "../../helpers/functions";
 import { IProfile } from "./profilesTypes";
 import { getCurrentUser } from "../users/usersActions";
+import { RootState } from "../store";
 
 export const getUsersProfiles = createAsyncThunk(
   "profiles/getUsersProfiles",
@@ -37,10 +38,7 @@ export const getOneProfile = createAsyncThunk(
 
     await dispatch(getCurrentUser());
 
-    // @ts-ignore
-    const { currentUser } = getState().users;
-
-    console.log(currentUser);
+    const { currentUser } = (getState() as RootState).users;
 
     let profiles;
 

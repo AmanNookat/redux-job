@@ -18,8 +18,6 @@ const Profiles = () => {
 
   const navigate = useNavigate();
 
-  console.log(profiles);
-
   useEffect(() => {
     dispatch(getCompaniesProfiles());
     dispatch(getUsersProfiles());

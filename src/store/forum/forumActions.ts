@@ -174,13 +174,11 @@ export const toggleLikeForumPost = createAsyncThunk(
   async ({ id }: { id: number }, { dispatch }) => {
     const Authorization = `Bearer ${getAccessToken()}`;
 
-    const res = await axios.post(`${POSTS_API}/forum/${id}/like/`, null, {
+    await axios.post(`${POSTS_API}/forum/${id}/like/`, null, {
       headers: {
         Authorization,
       },
     });
-
-    console.log(res);
 
     await dispatch(getOneForumPost({ id }));
   }
