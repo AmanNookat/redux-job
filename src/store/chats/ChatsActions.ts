@@ -17,25 +17,21 @@ export const getChatrooms = createAsyncThunk("chats/getChatrooms", async () => {
 export const createChatroom = createAsyncThunk(
   "chats/createChatroom",
   async ({ chatroom }: { chatroom: IChatRoom }) => {
-    try {
-      const formData = new FormData();
-      formData.append("title", chatroom.title);
-      formData.append("participants", JSON.stringify(chatroom.participants));
+    const formData = new FormData();
+    formData.append("title", chatroom.title);
+    formData.append("participants", JSON.stringify(chatroom.participants));
 
-      console.log(Object.fromEntries(formData.entries()));
+    // console.log(Object.fromEntries(formData.entries()));
 
-      const Authorization = `Bearer ${getAccessToken()}`;
+    const Authorization = `Bearer ${getAccessToken()}`;
 
-      await axios.post(`${CHATS_API}/chatrooms/`, formData, {
-        headers: {
-          Authorization,
-        },
-      });
+    await axios.post(`${CHATS_API}/chatrooms/`, formData, {
+      headers: {
+        Authorization,
+      },
+    });
 
-      alert("Chat room created");
-    } catch (err) {
-      console.log(err);
-    }
+    alert("Chat room created");
   }
 );
 
@@ -67,6 +63,5 @@ export const addMessage = createAsyncThunk(
         Authorization,
       },
     });
-    console.log("delay");
   }
 );

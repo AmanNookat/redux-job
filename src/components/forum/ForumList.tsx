@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { getForumPosts } from "../../store/forum/forumActions";
 import { useNavigate } from "react-router-dom";
+import { IForumPost } from "../../store/forum/forumSlice";
 
 const ForumList = () => {
   const { forumPosts, loading } = useSelector(
@@ -27,7 +28,7 @@ const ForumList = () => {
             </button>
           </div>
           <div className="gap-y-3 flex flex-col w-1/3">
-            {forumPosts.map((forumPost: any) => (
+            {forumPosts.map((forumPost: IForumPost) => (
               <span
                 className="border-2 border-black p-1 cursor-pointer"
                 onClick={() => navigate(`/forum/${forumPost.id}`)}

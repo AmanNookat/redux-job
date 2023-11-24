@@ -2,10 +2,28 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getForumPosts, getOneForumPost } from "./forumActions";
 
 interface IForum {
-  forumPosts: any;
-  forumOnePost: any;
+  forumPosts: IForumPost[];
+  forumOnePost: IForumPost | null;
   loading: boolean;
   error: boolean;
+}
+
+export interface IForumPostComment {
+  id?: number;
+  author?: string;
+  body: string;
+  files?: File | null;
+  forum: number;
+}
+
+export interface IForumPost {
+  id?: number;
+  user?: string;
+  description: string;
+  file: File | null | string | undefined;
+  name: string;
+  like?: number;
+  comments?: [];
 }
 
 const initialState: IForum = {

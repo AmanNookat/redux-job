@@ -63,8 +63,8 @@ const ProjectEdit = () => {
               />
               <input
                 type="file"
-                onChange={(e: any) => {
-                  const selectedFile = e.target.files[0];
+                onChange={(e) => {
+                  const selectedFile = e.target.files![0];
                   setProject({ ...project, image_project: selectedFile });
                 }}
               />
