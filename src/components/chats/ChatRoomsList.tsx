@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store/store";
+import { AppDispatch, RootState } from "../../store/store";
 import { getChatrooms } from "../../store/chats/ChatsActions";
 import { IChatRoom } from "../../store/chats/ChatsTypes";
 import ChatRoomAdd from "./ChatRoomAdd";
@@ -11,7 +11,7 @@ const ChatRoomsList = () => {
   const { chats, loading } = useSelector((state: RootState) => state.chats);
   const [modal, setModal] = useState(false);
 
-  const dispatch: any = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {

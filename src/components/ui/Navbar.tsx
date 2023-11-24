@@ -6,7 +6,6 @@ import icon_logo from "../../assets/icon_logo.png"
 import style from "./navbar.module.css"
 
 const Navbar = () => {
-
   const [navClick, setNavClick] = useState(false);
 
   const [usersModal, setUsersModal] = useState(false);
@@ -19,7 +18,6 @@ const Navbar = () => {
     setUsersModal(false);
   }
 
-
   return (
     <div onClick={() => setNavClick(!navClick)}>
       <div className="max-w-full h-20 bg-slate-900 text-white flex gap-6 items-center text-lg ">
@@ -28,6 +26,7 @@ const Navbar = () => {
         <>
           <NavLink to="/chatrooms">Chats</NavLink>
           <NavLink to="/projects">Projects</NavLink>
+          <NavLink to="/forum">Forum</NavLink>
           <NavLink
             to="/"
             onClick={() => {

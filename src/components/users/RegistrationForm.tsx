@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../store/users/usersActions";
-import { RootState } from "../../store/store";
+import { AppDispatch, RootState } from "../../store/store";
 import { Link } from "react-router-dom";
 import Error from "../ui/Error";
 import ActivateCodeForm from "./ActivateCodeForm";
@@ -18,7 +18,7 @@ const RegistrationForm = () => {
 
   const { loading, error } = useSelector((state: RootState) => state.users);
 
-  const dispatch: any = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   const handleReg = () => {
     for (let key in user) {
