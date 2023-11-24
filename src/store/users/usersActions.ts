@@ -39,13 +39,16 @@ export const activateCode = createAsyncThunk(
 
 export const loginUser = createAsyncThunk(
   "users/loginUser",
-  async ({
-    userLogin,
-    navigate,
-  }: {
-    userLogin: IUserLogin;
-    navigate: (value: string) => void;
-  }) => {
+  async (
+    {
+      userLogin,
+      navigate,
+    }: {
+      userLogin: IUserLogin;
+      navigate: (value: string) => void;
+    },
+    { dispatch }
+  ) => {
     const formData = new FormData();
     formData.append("email", userLogin.email);
     formData.append("password", userLogin.password);
@@ -54,6 +57,7 @@ export const loginUser = createAsyncThunk(
 
     const { data } = await axios.post(`${USERS_API}/login/`, formData);
 
+    dispatch(getCurrentUser());
     return { data, navigate };
   }
 );
