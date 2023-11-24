@@ -11,8 +11,6 @@ const API = [
   `${POSTS_API}/add_comp_post/`,
   `${POSTS_API}/add_comp_vac/`,
   `${POSTS_API}/add_user_post/`,
-  `${POSTS_API}/er_code/`,
-  `${POSTS_API}/forum/`,
 ];
 
 function postToken() {
