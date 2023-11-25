@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { getEr_codePosts } from "../../store/er_code/er_codeActions";
 import { IEr_codePost } from "../../store/er_code/er_codeSlice";
 
+import LazyLoading from "../loading/LazyLoading";
+
 const Er_codeList = () => {
   const {er_codePosts, loading } = useSelector(
     (state: RootState) => state.er_code
@@ -18,22 +20,25 @@ const Er_codeList = () => {
   return (
     <>
       {loading ? (
-        <h1>Loading...</h1>
+      <LazyLoading />
       ) : (
         <>
           <div>
-            <button onClick={() => navigate("/er_code-add")}>
-              Add Post
+            <button 
+            className=" uppercase border bg-gray-700 text-white rounded w-48 h-9 hover:bg-transparent hover:text-black"
+            onClick={() => navigate("/er_code-add")}>
+              Add Post of error
             </button>
           </div>
-          <div className="gap-y-3 flex flex-col w-1/3">
+          <div className="mb-4 flex flex-col w-1/3">
             {er_codePosts.map((er_CodePost: IEr_codePost) => (
               <span
-                className="border-2 border-black p-1 cursor-pointer"
+                className="border bg-gray-700 text-white p-1 cursor-pointer"
                 onClick={() => navigate(`/er_code/${er_CodePost.id}`)}
                 key={er_CodePost.id}
               >
                 {er_CodePost.name}
+                {er_CodePost.description}
               </span>
             ))}
           </div>

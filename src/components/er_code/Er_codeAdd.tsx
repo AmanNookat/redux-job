@@ -13,40 +13,66 @@ const Er_codeAdd = () => {
 
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
-  return(
-    <div className="p-3 bg-gray-500 flex flex-col gap-y-3">
-      <input
-        type="text"
-        placeholder="post name"
-        onChange={(e) => setEr_codePost({ ...er_codePost, name: e.target.value })}
-      />
-      <textarea
-        name=""
-        id=""
-        cols={30}
-        rows={10}
-        placeholder="description"
-        onChange={(e) =>
-          setEr_codePost({ ...er_codePost, description: e.target.value })
-        }
-      ></textarea>
-      <input
-        type="file"
-        onChange={(e: any) => {
-          const selectedFile = e.target.files![0];
-          setEr_codePost({ ...er_codePost, file: selectedFile });
-        }}
-      />
-      <button
-        onClick={() => {
-          dispatch(addEr_codePost({ er_codePost }));
-          navigate("/er_code");
-        }}
-      >
-        Add Post
-      </button>
+  return (
+    <div className="min-h-screen flex items-center justify-center ">
+      <div className=" p-8 w-7/12 uppercase rounded-lg bg-[#111827] text-white  gap-y-3 flex flex-col ">
+        <h1 className="text-white uppercase font-light text-3xl">
+          enter your code error
+        </h1>
+        <div className="mb-4">
+          <label htmlFor="title" className="block text-white mb-2">
+            title of error:
+          </label>
+          <input
+            className="w-full px-3 py-2 border rounded bg-gray-700 text-white"
+            type="text"
+            placeholder="enter title of error"
+            value={er_codePost?.name}
+            onChange={(e) =>
+              setEr_codePost({ ...er_codePost!, name: e.target.value })
+            }
+          />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="title" className="block text-white mb-2">
+            more information about your error:
+          </label>
+
+          <textarea
+            className="w-full  px-3 py-2 border rounded bg-gray-700 text-white"
+            name=""
+            id=""
+            cols={30}
+            rows={7}
+            placeholder="enter error"
+            onChange={(e) =>
+              setEr_codePost({ ...er_codePost!, description: e.target.value })
+            }
+          ></textarea>
+        </div>
+
+        <input
+          className="mb-4 "
+          type="file"
+          onChange={(e: any) => {
+            const selectedFile = e.target.files[0];
+            setEr_codePost({ ...er_codePost!, file: selectedFile });
+          }}
+        />
+
+        <button
+          className=" uppercase border rounded w-48 h-9 hover:text-black hover:bg-white  "
+          onClick={() => {
+            dispatch(addEr_codePost({ er_codePost }));
+            navigate("/er_code");
+          }}
+        >
+          share with error
+        </button>
+      </div>
     </div>
-  )
+  );
 };
 
 export default Er_codeAdd;

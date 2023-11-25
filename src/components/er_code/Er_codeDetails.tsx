@@ -6,6 +6,7 @@ import {
   deleteEr_codePost,
   getOneEr_codePost,
 } from "../../store/er_code/er_codeActions";
+import LazyLoading from "../loading/LazyLoading";
 
 const Er_codeDetails = () => {
   const { er_codeOnePost, loading } = useSelector(
@@ -24,40 +25,41 @@ const Er_codeDetails = () => {
   return (
     <>
       {loading ? (
-        <h1>Loading...</h1>
+       <LazyLoading />
       ) : (
         <>
           {er_codeOnePost && (
             <div className="flex">
-              <div className="border-2 border-black w-1/2">
+              <div className="border bg-gray-800 text-white w-1/2">
                 <p>{er_codeOnePost?.name}</p>
                 <p>{er_codeOnePost?.user}</p>
                 <p>{er_codeOnePost?.description}</p>
                 {er_codeOnePost?.file &&
                 typeof er_codeOnePost?.file === "string" ? (
-                  <img src={er_codeOnePost.file} alt="" width="300" />
+                  <img src={er_codeOnePost.file} alt="" width="250" />
                 ) : (
-                  <span>No image available</span>
+                  <span>No image</span>
                 )}
                 {currentUser?.email == er_codeOnePost?.user && (
                   <>
-                    <button
-                      onClick={() => {
-                        dispatch(deleteEr_codePost({ id: er_codeOnePost.id! }));
-                        navigate("/forum");
-                      }}
-                      className="bg-red-500 p-2"
-                    >
-                      Delete
-                    </button>
-                    <button
-                      className="bg-violet-500 p-2"
+                   <button
+                      className="border text-white hover:text-black uppercase hover:bg-white p-2"
                       onClick={() =>
                         navigate(`/er_code-edit/${er_codeOnePost?.id}`)
                       }
                     >
                       Edit
                     </button>
+                    <button
+                      onClick={() => {
+                        dispatch(deleteEr_codePost({ id: er_codeOnePost.id! }));
+                        navigate("/er_code");
+                      }}
+                      className="bg-white border hover:bg-transparent text-black hover:text-white uppercase p-2"
+                    >
+                      Delete
+                    </button>
+                   
                   </>
                 )}
               </div>
