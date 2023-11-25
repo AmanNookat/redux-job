@@ -6,7 +6,7 @@ import projectReducer from "./projects/projectsSlice";
 import forumReducer from "./forum/forumSlice";
 import profilesReducer from "./profiles/profilesSlice";
 
-export const store = configureStore({
+export const store: any = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,

@@ -2,11 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { useNavigate, useParams } from "react-router-dom";
-import { getOneProfile } from "../../store/profiles/profilesActions";
+import {
+  deleteResumeFile,
+  getOneProfile,
+  uploadResumeFile,
+} from "../../store/profiles/profilesActions";
 import ChangePassModal from "./ChangePassModal";
 
 const OneProfile = () => {
   const [modal, setModal] = useState(false);
+  const [resumeFile, setResumeFile] = useState(null);
+  const [edit, setEdit] = useState(false);
 
   const { oneProfile } = useSelector((state: RootState) => state.profiles);
 
@@ -19,8 +25,6 @@ const OneProfile = () => {
   }, [dispatch]);
 
   const navigate = useNavigate();
-
-  const [edit, setEdit] = useState(false);
 
   return (
     <div>
@@ -85,6 +89,64 @@ const OneProfile = () => {
         Change password
       </a>
       {modal && <ChangePassModal setModal={setModal} />}
+      <div>
+        {oneProfile?.upload_resume.length ? (
+          <>
+            <p>resume</p>
+            {oneProfile?.upload_resume[0].upload_file.includes(
+              ".jpg" || ".png" || ".jpeg"
+            ) ? (
+              <img
+                src={`http://34.136.151.2${oneProfile?.upload_resume[0].upload_file}`}
+                alt="kchau"
+                width="100"
+              />
+            ) : (
+              <button className="bg-gray-500 p-2">
+                <a
+                  href={`http://34.136.151.2${oneProfile?.upload_resume[0].upload_file}`}
+                  target="_blanck"
+                >
+                  Open PDF
+                </a>
+              </button>
+            )}
+            <button
+              onClick={() => {
+                dispatch(
+                  deleteResumeFile({
+                    resumeId: oneProfile?.upload_resume[0].id,
+                    id: +id!,
+                  })
+                );
+              }}
+            >
+              Delete
+            </button>
+          </>
+        ) : (
+          <>
+            <label>Upload resume</label>
+            <input
+              type="file"
+              onChange={(e: any) => {
+                const selectedFile = e.target.files[0];
+                setResumeFile(selectedFile);
+              }}
+            />
+            {resumeFile && (
+              <button
+                className="bg-green-500 p-2"
+                onClick={() =>
+                  dispatch(uploadResumeFile({ resumeFile, id: +id! }))
+                }
+              >
+                Save Resume
+              </button>
+            )}
+          </>
+        )}
+      </div>
     </div>
   );
 };

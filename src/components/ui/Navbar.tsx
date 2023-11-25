@@ -7,7 +7,6 @@ import { RootState } from "../../store/store";
 
 const Navbar = () => {
   const [navClick, setNavClick] = useState(false);
-
   const [usersModal, setUsersModal] = useState(false);
 
   const { loading } = useSelector((state: RootState) => state.users);
@@ -31,6 +30,7 @@ const Navbar = () => {
           <NavLink to="/projects">Projects</NavLink>
           <NavLink to="/forum">Forum</NavLink>
           <NavLink to="/profiles">Profiles</NavLink>
+          <NavLink to="/posts">Posts</NavLink>
           <NavLink
             to="/"
             onClick={() => {

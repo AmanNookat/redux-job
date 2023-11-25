@@ -42,7 +42,7 @@ const Chat = () => {
               <h2>{chatroom.title}</h2>
               <div className="border-2 border-black">
                 <h3>members</h3>
-                {chatroom.participants.map((member) => (
+                {chatroom.participants.map((member: any) => (
                   <p key={member}>id: {member}</p>
                 ))}
               </div>

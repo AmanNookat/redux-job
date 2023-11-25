@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { PROFILES_API } from "../../helpers/consts";
+import { PROFILES_API, RESUME_API } from "../../helpers/consts";
 import { getAccessToken } from "../../helpers/functions";
 import { IProfile } from "./profilesTypes";
 import { getCurrentUser } from "../users/usersActions";
@@ -142,5 +142,44 @@ export const deleteprofile = createAsyncThunk(
     });
     dispatch(getCompaniesProfiles());
     dispatch(getUsersProfiles());
+  }
+);
+
+export const uploadResumeFile = createAsyncThunk(
+  "profiles/uploadResumeFile",
+  async (
+    { resumeFile, id }: { resumeFile: File; id: number },
+    { dispatch }
+  ) => {
+    const Authorization = `Bearer ${getAccessToken()}`;
+
+    const formData = new FormData();
+
+    formData.append("id", JSON.stringify(id));
+    formData.append("upload_file", resumeFile);
+
+    await axios.post(`${RESUME_API}/other_resume/`, formData, {
+      headers: {
+        Authorization,
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    await dispatch(getOneProfile({ user: id }));
+  }
+);
+
+export const deleteResumeFile = createAsyncThunk(
+  "profiles/deleteResumeFile",
+  async ({ resumeId, id }: { resumeId: number; id: number }, { dispatch }) => {
+    const Authorization = `Bearer ${getAccessToken()}`;
+
+    await axios.delete(`${RESUME_API}/other_resume/${resumeId}/`, {
+      headers: {
+        Authorization,
+      },
+    });
+
+    await dispatch(getOneProfile({ user: id }));
   }
 );
