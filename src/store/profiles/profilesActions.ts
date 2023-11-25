@@ -183,3 +183,41 @@ export const deleteResumeFile = createAsyncThunk(
     await dispatch(getOneProfile({ user: id }));
   }
 );
+
+export const createResume = createAsyncThunk(
+  "profiles/createResume",
+  async ({ resumeObj }: { resumeObj: any }) => {
+    const Authorization = `Bearer ${getAccessToken()}`;
+
+    const formData = new FormData();
+    const userFormData = new FormData();
+
+    userFormData.append("email", resumeObj.user.email);
+    userFormData.append("first_name", resumeObj.user.first_name);
+    userFormData.append("last_name", resumeObj.user.last_name);
+
+    let dateArr = resumeObj.birth.split("-");
+    const dateOfBirth = dateArr.reverse().join(".");
+    console.log(resumeObj.education);
+
+    formData.append("user", JSON.stringify(userFormData));
+    formData.append("date_of_birth", dateOfBirth);
+    formData.append("applied_vacancies", resumeObj.appliedVac);
+    formData.append("specialization", resumeObj.specialization);
+    formData.append("sex", resumeObj.sex);
+    formData.append("city_of_residence", resumeObj.city);
+    formData.append("phone_number", resumeObj.phone);
+    formData.append("skills", resumeObj.skills);
+    formData.append("citizenship", resumeObj.citizenship);
+    formData.append("cover_letter", resumeObj.cover);
+    formData.append("education", resumeObj.education);
+    formData.append("profile", resumeObj.profile);
+
+    await axios.post(`${RESUME_API}/resume/`, formData, {
+      headers: {
+        Authorization,
+      },
+    });
+    alert("Все по кайфу");
+  }
+);

@@ -93,9 +93,11 @@ const OneProfile = () => {
         {oneProfile?.upload_resume.length ? (
           <>
             <p>resume</p>
-            {oneProfile?.upload_resume[0].upload_file.includes(
-              ".jpg" || ".png" || ".jpeg"
-            ) ? (
+
+            {oneProfile?.upload_resume[0].upload_file.includes(".jpg") ||
+            oneProfile?.upload_resume[0].upload_file.includes(".png") ||
+            oneProfile?.upload_resume[0].upload_file.includes(".jpeg") ||
+            oneProfile?.upload_resume[0].upload_file.includes(".svg") ? (
               <img
                 src={`http://34.136.151.2${oneProfile?.upload_resume[0].upload_file}`}
                 alt="kchau"
@@ -107,7 +109,7 @@ const OneProfile = () => {
                   href={`http://34.136.151.2${oneProfile?.upload_resume[0].upload_file}`}
                   target="_blanck"
                 >
-                  Open PDF
+                  Open File
                 </a>
               </button>
             )}
@@ -147,6 +149,9 @@ const OneProfile = () => {
           </>
         )}
       </div>
+      <button className="bg-blue-400 p-2" onClick={() => navigate("/resume")}>
+        Create Resume
+      </button>
     </div>
   );
 };
