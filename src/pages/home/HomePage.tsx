@@ -187,7 +187,7 @@ const HomePage = () => {
               </p>
             </div>
           </div>
-          <div className="w-96 h-96 bg-slate-100 text-base rounded-3xl p-4 mb-6">
+          <div className="w-96 h-96 bg-slate-100 text-base rounded-3xl mr-6 p-4 mb-6">
             <div className="flex">
               <div>
                 <img className="h-20" src={boy} alt="girl" />

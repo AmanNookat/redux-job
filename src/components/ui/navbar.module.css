@@ -20,16 +20,12 @@
     width: 100%;
 }
 
-@media (max-width: 1627px) {
-    .nav_img{
-        margin-left: 660%;
-    }
-
+@media (max-width: 1420px) {
     .nav_oll{
-        width: 184.4vh;
+        width: 1420px;
     }
 
     .nav_line{
-        width: 184.4vh;
+        width: 1420px;
     }
 }
