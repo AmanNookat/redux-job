@@ -10,4 +10,5 @@ export interface IProfile {
   achievments: string;
   profile_image: string;
   id?: number;
+  project: [];
 }
