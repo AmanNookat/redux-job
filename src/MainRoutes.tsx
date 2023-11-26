@@ -54,6 +54,9 @@ const MainRoutes = () => {
       <Route path="/er_code-add" element={<Er_codeAdd />} />
       <Route path="/er_code/:id" element={<Er_codeDetails />} />
       <Route path="/er_code-edit/:id" element={<Er_codeEdit />} />
+      <Route path="/chats" element={<ChatRoomsPage />} />
+      <Route path="/chatrooms" element={<ChatRoomsPage />} />
+      <Route path="/chat/:id" element={<ChatPage />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
