@@ -22,7 +22,7 @@ const ForumPostComment = ({
 
   const dispatch: AppDispatch = useDispatch();
 
-  console.log(currentUser);
+  console.log(comments);
 
   return (
     <>

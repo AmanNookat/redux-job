@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/home/HomePage";
 import RegistrationPage from "./pages/users/RegistrationPage";
 import AuthorizationPage from "./pages/users/AuthorizationPage";
@@ -33,13 +33,9 @@ const MainRoutes = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/sign-up" element={<RegistrationPage />} />
       <Route path="/sign-in" element={<AuthorizationPage />} />
-      <Route path="/chatrooms" element={<ChatRoomsPage />} />
-      <Route path="/chat/:id" element={<ChatPage />} />
       <Route path="/projects" element={<ProjectsPage />} />
-      <Route path="/chats" element={<ChatRoomsPage />} />
       <Route path="/resume" element={<CreateResume />} />
       <Route path="/roadmaps" element={<RoadmapsMain />} />
-
       <Route path="/posts" element={<PostsPage />} />
       <Route path="/add-post" element={<PostsCreate />} />
       <Route path="/details-post/:id" element={<PostsDetails />} />
@@ -58,6 +54,7 @@ const MainRoutes = () => {
       <Route path="/er_code-add" element={<Er_codeAdd />} />
       <Route path="/er_code/:id" element={<Er_codeDetails />} />
       <Route path="/er_code-edit/:id" element={<Er_codeEdit />} />
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 };

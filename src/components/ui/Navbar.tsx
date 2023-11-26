@@ -33,11 +33,12 @@ const Navbar = () => {
 
         {checkUserLogin() ? (
           <>
-            <NavLink to="/chatrooms">Chats</NavLink>
+            {/* <NavLink to="/chatrooms">Chats</NavLink> */}
             <NavLink to="/projects">Projects</NavLink>
             <NavLink to="/forum">Forum</NavLink>
-            <NavLink to="/profiles">Profiles</NavLink>
+            {/* <NavLink to="/profiles">Profiles</NavLink> */}
             <NavLink to="/posts">Posts</NavLink>
+            <NavLink to="/er_code">Code Help</NavLink>
 
             <NavLink
               to="/"

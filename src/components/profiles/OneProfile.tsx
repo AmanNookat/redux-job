@@ -112,14 +112,14 @@ const OneProfile = () => {
                 oneProfile?.upload_resume[0].upload_file.includes(".jpeg") ||
                 oneProfile?.upload_resume[0].upload_file.includes(".svg") ? (
                   <img
-                    src={`http://34.136.151.2${oneProfile?.upload_resume[0].upload_file}`}
+                    src={`https://server.reduxjob.com${oneProfile?.upload_resume[0].upload_file}`}
                     alt="kchau"
                     width="100"
                   />
                 ) : (
                   <button className="bg-gray-500 p-2">
                     <a
-                      href={`http://34.136.151.2${oneProfile?.upload_resume[0].upload_file}`}
+                      href={`https://server.reduxjob.com${oneProfile?.upload_resume[0].upload_file}`}
                       target="_blanck"
                     >
                       Open File
