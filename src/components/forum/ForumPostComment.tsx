@@ -22,6 +22,8 @@ const ForumPostComment = ({
 
   const dispatch: AppDispatch = useDispatch();
 
+  console.log(currentUser);
+
   return (
     <>
       <div>
