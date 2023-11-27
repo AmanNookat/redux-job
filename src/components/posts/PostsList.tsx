@@ -5,9 +5,10 @@ import { getPosts } from "../../store/posts/postsAction";
 import { PostsItem } from "./PostsItem";
 import { IPost } from "../../store/posts/postTypes";
 import { useNavigate } from "react-router-dom";
+import LazyLoading from "../loading/LazyLoading";
 
 export const PostsList = () => {
-  const { posts } = useSelector((state: RootState) => state.posts);
+  const { posts, loading } = useSelector((state: RootState) => state.posts);
   const dispatch: any = useDispatch();
   const navigate = useNavigate();
 
@@ -45,11 +46,15 @@ export const PostsList = () => {
           Add Post
         </button>
       </div>
-      <div className="">
-        {posts.map((post: IPost) => (
-          <PostsItem key={post.id} post={post} />
-        ))}
-      </div>
+      {loading ? (
+        <LazyLoading />
+      ) : (
+        <div className="">
+          {posts.map((post: IPost) => (
+            <PostsItem key={post.id} post={post} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

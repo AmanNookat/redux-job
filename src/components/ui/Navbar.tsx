@@ -37,6 +37,7 @@ const Navbar = () => {
             <NavLink to="/projects">Projects</NavLink>
             <NavLink to="/forum">Forum</NavLink>
             <NavLink to="/profiles">Profiles</NavLink>
+            <NavLink to="/roadmaps">Road Maps</NavLink>
             <NavLink to="/posts">Posts</NavLink>
             <NavLink to="/er_code">Code Help</NavLink>
             <NavLink to="/education">Education</NavLink>
@@ -75,7 +76,6 @@ const Navbar = () => {
           <>
             <NavLink to="/sign-up">Registration</NavLink>
             <NavLink to="/sign-in">Authorization</NavLink>
-            <NavLink to="/roadmaps">Road Maps</NavLink>
           </>
         )}
         <div>

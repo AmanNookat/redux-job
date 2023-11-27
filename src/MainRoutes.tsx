@@ -20,13 +20,14 @@ import ForumPage from "./pages/forum/ForumPage";
 import ForumPostAdd from "./components/forum/ForumPostAdd";
 import ForumPostDetails from "./components/forum/ForumPostDetails";
 import ForumEditPost from "./components/forum/ForumEditPost";
-import Profiles from "./components/profiles/Profiles";
 import OneProfile from "./components/profiles/OneProfile";
 import Er_codePage from "./pages/er_code/Er_codePage";
 import Er_codeEdit from "./components/er_code/Er_codeEdit";
 import Er_codeAdd from "./components/er_code/Er_codeAdd";
 import Er_codeDetails from "./components/er_code/Er_codeDetails";
 import Education from "./components/education/Education";
+import RoadMapFront from "./components/roadmaps/roadMapFront/RoadMapFront";
+import RoadMapBack from "./components/roadmaps/roadMapBack/RoadMapBack";
 
 const MainRoutes = () => {
   return (
@@ -49,7 +50,6 @@ const MainRoutes = () => {
       <Route path="/forum-add-post" element={<ForumPostAdd />} />
       <Route path="/forum/:id" element={<ForumPostDetails />} />
       <Route path="/forum-edit-post/:id" element={<ForumEditPost />} />
-      <Route path="/profiles" element={<Profiles />} />
       <Route path="/profiles/:id" element={<OneProfile />} />
       <Route path="/er_code" element={<Er_codePage />} />
       <Route path="/er_code-add" element={<Er_codeAdd />} />
@@ -60,6 +60,8 @@ const MainRoutes = () => {
       <Route path="/chat/:id" element={<ChatPage />} />
       <Route path="*" element={<Navigate to="/" />} />
       <Route path="/education" element={<Education />} />
+      <Route path="/roadmaps/frontend" element={<RoadMapFront />} />
+      <Route path="/roadmaps/backend" element={<RoadMapBack />} />
     </Routes>
   );
 };
