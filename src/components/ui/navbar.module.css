@@ -1,6 +1,6 @@
 .nav_img {
   width: 15vh;
-  /* margin-left: 103vh; */
+  margin-left: 103vh;
 }
 
 .nav_oll {
@@ -10,7 +10,7 @@
   color: whitesmoke;
   display: flex;
   gap: 1.5rem;
-  align-items: center;
+  /* align-items: center; */
   font-size: 1.125rem;
 }
 
@@ -20,16 +20,4 @@
   width: 100%;
 }
 
-/* @media (max-width: 1627px) {
-  .nav_img {
-    margin-left: 660%;
-  }
 
-  .nav_oll {
-    width: 184.4vh;
-  }
-
-  .nav_line {
-    width: 184.4vh;
-  }
-} */
