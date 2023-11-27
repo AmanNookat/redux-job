@@ -7,7 +7,7 @@ export interface IProfile {
   about: string;
   age: any;
   work_experience: string;
-  achievments: string;
+  achievements: string;
   profile_image: string;
   id?: number;
   project: [];

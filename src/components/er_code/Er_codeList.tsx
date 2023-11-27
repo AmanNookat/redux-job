@@ -8,7 +8,8 @@ import { IEr_codePost } from "../../store/er_code/er_codeSlice";
 import LazyLoading from "../loading/LazyLoading";
 
 const Er_codeList = () => {
-  const { er_codePosts, loading } = useSelector(
+
+const {er_codePosts, loading } = useSelector(
     (state: RootState) => state.er_code
   );
   const dispatch: AppDispatch = useDispatch();
@@ -20,14 +21,13 @@ const Er_codeList = () => {
   return (
     <>
       {loading ? (
-        <LazyLoading />
+      <LazyLoading />
       ) : (
         <>
           <div>
-            <button
-              className=" uppercase border bg-gray-700 text-white rounded w-48 h-9 hover:bg-transparent hover:text-black"
-              onClick={() => navigate("/er_code-add")}
-            >
+            <button 
+            className=" uppercase border bg-gray-700 text-white rounded w-48 h-9 hover:bg-transparent hover:text-black"
+            onClick={() => navigate("/er_code-add")}>
               Add Post of error
             </button>
           </div>
