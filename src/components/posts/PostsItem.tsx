@@ -9,7 +9,7 @@ export const PostsItem = ({ post }: { post: IPost }) => {
 
   return (
     <div>
-      <div className="w-full flex flex-col items-center">
+      <div className="w-full flex flex-col items-center my-2">
         <div
           onClick={() => navigate(`/details-post/${post.id}`)}
           className="w-1/2 bg-stone-300 rounded-lg p-4"

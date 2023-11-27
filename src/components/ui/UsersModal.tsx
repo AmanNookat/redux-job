@@ -20,7 +20,10 @@ const UsersModal = () => {
         >
           My profile
         </p>
-        <p style={{ cursor: "pointer" }} onClick={() => navigate("/myPosts")}>
+        <p
+          style={{ cursor: "pointer", zIndex: 10 }}
+          onClick={() => navigate("/myPosts")}
+        >
           My Post
         </p>
         <p

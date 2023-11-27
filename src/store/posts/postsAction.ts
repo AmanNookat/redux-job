@@ -33,7 +33,6 @@ function postToken() {
 }
 
 //!
-//! страница постов всегда начинается на индекс 1
 export const getPosts = createAsyncThunk(
   "posts/getPosts",
   async (type: number) => {
