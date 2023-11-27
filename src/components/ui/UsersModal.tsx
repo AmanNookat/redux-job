@@ -20,14 +20,19 @@ const UsersModal = () => {
         >
           My profile
         </p>
-        <p>Your Post</p>
-        <p>Your Projects</p>
-        <p>Resume</p>
+        <p style={{ cursor: "pointer" }} onClick={() => navigate("/myPosts")}>
+          My Post
+        </p>
+        <p
+          style={{ cursor: "pointer" }}
+          onClick={() => navigate("/myProjects")}
+        >
+          My Projects
+        </p>
+        <p style={{ cursor: "pointer" }} onClick={() => navigate("/myResume")}>
+          Resume
+        </p>
         <p>Chats</p>
-      </div>
-      <br />
-      <div className="">
-        <p>Sign In</p>
       </div>
     </div>
   );
