@@ -31,3 +31,9 @@ export interface IUser {
   date_joined: string;
   is_active: boolean;
 }
+export interface IVideo {
+  src: string,
+  width?: number,
+  height?: number,
+  controls?: boolean
+}

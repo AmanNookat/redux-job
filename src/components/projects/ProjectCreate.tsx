@@ -3,7 +3,6 @@ import { IProject } from "../../store/projects/projectsTypes";
 import { useDispatch, useSelector } from "react-redux";
 import { createProject } from "../../store/projects/projectsActions";
 import { AppDispatch, RootState } from "../../store/store";
-import { getCurrentUser } from "../../store/users/usersActions";
 
 interface IModalProps {
   setModal: (value: boolean) => void;
