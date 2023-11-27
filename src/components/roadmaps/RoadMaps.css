@@ -1,0 +1,25 @@
+.roadMaps {
+  background-color: #111827;
+  color: white;
+  height: 100%;
+}
+.roadmaps--content {
+  width: 80%;
+  margin: 0 auto;
+}
+.roadmaps--h1 {
+  padding-top: 50px;
+  font-size: 3.5rem;
+}
+.select--page {
+  margin-top: 50px;
+  display: flex;
+  font-size: 3rem;
+  gap: 50px;
+}
+.front--link {
+  color: yellow;
+}
+.back--link {
+  color: green;
+}
