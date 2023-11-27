@@ -66,83 +66,91 @@ export const getOneProfile = createAsyncThunk(
   }
 );
 
-export const editprofile = createAsyncThunk(
+export const editProfile = createAsyncThunk(
   "profiles/editProfiles",
   async ({ profile }: { profile: IProfile }, { dispatch }) => {
-    const formData = new FormData();
+    try {
+      const formData = new FormData();
+      console.log(profile.achievements);
 
-    formData.append("languages", profile.languages);
-    formData.append("programming_languages", profile.programming_languages);
-    formData.append("education", profile.education);
-    formData.append("stack", profile.stack);
-    formData.append("about", profile.about);
-    formData.append("age", profile.age);
-    formData.append("work_experience", profile.work_experience);
-    formData.append("achievments", profile.achievments);
-    formData.append("profile_image", profile.profile_image);
+      formData.append("languages", profile.languages);
+      formData.append("programming_languages", profile.programming_languages);
+      formData.append("education", profile.education);
+      formData.append("stack", profile.stack);
+      formData.append("about", profile.about);
+      formData.append("age", profile.age);
+      formData.append("work_experience", profile.work_experience);
+      formData.append("achievements", profile.achievements);
 
-    if (typeof profile.profile_image === "string") {
-      fetch(profile.profile_image)
-        .then((response) => response.blob())
-        .then((blob) => {
-          new File([blob], "filename.png", { type: "image/png" });
-        })
-        .catch((error) =>
-          console.error("Ошибка при загрузке изображения:", error)
-        );
-    } else {
-      formData.append("image_profile", profile.profile_image);
+      if (typeof profile.profile_image === "string") {
+        fetch(profile.profile_image)
+          .then((response) => response.blob())
+          .then((blob) => {
+            new File([blob], "filename.png", { type: "image/png" });
+          })
+          .catch((error) =>
+            console.error("Ошибка при загрузке изображения:", error)
+          );
+      } else {
+        formData.append("profile_image", profile.profile_image);
+      }
+
+      const Authorization = `Bearer ${getAccessToken()}`;
+
+      await axios.patch(
+        `${PROFILES_API}/user_profiles/${profile.user}/`,
+        formData,
+        {
+          headers: {
+            Authorization,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      dispatch(getCompaniesProfiles());
+      dispatch(getUsersProfiles());
+    } catch (err) {
+      console.log(err);
     }
-
-    const Authorization = `Bearer ${getAccessToken()}`;
-
-    await axios.patch(`${PROFILES_API}/${profile.id}/`, formData, {
-      headers: {
-        Authorization,
-        "Content-Type": "multipart/form-data",
-      },
-    });
-    dispatch(getCompaniesProfiles());
-    dispatch(getUsersProfiles());
   }
 );
 
-export const createProfile = createAsyncThunk(
-  "profiles/createProfile",
-  async ({ profile }: { profile: IProfile }) => {
-    const formData = new FormData();
+// export const createProfile = createAsyncThunk(
+//   "profiles/createProfile",
+//   async ({ profile }: { profile: IProfile }) => {
+//     const formData = new FormData();
 
-    formData.append("languages", profile.languages);
-    formData.append("programming_languages", profile.programming_languages);
-    formData.append("education", profile.education);
-    formData.append("stack", profile.stack);
-    formData.append("about", profile.about);
-    formData.append("age", profile.age);
-    formData.append("work_experience", profile.work_experience);
-    formData.append("achievments", profile.achievments);
-    formData.append("profile_image", profile.profile_image);
+//     formData.append("languages", profile.languages);
+//     formData.append("programming_languages", profile.programming_languages);
+//     formData.append("education", profile.education);
+//     formData.append("stack", profile.stack);
+//     formData.append("about", profile.about);
+//     formData.append("age", profile.age);
+//     formData.append("work_experience", profile.work_experience);
+//     formData.append("achievments", profile.achievments);
+//     formData.append("profile_image", profile.profile_image);
 
-    const Authorization = `Bearer ${getAccessToken()}`;
+//     const Authorization = `Bearer ${getAccessToken()}`;
 
-    await axios.post(PROFILES_API, formData, {
-      headers: {
-        Authorization,
-        "Content-Type": "multipart/form-data",
-      },
-    });
-  }
-);
+//     await axios.post(PROFILES_API, formData, {
+//       headers: {
+//         Authorization,
+//         "Content-Type": "multipart/form-data",
+//       },
+//     });
+//   }
+// );
 
-export const deleteprofile = createAsyncThunk(
-  "profiles/deleteProfile",
-  async ({ id }: { id: any }, { dispatch }) => {
-    const Authorization = `Bearer ${getAccessToken()}`;
-    await axios.delete(`${PROFILES_API}/${id}`, {
-      headers: {
-        Authorization,
-      },
-    });
-    dispatch(getCompaniesProfiles());
-    dispatch(getUsersProfiles());
-  }
-);
+// export const deleteprofile = createAsyncThunk(
+//   "profiles/deleteProfile",
+//   async ({ id }: { id: any }, { dispatch }) => {
+//     const Authorization = `Bearer ${getAccessToken()}`;
+//     await axios.delete(`${PROFILES_API}/${id}`, {
+//       headers: {
+//         Authorization,
+//       },
+//     });
+//     dispatch(getCompaniesProfiles());
+//     dispatch(getUsersProfiles());
+//   }
+// );

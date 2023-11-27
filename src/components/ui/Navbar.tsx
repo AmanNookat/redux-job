@@ -25,6 +25,7 @@ const Navbar = () => {
           <NavLink to="/projects">Projects</NavLink>
           <NavLink to="/forum">Forum</NavLink>
           <NavLink to="/profiles">Profiles</NavLink>
+          <NavLink to="/roadmaps">Road Maps</NavLink>
           <NavLink
             to="/"
             onClick={() => {
@@ -61,7 +62,6 @@ const Navbar = () => {
         <>
           <NavLink to="/sign-up">Registration</NavLink>
           <NavLink to="/sign-in">Authorization</NavLink>
-          <NavLink to="/roadmaps">Road Maps</NavLink>
         </>
       )}
     </div>
