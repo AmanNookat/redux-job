@@ -36,11 +36,9 @@ const Navbar = () => {
             <NavLink to="/chatrooms">Chats</NavLink>
             <NavLink to="/projects">Projects</NavLink>
             <NavLink to="/forum">Forum</NavLink>
-            <NavLink to="/profiles">Profiles</NavLink>
             <NavLink to="/roadmaps">Road Maps</NavLink>
             <NavLink to="/posts">Posts</NavLink>
             <NavLink to="/er_code">Code Help</NavLink>
-            <NavLink to="/roadmaps">Road Maps</NavLink>
             <NavLink to="/education">Education</NavLink>
 
             <NavLink

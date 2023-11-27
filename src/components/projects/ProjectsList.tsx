@@ -29,16 +29,31 @@ const ProjectsList = () => {
         <div className={style.projects_bg}>
           <div className="flex mb-14 mt-10">
             <div>
-              <h3 className="text-8xl ml-4 mt-10">Creat your project</h3>
+              <h3 className="text-8xl ml-4 mt-10">Create your project</h3>
               <p className="text-3xl ml-4 mt-6">
-                Do you have a project? Amazing let's start!{" "}
+                Do you have a project? Amazing, let's start!{" "}
               </p>
               <p className="text-2xl ml-4  mb-6">
                 Describe your project and post it here to make it easier to find
                 an employer and view other projects.
               </p>
             </div>
-            <div>
+          {/* animation kub */}
+          <div className="flex">
+            <div className={style.loader}>
+              <div className={style.cube}>
+                <div className={style.face}></div>
+                <div className={style.face}></div>
+                <div className={style.face}></div>
+                <div className={style.face}></div>
+                <div className={style.face}></div>
+                <div className={style.face}></div>
+              </div>
+            </div>
+          </div>
+          </div>
+
+          <div>
               <button
                 className={style.project_butt_create}
                 onClick={() => setModal(true)}
@@ -46,14 +61,14 @@ const ProjectsList = () => {
                 + create project
               </button>
             </div>
-          </div>
+
           <div className="flex flex-col items-center">
-          <>{modal && <ProjectCreate setModal={setModal} />}</>
-          <Suspense fallback={<div>Loading ProjectCard...</div>}>
-            {projects.map((project: IProject) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
-          </Suspense>
+            <>{modal && <ProjectCreate setModal={setModal} />}</>
+            <Suspense fallback={<div>Loading ProjectCard...</div>}>
+              {projects.map((project: IProject) => (
+                <ProjectCard key={project.id} project={project} />
+              ))}
+            </Suspense>
           </div>
         </div>
       )}
