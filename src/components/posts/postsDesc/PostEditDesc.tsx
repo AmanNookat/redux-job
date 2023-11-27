@@ -55,7 +55,7 @@ export const PostEditDesc = () => {
           <div className="">
             <input
               type="text"
-              placeholder=""
+              placeholder="Description"
               onChange={(e) =>
                 setNewDesc({ ...newDesc, body: e.target.value } as IDesc)
               }
