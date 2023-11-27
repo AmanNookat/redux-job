@@ -49,6 +49,7 @@ const Navbar = () => {
               Log Out
             </NavLink>
             {/* Оставляйте модалку последней */}
+
             <div className="users--modal ">
               <button className="modalBtn" onClick={toggleMenu}>
                 {usersModal ? (
