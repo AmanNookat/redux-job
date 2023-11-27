@@ -57,7 +57,7 @@ const MainRoutes = () => {
       <Route path="/roadmaps/frontend" element={<RoadMapFront />} />
       <Route path="/roadmaps/backend" element={<RoadMapBack />} />
       <Route path="/myPosts" element={<MyPost />} />
-      <Route path="/myProjects" element={<MyProjects />} />
+      <Route path="/myProjects/:id" element={<MyProjects />} />
       <Route path="/myResume" element={<MyResume />} />
     </Routes>
   );
