@@ -16,6 +16,7 @@ export const PostsDetails = () => {
   const { id } = useParams();
 
   const { onePost } = useSelector((state: RootState) => state.posts);
+  const { currentUser } = useSelector((state: RootState) => state.users);
 
   useEffect(() => {
     if (id) {
@@ -52,28 +53,31 @@ export const PostsDetails = () => {
           <div className="">
             <p>{(onePost as IPost).description}</p>
           </div>
-          <div className="">
-            <button
-              className="p-2 m-4 rounded-lg bg-blue-500 hover:bg-blue-700"
-              onClick={() => navigate(`/edit-post/${(onePost as IPost).id}`)}
-            >
-              Edit
-            </button>
-            <button
-              className="p-2 m-4 rounded-lg bg-blue-500 hover:bg-blue-700"
-              onClick={() => {
-                dispatch(deletePost((onePost as IPost).id));
-                navigate("/posts");
-              }}
-            >
-              Delete
-            </button>
-            <button onClick={() => navigate(`/add-post-desc/${id}`)}>
-              Add description
-            </button>
-          </div>
+          {currentUser?.email === (onePost as IPost).user && (
+            <div className="">
+              <button
+                className="p-2 m-4 rounded-lg bg-blue-500 hover:bg-blue-700"
+                onClick={() => navigate(`/edit-post/${(onePost as IPost).id}`)}
+              >
+                Edit
+              </button>
+              <button
+                className="p-2 m-4 rounded-lg bg-blue-500 hover:bg-blue-700"
+                onClick={() => {
+                  dispatch(deletePost((onePost as IPost).id));
+                  navigate("/posts");
+                }}
+              >
+                Delete
+              </button>
+              <button onClick={() => navigate(`/add-post-desc/${id}`)}>
+                Add description
+              </button>
+            </div>
+          )}
           <>
             {onePost &&
+              currentUser?.email === (onePost as IPost).user &&
               (onePost as IPost).desc.map((desc: IDesc) => (
                 <div key={desc.id} className="">
                   <h3>{desc.body}</h3>

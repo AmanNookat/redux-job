@@ -12,7 +12,9 @@ export const PostsList = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getPosts(1));
+    const typeLS = localStorage.getItem("typePost");
+    const type: number = typeLS ? parseInt(typeLS) : 1;
+    dispatch(getPosts(type));
   }, []);
 
   return (

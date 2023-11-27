@@ -102,7 +102,8 @@ export const PostsEdit = () => {
             <h3>Create fleelancing</h3>
             <input
               type="text"
-              placeholder=""
+              placeholder="Name"
+              maxLength={50}
               onChange={(e) =>
                 setEditPost({ ...editPost, name: e.target.value } as IPost)
               }
@@ -129,7 +130,8 @@ export const PostsEdit = () => {
             />
             <input
               type="number"
-              placeholder=""
+              placeholder="Celery"
+              maxLength={10}
               onChange={(e) =>
                 setEditPost({
                   ...editPost,
@@ -148,7 +150,8 @@ export const PostsEdit = () => {
             <h3>Create vacancy</h3>
             <input
               type="text"
-              placeholder=""
+              placeholder="Title"
+              maxLength={50}
               onChange={(e) =>
                 setEditPost({ ...editPost, title: e.target.value } as IPost)
               }
@@ -156,7 +159,8 @@ export const PostsEdit = () => {
             />
             <input
               type="text"
-              placeholder=""
+              placeholder="Position"
+              maxLength={50}
               onChange={(e) =>
                 setEditPost({ ...editPost, position: e.target.value } as IPost)
               }
@@ -185,7 +189,8 @@ export const PostsEdit = () => {
             </select>
             <input
               type="number"
-              placeholder=""
+              placeholder="Celery"
+              maxLength={50}
               onChange={(e) =>
                 setEditPost({
                   ...editPost,
@@ -205,7 +210,8 @@ export const PostsEdit = () => {
           <h3>Create post</h3>
           <input
             type="text"
-            placeholder=""
+            placeholder="Name"
+            maxLength={50}
             onChange={(e) =>
               setEditPost({ ...editPost, name: e.target.value } as IPost)
             }
@@ -221,7 +227,7 @@ export const PostsEdit = () => {
             <option value="Work">Work</option>
           </select>
           <textarea
-            placeholder=""
+            placeholder="Description"
             onChange={(e) =>
               setEditPost({ ...editPost, description: e.target.value } as IPost)
             }
@@ -229,7 +235,8 @@ export const PostsEdit = () => {
           />
           <input
             type="number"
-            placeholder=""
+            placeholder="Celery"
+            maxLength={10}
             onChange={(e) =>
               setEditPost({
                 ...editPost,
