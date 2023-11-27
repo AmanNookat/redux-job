@@ -26,7 +26,7 @@ const ProjectCard = ({ project }: { project: IProject }) => {
             target="_blanck"
             className="text-blue-500 underline mt-6"
           >
-            here is my github go to find out more
+            LINK TO THE PROJECT
           </a>
           <br />
           <button
