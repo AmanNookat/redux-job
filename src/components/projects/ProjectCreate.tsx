@@ -3,6 +3,7 @@ import { IProject } from "../../store/projects/projectsTypes";
 import { useDispatch, useSelector } from "react-redux";
 import { createProject } from "../../store/projects/projectsActions";
 import { AppDispatch, RootState } from "../../store/store";
+import style from "./project.module.css";
 
 interface IModalProps {
   setModal: (value: boolean) => void;
@@ -31,9 +32,9 @@ const ProjectCreate = ({ setModal }: IModalProps) => {
   };
 
   return (
-    <div className="flex fixed top-0 bottom-0 right-0 left-0 w-full h-full bg-black/30">
+    <div className={style.project_modal}>
       <div
-        className="m-auto bg-white p-16 rounded-lg flex flex-col text-center items-center gap-5 w-[30rem]"
+        className="m-auto bg-white p-4 rounded-lg flex flex-col text-center items-center gap-5 w-[40rem] h-[40rem] border-black"
         style={{ position: "relative" }}
       >
         <button
@@ -41,6 +42,8 @@ const ProjectCreate = ({ setModal }: IModalProps) => {
             position: "absolute",
             right: "15px",
             top: "10px",
+            color: "black",
+            fontSize: "2rem",
           }}
           onClick={() => {
             setModal(false);
@@ -49,8 +52,9 @@ const ProjectCreate = ({ setModal }: IModalProps) => {
           X
         </button>
         <div className="flex flex-col">
-          <h2 className="text-xl font-bold">Add your project</h2>
+          <h2 className="text-4xl font-bold mb-16">Add your project</h2>
           <input
+            className="h-12 border-2 w-[60vh] mb-3"
             type="text"
             placeholder="name"
             onChange={(e) => {
@@ -59,12 +63,14 @@ const ProjectCreate = ({ setModal }: IModalProps) => {
           />
           <input
             type="text"
+            className="h-56 border-2 overflow-auto w-[60vh] mb-3"
             placeholder="description"
             onChange={(e) => {
               setProject({ ...project, description: e.target.value });
             }}
           />
           <input
+            className="h-12 border-2 w-[60vh] mb-3"
             type="text"
             placeholder="link"
             onChange={(e) => {
@@ -72,13 +78,16 @@ const ProjectCreate = ({ setModal }: IModalProps) => {
             }}
           />
           <input
+            className="h-8 border-2 w-[60vh] mb-6"
             type="file"
             onChange={(e: any) => {
               const selectedFile = e.target.files[0];
               setProject({ ...project, image_project: selectedFile });
             }}
           />
-          <button onClick={handleClick}>Add</button>
+          <button className="text-xl border-2 w-32 rounded-2xl hover:bg-gray-900 hover:text-white" onClick={handleClick}>
+            Add
+          </button>
         </div>
       </div>
     </div>

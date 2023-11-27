@@ -8,7 +8,8 @@ import { IEr_codePost } from "../../store/er_code/er_codeSlice";
 import LazyLoading from "../loading/LazyLoading";
 
 const Er_codeList = () => {
-  const {er_codePosts, loading } = useSelector(
+
+const {er_codePosts, loading } = useSelector(
     (state: RootState) => state.er_code
   );
   const dispatch: AppDispatch = useDispatch();
