@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   deleteForumPost,
   getOneForumPost,
+  toggleLikeForumPost,
 } from "../../store/forum/forumActions";
 import ForumPostComment from "./ForumPostComment";
 
@@ -40,7 +41,16 @@ const ForumPostDetails = () => {
                 ) : (
                   <span>No image available</span>
                 )}
-                {<p>likes: {forumOnePost?.like}</p>}
+                {
+                  <span
+                    onClick={() =>
+                      dispatch(toggleLikeForumPost({ id: forumOnePost?.id! }))
+                    }
+                    className="bg-red-300 p-1 cursor-pointer"
+                  >
+                    likes: {forumOnePost?.like}
+                  </span>
+                }
                 {currentUser?.email == forumOnePost?.user && (
                   <>
                     <button

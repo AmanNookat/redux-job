@@ -76,8 +76,6 @@ export const editForumPost = createAsyncThunk(
   ) => {
     const Authorization = `Bearer ${getAccessToken()}`;
 
-    console.log(forumPost);
-
     const formData = new FormData();
 
     formData.append("name", forumPost.name);
@@ -168,5 +166,20 @@ export const editForumPostComment = createAsyncThunk(
     });
 
     dispatch(getOneForumPost({ id }));
+  }
+);
+
+export const toggleLikeForumPost = createAsyncThunk(
+  "forum/toggleLikeForumPost",
+  async ({ id }: { id: number }, { dispatch }) => {
+    const Authorization = `Bearer ${getAccessToken()}`;
+
+    await axios.post(`${POSTS_API}/forum/${id}/like/`, null, {
+      headers: {
+        Authorization,
+      },
+    });
+
+    await dispatch(getOneForumPost({ id }));
   }
 );

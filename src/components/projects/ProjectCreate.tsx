@@ -27,6 +27,7 @@ const ProjectCreate = ({ setModal }: IModalProps) => {
     //   }
     // }
     dispatch(createProject({ project }));
+    setModal(false);
   };
 
   return (

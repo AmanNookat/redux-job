@@ -1,20 +1,33 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { RootState } from "../../store/store";
 
 const UsersModal = () => {
+  const navigate = useNavigate();
+
+  const { currentUser } = useSelector((state: RootState) => state.users);
+
   return (
     <div>
       <div
         style={{ display: "flex", flexDirection: "column" }}
         className="users--modal__features"
       >
-        <a href="">Your Post</a>
-        <a href="">Your Projects</a>
-        <a href="">Resume</a>
-        <a href="">Chats</a>
+        <p
+          style={{ cursor: "pointer" }}
+          onClick={() => navigate(`/profiles/${currentUser?.id}`)}
+        >
+          My profile
+        </p>
+        <p>Your Post</p>
+        <p>Your Projects</p>
+        <p>Resume</p>
+        <p>Chats</p>
       </div>
       <br />
       <div className="">
-        <a href="">Sign In</a>
+        <p>Sign In</p>
       </div>
     </div>
   );
