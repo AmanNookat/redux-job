@@ -20,6 +20,9 @@ import ForumPage from "./pages/forum/ForumPage";
 import ForumPostAdd from "./components/forum/ForumPostAdd";
 import ForumPostDetails from "./components/forum/ForumPostDetails";
 import ForumEditPost from "./components/forum/ForumEditPost";
+import OneProfile from "./components/profiles/OneProfile";
+import RoadMapFront from "./components/roadmaps/roadMapFront/RoadMapFront";
+import RoadMapBack from "./components/roadmaps/roadMapBack/RoadMapBack";
 
 const MainRoutes = () => {
   return (
@@ -46,6 +49,9 @@ const MainRoutes = () => {
       <Route path="/forum-add-post" element={<ForumPostAdd />} />
       <Route path="/forum/:id" element={<ForumPostDetails />} />
       <Route path="/forum-edit-post/:id" element={<ForumEditPost />} />
+      <Route path="/profiles/:id" element={<OneProfile />} />
+      <Route path="/roadmaps/frontend" element={<RoadMapFront />} />
+      <Route path="/roadmaps/backend" element={<RoadMapBack />} />
     </Routes>
   );
 };

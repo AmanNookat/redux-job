@@ -19,6 +19,7 @@ const Navbar = () => {
   }
 
   return (
+
     <div onClick={() => setNavClick(!navClick)}>
       {/* max-w-full h-20 bg-slate-900 text-white flex gap-6 items-center text-lg */}
       <div className={style.nav_oll}>
@@ -28,6 +29,8 @@ const Navbar = () => {
           <NavLink to="/chatrooms">Chats</NavLink>
           <NavLink to="/projects">Projects</NavLink>
           <NavLink to="/forum">Forum</NavLink>
+          <NavLink to="/profiles">Profiles</NavLink>
+          <NavLink to="/roadmaps">Road Maps</NavLink>
           <NavLink
             to="/"
             onClick={() => {
@@ -36,18 +39,13 @@ const Navbar = () => {
           >
             Log Out
           </NavLink>
-        </>
-      ) : (
-        <>
-          <NavLink to="/sign-up">Registration</NavLink>
-          <NavLink to="/sign-in">Authorization</NavLink>
-          <NavLink to="/roadmaps">Road Maps</NavLink>
           {/* Оставляйте модалку последней */}
+
           <div className="users--modal ">
             <button className="modalBtn" onClick={toggleMenu}>
               {usersModal ? (
                 <div className="close--modal">
-                  <p>Users name</p>
+                  <p>Your Account</p>
                 </div>
               ) : (
                 <div className="open--modal">
@@ -63,8 +61,12 @@ const Navbar = () => {
             )}
           </div>
         </>
+      ) : (
+        <>
+          <NavLink to="/sign-up">Registration</NavLink>
+          <NavLink to="/sign-in">Authorization</NavLink>
+        </>
 
-              
       )}
       <div><img className={style.nav_img} src={icon_logo} alt="" /></div>
       </div>

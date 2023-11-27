@@ -1,0 +1,112 @@
+.roadBack {
+  background-color: #2b2b2b;
+  color: white;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 400;
+  padding: 5px;
+}
+.roads--h1 {
+  font-size: 40px;
+  margin: 20px auto;
+  color: white;
+}
+
+.roadBack--content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.roads--h2 {
+  font-size: 28px;
+  font-weight: bold;
+  border: 2px solid #fcae1e;
+  padding: 10px;
+}
+.roads--p {
+  font-size: 20px;
+  border: 2px solid green;
+  padding: 3px;
+  text-align: center;
+  margin-top: 5px;
+}
+.roads--span {
+  font-size: 24px;
+}
+.first--step {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 5px;
+}
+.dots {
+  display: flex;
+  gap: 5px;
+  color: red;
+  font-size: 30px;
+}
+.second--step {
+  margin-top: 75px;
+}
+.third--step {
+  margin-top: 75px;
+  display: flex;
+  gap: 5px;
+}
+.fourth--step {
+  margin-top: 75px;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 5px;
+}
+.fourth--step--left {
+  display: flex;
+  padding: 5px;
+}
+.fourbox {
+  border: 1px solid red;
+  padding: 5px;
+}
+.fifth--step {
+  margin-top: 75px;
+  display: flex;
+  gap: 5px;
+}
+.fifth--step--left {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.sixth--step {
+  margin-top: 75px;
+  display: flex;
+}
+.seventh--step {
+  margin-top: 75px;
+  display: flex;
+}
+.seventh--step--left {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.seventh--left--top {
+  border: 2px solid red;
+  padding: 5px;
+}
+.seventh--left--bot {
+  border: 2px solid red;
+  padding: 5px;
+}
+.eighth--step {
+  margin-top: 75px;
+  display: flex;
+}
+.ninth--step {
+  margin-top: 75px;
+}
+.tenth--step {
+  margin-top: 75px;
+}
+.eleventh--step {
+  margin-top: 75px;
+  padding-bottom: 50px;
+}
