@@ -25,6 +25,8 @@ import Er_codePage from "./pages/er_code/Er_codePage";
 import Er_codeEdit from "./components/er_code/Er_codeEdit";
 import Er_codeAdd from "./components/er_code/Er_codeAdd";
 import Er_codeDetails from "./components/er_code/Er_codeDetails";
+import RoadMapFront from "./components/roadmaps/roadMapFront/RoadMapFront";
+import RoadMapBack from "./components/roadmaps/roadMapBack/RoadMapBack";
 import Education from "./components/education/Education";
 import RoadMapFront from "./components/roadmaps/roadMapFront/RoadMapFront";
 import RoadMapBack from "./components/roadmaps/roadMapBack/RoadMapBack";
@@ -55,6 +57,8 @@ const MainRoutes = () => {
       <Route path="/er_code-add" element={<Er_codeAdd />} />
       <Route path="/er_code/:id" element={<Er_codeDetails />} />
       <Route path="/er_code-edit/:id" element={<Er_codeEdit />} />
+      <Route path="/roadmaps/frontend" element={<RoadMapFront />} />
+      <Route path="/roadmaps/backend" element={<RoadMapBack />} />
       <Route path="/chats" element={<ChatRoomsPage />} />
       <Route path="/chatrooms" element={<ChatRoomsPage />} />
       <Route path="/chat/:id" element={<ChatPage />} />
