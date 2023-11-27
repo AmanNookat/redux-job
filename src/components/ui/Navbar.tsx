@@ -30,6 +30,7 @@ const Navbar = () => {
         <NavLink className={"ml-4"} to="/">
           Home
         </NavLink>
+
         {checkUserLogin() ? (
           <>
             <NavLink to="/chatrooms">Chats</NavLink>
@@ -38,6 +39,8 @@ const Navbar = () => {
             <NavLink to="/profiles">Profiles</NavLink>
             <NavLink to="/roadmaps">Road Maps</NavLink>
             <NavLink to="/posts">Posts</NavLink>
+            <NavLink to="/er_code">Code Help</NavLink>
+
             <NavLink
               to="/"
               onClick={() => {
@@ -61,7 +64,7 @@ const Navbar = () => {
                 )}
               </button>
               {usersModal && (
-                <div>
+                <div className="mt-48">
                   <UsersModal />
                   <div className="overlay" onClick={closeUsersModal}></div>
                 </div>
