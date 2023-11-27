@@ -26,7 +26,9 @@ export const PostCreateDesc = () => {
       <div className="">
         <input
           type="text"
+          placeholder="Description"
           onChange={(e) => setNewDesc({ ...newDesc, body: e.target.value })}
+          maxLength={50}
         />
         <button
           onClick={() => {

@@ -21,6 +21,10 @@ import ForumPostAdd from "./components/forum/ForumPostAdd";
 import ForumPostDetails from "./components/forum/ForumPostDetails";
 import ForumEditPost from "./components/forum/ForumEditPost";
 import OneProfile from "./components/profiles/OneProfile";
+import Er_codePage from "./pages/er_code/Er_codePage";
+import Er_codeEdit from "./components/er_code/Er_codeEdit";
+import Er_codeAdd from "./components/er_code/Er_codeAdd";
+import Er_codeDetails from "./components/er_code/Er_codeDetails";
 import RoadMapFront from "./components/roadmaps/roadMapFront/RoadMapFront";
 import RoadMapBack from "./components/roadmaps/roadMapBack/RoadMapBack";
 
@@ -50,6 +54,10 @@ const MainRoutes = () => {
       <Route path="/forum/:id" element={<ForumPostDetails />} />
       <Route path="/forum-edit-post/:id" element={<ForumEditPost />} />
       <Route path="/profiles/:id" element={<OneProfile />} />
+      <Route path="/er_code" element={<Er_codePage />} />
+      <Route path="/er_code-add" element={<Er_codeAdd />} />
+      <Route path="/er_code/:id" element={<Er_codeDetails />} />
+      <Route path="/er_code-edit/:id" element={<Er_codeEdit />} />
       <Route path="/roadmaps/frontend" element={<RoadMapFront />} />
       <Route path="/roadmaps/backend" element={<RoadMapBack />} />
     </Routes>

@@ -40,13 +40,15 @@ const AuthorizationForm = () => {
                 }
               />
               <button
-                onClick={() => dispatch(loginUser({ userLogin, navigate }))}
+                onClick={() => {
+                  dispatch(loginUser({ userLogin, navigate }));
+                }}
               >
                 Log In
               </button>
               <p>
                 Don't have an account?{" "}
-                <Link to="/sign-in" className="text-blue-600 underline">
+                <Link to="/sign-up" className="text-blue-600 underline">
                   Sign Up
                 </Link>
               </p>

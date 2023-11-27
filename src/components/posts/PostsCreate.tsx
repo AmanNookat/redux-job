@@ -91,7 +91,8 @@ export const PostsCreate = () => {
             <h3>Create fleelancing</h3>
             <input
               type="text"
-              placeholder=""
+              placeholder="Name"
+              maxLength={50}
               onChange={(e) => setNewPost({ ...newPost, name: e.target.value })}
             />
             <select
@@ -104,14 +105,15 @@ export const PostsCreate = () => {
               <option value="Work">Work</option>
             </select>
             <textarea
-              placeholder=""
+              placeholder="Description"
               onChange={(e) =>
                 setNewPost({ ...newPost, description: e.target.value })
               }
             />
             <input
               type="number"
-              placeholder=""
+              placeholder="Celery"
+              maxLength={10}
               onChange={(e) =>
                 setNewPost({
                   ...newPost,
@@ -123,20 +125,22 @@ export const PostsCreate = () => {
               Add fleelancing
             </button>
           </div>
-        )}{" "}
+        )}
         {typePost === "Vacancy" && (
           <div className="">
             <h3>Create vacancy</h3>
             <input
               type="text"
-              placeholder=""
+              placeholder="Title"
+              maxLength={50}
               onChange={(e) =>
                 setNewPost({ ...newPost, title: e.target.value })
               }
             />
             <input
               type="text"
-              placeholder=""
+              placeholder="Position"
+              maxLength={50}
               onChange={(e) =>
                 setNewPost({ ...newPost, position: e.target.value })
               }
@@ -161,7 +165,8 @@ export const PostsCreate = () => {
             </select>
             <input
               type="number"
-              placeholder=""
+              placeholder="Celery"
+              maxLength={10}
               onChange={(e) =>
                 setNewPost({
                   ...newPost,
@@ -180,7 +185,8 @@ export const PostsCreate = () => {
           <h3>Create post</h3>
           <input
             type="text"
-            placeholder=""
+            placeholder="name"
+            maxLength={50}
             onChange={(e) => setNewPost({ ...newPost, name: e.target.value })}
           />
           <select
@@ -193,14 +199,15 @@ export const PostsCreate = () => {
             <option value="Work">Work</option>
           </select>
           <textarea
-            placeholder=""
+            placeholder="Description"
             onChange={(e) =>
               setNewPost({ ...newPost, description: e.target.value })
             }
           />
           <input
             type="number"
-            placeholder=""
+            placeholder="Celery"
+            maxLength={10}
             onChange={(e) =>
               setNewPost({
                 ...newPost,

@@ -18,7 +18,7 @@ export const getProjects = createAsyncThunk(
 
 export const createProject = createAsyncThunk(
   "projects/createProject",
-  async ({ project }: { project: IProject }) => {
+  async ({ project }: { project: IProject }, { dispatch }) => {
     const formData = new FormData();
 
     formData.append("name_project", project.name_project);
@@ -34,6 +34,7 @@ export const createProject = createAsyncThunk(
         "Content-Type": "multipart/form-data",
       },
     });
+    dispatch(getProjects());
   }
 );
 
