@@ -5,6 +5,7 @@ import postReducer from "./posts/postsSlice";
 import projectReducer from "./projects/projectsSlice";
 import forumReducer from "./forum/forumSlice";
 import profilesReducer from "./profiles/profilesSlice";
+import er_codeReducer from "./er_code/er_codeSlice";
 
 export const store: any = configureStore({
   middleware: (getDefaultMiddleware) =>
@@ -18,6 +19,7 @@ export const store: any = configureStore({
     projects: projectReducer,
     forum: forumReducer,
     profiles: profilesReducer,
+    er_code: er_codeReducer,
   },
 });
 
