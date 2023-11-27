@@ -4,10 +4,11 @@ import { AppDispatch, RootState } from "../../store/store";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   deleteResumeFile,
+  editProfile,
   getOneProfile,
   uploadResumeFile,
-  editProfile,
 } from "../../store/profiles/profilesActions";
+import "./OneProfile.css";
 import ChangePassModal from "./ChangePassModal";
 import ResumeModal from "../resume/ResumeModal";
 import ProfileProjects from "./ProfileProjects";
@@ -43,7 +44,6 @@ const OneProfile = () => {
           setResumeModal={setResumeModal}
         />
       )}
-
       <div className="flex justify-between">
         <div>
           {edit ? (

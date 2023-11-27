@@ -10,7 +10,7 @@
   color: whitesmoke;
   display: flex;
   gap: 1.5rem;
-  align-items: center;
+  /* align-items: center; */
   font-size: 1.125rem;
 }
 
@@ -19,17 +19,3 @@
   height: 0.15rem;
   width: 100%;
 }
-
-/* @media (max-width: 1627px) {
-  .nav_img {
-    margin-left: 660%;
-  }
-
-  .nav_oll {
-    width: 184.4vh;
-  }
-
-  .nav_line {
-    width: 184.4vh;
-  }
-} */
