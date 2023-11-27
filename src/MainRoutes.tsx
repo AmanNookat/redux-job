@@ -28,8 +28,6 @@ import Er_codeDetails from "./components/er_code/Er_codeDetails";
 import RoadMapFront from "./components/roadmaps/roadMapFront/RoadMapFront";
 import RoadMapBack from "./components/roadmaps/roadMapBack/RoadMapBack";
 import Education from "./components/education/Education";
-import RoadMapFront from "./components/roadmaps/roadMapFront/RoadMapFront";
-import RoadMapBack from "./components/roadmaps/roadMapBack/RoadMapBack";
 
 const MainRoutes = () => {
   return (
