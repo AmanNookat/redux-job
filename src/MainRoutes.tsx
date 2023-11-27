@@ -24,6 +24,10 @@ import OneProfile from "./components/profiles/OneProfile";
 import RoadMapFront from "./components/roadmaps/roadMapFront/RoadMapFront";
 import RoadMapBack from "./components/roadmaps/roadMapBack/RoadMapBack";
 
+import MyPost from "./components/profiles/myPosts/MyPost";
+import MyProjects from "./components/profiles/myProjects/MyProjects";
+import MyResume from "./components/profiles/myResume/MyResume";
+
 const MainRoutes = () => {
   return (
     <Routes>
@@ -52,6 +56,9 @@ const MainRoutes = () => {
       <Route path="/profiles/:id" element={<OneProfile />} />
       <Route path="/roadmaps/frontend" element={<RoadMapFront />} />
       <Route path="/roadmaps/backend" element={<RoadMapBack />} />
+      <Route path="/myPosts" element={<MyPost />} />
+      <Route path="/myProjects" element={<MyProjects />} />
+      <Route path="/myResume" element={<MyResume />} />
     </Routes>
   );
 };
