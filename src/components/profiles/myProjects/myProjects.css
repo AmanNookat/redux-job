@@ -1,0 +1,30 @@
+.my--projects--container {
+  background-color: #111827;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.my--projects {
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+}
+.my--projects--h1 {
+  margin-top: 40px;
+  font-size: 2rem;
+}
+.my--projects--content {
+  margin-top: 20px;
+  display: flex;
+}
+.my--projects--image {
+  height: 400px;
+  max-width: 300px;
+  overflow: hidden;
+}
+.my--projects--text {
+  font-size: 1.25rem;
+}
+
+/* not ready :* */

@@ -15,7 +15,7 @@ const UsersModal = () => {
         className="users--modal__features"
       >
         <p
-          style={{ cursor: "pointer" }}
+          style={{ cursor: "pointer", zIndex: 10 }}
           onClick={() => navigate(`/profiles/${currentUser?.id}`)}
         >
           My profile
@@ -27,8 +27,8 @@ const UsersModal = () => {
           My Post
         </p>
         <p
-          style={{ cursor: "pointer" }}
-          onClick={() => navigate("/myProjects")}
+          style={{ cursor: "pointer", zIndex: 5 }}
+          onClick={() => navigate(`/myProjects/${currentUser?.id}`)}
         >
           My Projects
         </p>
