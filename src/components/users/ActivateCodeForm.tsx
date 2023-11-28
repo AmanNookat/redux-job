@@ -2,14 +2,22 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { AppDispatch, RootState } from "../../store/store";
-import { activateCode } from "../../store/users/usersActions";
+import {
+  activateCode,
+  createProfile,
+  loginUser,
+} from "../../store/users/usersActions";
 
 interface IActivateCodeFormProps {
   setModal: (value: boolean) => void;
 }
 
 const ActivateCodeForm = ({ setModal }: IActivateCodeFormProps) => {
-  const [userActivate, setUserActivate] = useState({ email: "", code: "" });
+  const [userActivate, setUserActivate] = useState({
+    email: "",
+    code: "",
+    password: "",
+  });
 
   const { loading } = useSelector((state: RootState) => state.users);
 
@@ -63,13 +71,31 @@ const ActivateCodeForm = ({ setModal }: IActivateCodeFormProps) => {
               }}
               className="border-gray-400 border-4 outline-none rounded-2xl w-[90%] py-3 px-1 font-bold bg-[#D9D9D9] bg-opacity-100"
             />
+            <input
+              type="text"
+              name="code"
+              id="code"
+              placeholder="password"
+              onChange={(e) => {
+                setUserActivate({ ...userActivate, password: e.target.value });
+              }}
+              className="border-gray-400 border-4 outline-none rounded-2xl w-[90%] py-3 px-1 font-bold bg-[#D9D9D9] bg-opacity-100"
+            />
             <div>
               <div>
                 <button
                   type="button"
                   onClick={() => {
                     dispatch(activateCode({ userActivate, navigate }));
+                    setTimeout(() => {
+                      dispatch(
+                        loginUser({ userLogin: userActivate, navigate })
+                      );
+                    }, 2000);
                     setModal(false);
+                    setTimeout(() => {
+                      dispatch(createProfile({ email: userActivate.email }));
+                    }, 5000);
                   }}
                   className="bg-violet-500 rounded-xl p-3 text-white"
                 >

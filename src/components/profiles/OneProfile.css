@@ -1,17 +1,55 @@
+.one--profile {
+  height: 100%;
+  background-color: #111827;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+.one--profile--h1 {
+  padding-top: 40px;
+  margin: 0 auto;
+  font-size: 3rem;
+}
 .profile {
   display: flex;
-  width: 90%;
-  margin: 50px auto;
+  width: 85%;
+  margin: 40px auto;
   gap: 50px;
+  font-size: 1.25rem;
 }
 .profile--image {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+  border: 3px solid white;
+  border-radius: 10px;
 }
 .profile--image img {
   object-fit: contain;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
+}
+.profile--btn {
+  background-color: white;
+  color: #111827;
+  padding: 5px;
+  width: 100px;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+.profile--edit {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 0 auto;
+}
+.profile--edit--input {
+  color: #111827;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+.profile--edit--row {
+  display: flex;
+  gap: 10px;
 }

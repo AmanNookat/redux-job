@@ -69,3 +69,7 @@ body {
   /* display: inline-block; */
   width: 60%;
 }
+
+.scrollbarDerma::-webkit-scrollbar {
+  display: none;
+}

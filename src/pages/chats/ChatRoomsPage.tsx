@@ -3,9 +3,9 @@ import ChatRoomsList from "../../components/chats/ChatRoomsList";
 
 const ChatRoomsPage = () => {
   return (
-    <div>
+    <>
       <ChatRoomsList />
-    </div>
+    </>
   );
 };
 

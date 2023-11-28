@@ -26,33 +26,46 @@ const ProjectDetails = () => {
       {loading ? (
         <h1>Loading...</h1>
       ) : (
-        <div>
-          <img src={oneProject?.image_project} alt="image" width="400" />
-          <p>{oneProject?.name_project}</p>
-          <p>{oneProject?.description}</p>
-          <p>{oneProject?.user}</p>
-          {currentUser?.email == oneProject?.user && (
-            <>
-              <button
-                onClick={() => {
-                  dispatch(deleteProject({ id }));
-                  navigate("/projects");
-                }}
-                className="bg-red-500 p-2"
-              >
-                Delete
-              </button>
-              <button
-                className="bg-green-500 p-2"
-                onClick={() => navigate(`/project-edit/${oneProject?.id}`)}
-              >
-                Edit
-              </button>
-            </>
-          )}
-          <a href={oneProject?.link} className="text-blue-500 underline">
-            Link
-          </a>
+        <div className="bg-gray-900 h-full w-full text-white p-16 flex">
+          <div className="w-[50rem] h-full">
+            <img
+              className="w-[35rem]"
+              src={oneProject?.image_project}
+              alt="image"
+              width="400"
+            />
+          </div>
+          <div className="w-[50rem]">
+            <p className="text-5xl mb-10">{oneProject?.name_project}</p>
+            <p className="text-xl mb-6">{oneProject?.description}</p>
+            <p className="text-lg mb-3">{oneProject?.user}</p>
+            <div>
+              <a href={oneProject?.link} className="text-blue-500 underline">
+                LINK TO THE PROJECT
+              </a>
+            </div>
+            {currentUser?.email == oneProject?.user && (
+              <div className="mt-3 text-gray-900">
+                <>
+                  <button
+                    onClick={() => {
+                      dispatch(deleteProject({ id }));
+                      navigate("/projects");
+                    }}
+                    className="bg-white p-2"
+                  >
+                    Delete
+                  </button>
+                  <button
+                    className="bg-green-500 p-2"
+                    onClick={() => navigate(`/project-edit/${oneProject?.id}`)}
+                  >
+                    Edit
+                  </button>
+                </>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </>

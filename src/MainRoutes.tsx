@@ -4,7 +4,6 @@ import HomePage from "./pages/home/HomePage";
 import RegistrationPage from "./pages/users/RegistrationPage";
 import AuthorizationPage from "./pages/users/AuthorizationPage";
 import ChatRoomsPage from "./pages/chats/ChatRoomsPage";
-import ChatPage from "./pages/chats/ChatPage";
 import ProjectsPage from "./pages/projects/ProjectsPage";
 import CreateResume from "./components/resume/CreateResume";
 import RoadmapsMain from "./components/roadmaps/RoadmapsMain";
@@ -61,15 +60,13 @@ const MainRoutes = () => {
       <Route path="/er_code-edit/:id" element={<Er_codeEdit />} />
       <Route path="/roadmaps/frontend" element={<RoadMapFront />} />
       <Route path="/roadmaps/backend" element={<RoadMapBack />} />
-      <Route path="/chats" element={<ChatRoomsPage />} />
       <Route path="/chatrooms" element={<ChatRoomsPage />} />
-      <Route path="/chat/:id" element={<ChatPage />} />
       <Route path="*" element={<Navigate to="/" />} />
       <Route path="/education" element={<Education />} />
       <Route path="/roadmaps/frontend" element={<RoadMapFront />} />
       <Route path="/roadmaps/backend" element={<RoadMapBack />} />
       <Route path="/myPosts" element={<MyPost />} />
-      <Route path="/myProjects" element={<MyProjects />} />
+      <Route path="/myProjects/:id" element={<MyProjects />} />
       <Route path="/myResume" element={<MyResume />} />
     </Routes>
   );

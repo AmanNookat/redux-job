@@ -12,7 +12,7 @@ export const getProjects = createAsyncThunk(
       headers: { Authorization },
     });
 
-    return data;
+    return data.results;
   }
 );
 
