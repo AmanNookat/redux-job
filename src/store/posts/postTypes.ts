@@ -16,6 +16,7 @@ export interface IAddPost {
 
 export interface IDesc {
   id: number;
+  title: string;
   body: string;
   post: string;
 }
