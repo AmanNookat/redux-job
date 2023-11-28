@@ -5,9 +5,9 @@
   font-size: 2rem;
   border: 3px solid rgba(17 24 39);
   border-radius: 2rem;
-  margin-left: 10rem;
-  width: 20rem;
-  margin-bottom: 3rem;
+  margin: 6rem;
+  margin-left: 20rem;
+  width: 10rem;
 }
 
 .project_butt_create:hover {
@@ -21,14 +21,14 @@
   color: rgb(233, 235, 255);
   width: 140vh;
   height: 90vh;
-  margin-bottom: 1rem;
+  margin-bottom: 6rem;
   scroll-behavior: smooth;
 }
 
 .project_card_scrol {
-  height: 40vh;
-  overflow-y: auto;
-  border: 1px solid #ccc;
+  height: 40vh; /* Задаем фиксированную высоту */
+  overflow-y: auto; /* Разрешаем вертикальную прокрутку при необходимости */
+  border: 1px solid #ccc; /* Добавим границу для наглядности */
   border-radius: 2rem;
   padding: 1rem;
   margin-top: 3rem;

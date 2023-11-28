@@ -18,8 +18,6 @@ const Profiles = () => {
 
   const navigate = useNavigate();
 
-  console.log(profiles);
-
   useEffect(() => {
     dispatch(getCompaniesProfiles());
     dispatch(getUsersProfiles());
@@ -30,7 +28,7 @@ const Profiles = () => {
         <h1>Loading...</h1>
       ) : (
         <div>
-          {profiles.map((profile) => (
+          {profiles.map((profile: any) => (
             <div>
               <p>{currentUser?.email}</p>
               <p>{profile.age}</p>

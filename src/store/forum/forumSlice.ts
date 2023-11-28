@@ -45,7 +45,7 @@ const forumSlice = createSlice({
       })
       .addCase(getForumPosts.fulfilled, (state, action) => {
         state.loading = false;
-        state.forumPosts = action.payload;
+        state.forumPosts = action.payload.reverse();
       })
       .addCase(getForumPosts.rejected, (state) => {
         state.loading = false;

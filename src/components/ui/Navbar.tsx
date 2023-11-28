@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { checkUserLogin, logout } from "../../helpers/functions";
 import UsersModal from "./UsersModal";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 import icon_logo from "../../assets/icon_logo.png";
 import style from "./navbar.module.css";
 
 const Navbar = () => {
   const [navClick, setNavClick] = useState(false);
-
   const [usersModal, setUsersModal] = useState(false);
+
+  const { loading } = useSelector((state: RootState) => state.users);
+
+  useEffect(() => {}, [loading]);
 
   const toggleMenu = () => {
     setUsersModal(!usersModal);
@@ -31,7 +36,11 @@ const Navbar = () => {
             <NavLink to="/chatrooms">Chats</NavLink>
             <NavLink to="/projects">Projects</NavLink>
             <NavLink to="/forum">Forum</NavLink>
-            <NavLink to="/profiles">Profiles</NavLink>
+            <NavLink to="/roadmaps">Road Maps</NavLink>
+            <NavLink to="/posts">Posts</NavLink>
+            <NavLink to="/er_code">Code Help</NavLink>
+            <NavLink to="/education">Education</NavLink>
+
             <NavLink
               to="/"
               onClick={() => {
@@ -41,6 +50,7 @@ const Navbar = () => {
               Log Out
             </NavLink>
             {/* Оставляйте модалку последней */}
+
             <div className="users--modal ">
               <button className="modalBtn" onClick={toggleMenu}>
                 {usersModal ? (
@@ -65,7 +75,6 @@ const Navbar = () => {
           <>
             <NavLink to="/sign-up">Registration</NavLink>
             <NavLink to="/sign-in">Authorization</NavLink>
-            <NavLink to="/roadmaps">Road Maps</NavLink>
           </>
         )}
         <div>

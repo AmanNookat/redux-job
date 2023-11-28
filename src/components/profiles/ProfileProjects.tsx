@@ -5,10 +5,10 @@ const ProfileProjects = ({ projects }: { projects: [] }) => {
   return (
     <div className="mr-5">
       {projects ? (
-        projects.map((projects: IProject) => (
-          <div className="border-2 border-black mb-1">
-            <p>{projects.name_project}</p>
-            <p>{projects.link}</p>
+        projects.map((project: IProject) => (
+          <div className="border-2 border-black mb-1" key={project.id}>
+            <p>{project.name_project}</p>
+            <p>{project.link}</p>
           </div>
         ))
       ) : (

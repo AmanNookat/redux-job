@@ -2,10 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { useNavigate, useParams } from "react-router-dom";
-import { getOneProfile } from "../../store/profiles/profilesActions";
-import ProfileProjects from "./ProfileProjects";
+import {
+  deleteResumeFile,
+  editProfile,
+  getOneProfile,
+  uploadResumeFile,
+} from "../../store/profiles/profilesActions";
+import "./OneProfile.css";
 
 const OneProfile = () => {
+  const [modal, setModal] = useState(false);
+  const [resumeFile, setResumeFile] = useState(null);
+  const [resumeModal, setResumeModal] = useState(false);
+
   const { oneProfile } = useSelector((state: RootState) => state.profiles);
 
   const { id } = useParams();
@@ -18,67 +27,144 @@ const OneProfile = () => {
 
   const navigate = useNavigate();
 
-  const [edit, setEdit] = useState(false);
+  const [edit, setEdit] = useState<any>(null);
 
-  console.log(oneProfile);
+  console.log(edit);
 
   return (
-    <div className="flex justify-between">
+    <div className="one--profile">
+      <h1 className="one--profile--h1">My Profile</h1>
       {edit ? (
-        <div>
-          <div>
+        <div className="profile--edit">
+          <div className="profile--edit--row">
+            <p>О себе:</p>
+            <input
+              className="profile--edit--input"
+              type="text"
+              value={edit?.about}
+              onChange={(e) => setEdit({ ...edit, about: e.target.value })}
+            />
+          </div>
+          <div className="profile--edit--row">
             <p>Языки:</p>
-            <input type="text" />
+            <input
+              className="profile--edit--input"
+              type="text"
+              value={edit?.languages}
+              onChange={(e) => setEdit({ ...edit, languages: e.target.value })}
+            />
           </div>
-          <div>
-            <p>Языки программирования:</p>
-            <input type="text" />
-          </div>
-          <div>
+          <div className="profile--edit--row">
             <p>Образование:</p>
-            <input type="text" />
+            <input
+              className="profile--edit--input"
+              value={edit?.education}
+              onChange={(e) => setEdit({ ...edit, education: e.target.value })}
+              type="text"
+            />
           </div>
-          <div>
+          <div className="profile--edit--row">
+            <p>Языки программирования:</p>
+            <input
+              className="profile--edit--input"
+              type="text"
+              value={edit?.programming_languages}
+              onChange={(e) =>
+                setEdit({ ...edit, programming_languages: e.target.value })
+              }
+            />
+          </div>
+          <div className="profile--edit--row">
             <p>Стэк:</p>
-            <input type="text" />
+            <input
+              className="profile--edit--input"
+              type="text"
+              value={edit?.stack}
+              onChange={(e) => setEdit({ ...edit, stack: e.target.value })}
+            />
           </div>
-          <div>
-            <p>О себе:</p>
-            <input type="text" />
-          </div>
-          <div>
-            <p>О себе:</p>
-            <input type="text" />
-          </div>
-          <div>
+          <div className="profile--edit--row">
             <p>Возраст:</p>
-            <input type="text" />
+            <input
+              className="profile--edit--input"
+              type="text"
+              value={edit?.age}
+              onChange={(e) => setEdit({ ...edit, age: e.target.value })}
+            />
           </div>
-          <div>
+          <div className="profile--edit--row">
+            <p>Опыт работы:</p>
+            <input
+              className="profile--edit--input"
+              type="text"
+              value={edit?.work_experience}
+              onChange={(e) =>
+                setEdit({ ...edit, work_experience: e.target.value })
+              }
+            />
+          </div>
+          <div className="profile--edit--row">
             <p>Достижения:</p>
-            <input type="text" />
+            <input
+              className="profile--edit--input"
+              type="text"
+              value={edit?.achievements}
+              onChange={(e) =>
+                setEdit({ ...edit, achievements: e.target.value })
+              }
+            />
           </div>
-          <div>
-            <img src="" alt="" />
+          <div className="profile--edit--row">
+            <p>Выберете фотографию профиля</p>
+            <input
+              type="file"
+              onChange={(e: any) => {
+                const selectedFile = e.target.files[0];
+                setEdit({ ...edit!, profile_image: selectedFile });
+              }}
+            />
+            <div>
+              <button
+                className="profile--btn"
+                onClick={() => {
+                  dispatch(
+                    editProfile({
+                      profile: edit,
+                    })
+                  );
+                  setEdit(null);
+                }}
+              >
+                Save
+              </button>
+            </div>
           </div>
         </div>
       ) : (
         <div>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <p>Языки: {oneProfile?.languages} </p>
-            <p>Языки программирования: {oneProfile?.programming_languages}</p>
-            <p>Образование:{oneProfile?.education}</p>
-            <p>Стэк:{oneProfile?.stack} </p>
-            <p>О себе:{oneProfile?.about}</p>
-            <p>Возраст: {oneProfile?.age}</p>
-            <p>Опыт работы:{oneProfile?.work_experience}</p>
-            <p>Достижения:{oneProfile?.work_experience}</p>
-            <img src={oneProfile?.profile_image} alt="kotak" />
+          <div className="profile">
+            <div className="profile--image">
+              <img src={oneProfile?.profile_image} alt="lalala" />
+            </div>
+            <div className="profile--content">
+              <p>О себе: {oneProfile?.about}</p>
+              <p>Языки: {oneProfile?.languages} </p>
+              <p>Образование: {oneProfile?.education}</p>
+              <p>Языки программирования: {oneProfile?.programming_languages}</p>
+              <p>Стэк: {oneProfile?.stack} </p>
+              <p>Возраст: {oneProfile?.age}</p>
+              <p>Опыт работы: {oneProfile?.work_experience}</p>
+              <p>Достижения: {oneProfile?.achievements}</p>
+              <button
+                onClick={() => setEdit(oneProfile)}
+                className="profile--btn"
+              >
+                Edit:
+              </button>
+            </div>
           </div>
-          <button style={{ color: "red" }}>Редактировать:</button>
         </div>
       )}
-      <ProfileProjects projects={oneProfile?.project!} />
     </div>
   );
 };
