@@ -1,8 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { POSTS_API } from "../../helpers/consts";
-import { ITokens } from "./postTypes";
-import App from "../../App";
+import { IPost, ITokens } from "./postTypes";
+import { RootState } from "../store";
+import { getTotalPages } from "../../helpers/functions";
 
 const API = [
   `${POSTS_API}/comp_post/`,
@@ -33,13 +34,55 @@ function postToken() {
 }
 
 //!
+
+// export const getPosts = createAsyncThunk(
+//   "posts/getPosts",
+//   async (type: number) => {
+//     localStorage.setItem("typePost", JSON.stringify(type));
+//     const config: any = postToken();
+//     const { data } = await axios.get(`${API[type]}`, config);
+
+//     return data.results;
+//   }
+// );
+
 export const getPosts = createAsyncThunk(
   "posts/getPosts",
-  async (type: number) => {
-    localStorage.setItem("typePost", JSON.stringify(type));
-    const config: any = postToken();
-    const { data } = await axios.get(`${API[type]}`, config);
-    return data;
+  async (type: number, { getState }) => {
+    try {
+      const state: RootState = getState() as RootState;
+
+      localStorage.setItem("typePost", JSON.stringify(type));
+      const config: any = postToken();
+      const { currentPage, search } = state.posts;
+      const searchParams = `?search=${search}`;
+      const pagesLimitParams = `?page=${currentPage}&_limit=12`;
+
+      const response = await axios.get(
+        `${API[type]}${pagesLimitParams}&${searchParams}`,
+        config
+      );
+
+      const { data } = response;
+      const totalPages = await getTotalPages(`${API[type]}${searchParams}`);
+
+      let filteredData: IPost[] = [];
+
+      if (type === 1) {
+        filteredData = data.results.filter((item: IPost) =>
+          item.title.includes(search)
+        );
+      } else if (type === 0 || type === 2) {
+        filteredData = data.results.filter((item: IPost) =>
+          item.name.includes(search)
+        );
+      }
+
+      return { filteredData, totalPages };
+    } catch (error) {
+      console.error("Error in getPosts:", error);
+      throw error; // Ретранслируем ошибку для обработки в компоненте
+    }
   }
 );
 

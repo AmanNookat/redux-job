@@ -43,7 +43,7 @@ const MainRoutes = () => {
       <Route path="/resume" element={<CreateResume />} />
       <Route path="/roadmaps" element={<RoadmapsMain />} />
       <Route path="/posts" element={<PostsPage />} />
-      <Route path="/add-post" element={<PostsCreate />} />
+      {/* <Route path="/add-post" element={<PostsCreate />} /> */}
       <Route path="/details-post/:id" element={<PostsDetails />} />
       <Route path="/edit-post/:id" element={<PostsEdit />} />
       <Route path="/add-post-desc/:id" element={<PostCreateDesc />} />

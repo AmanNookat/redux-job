@@ -1,3 +1,4 @@
+import { config } from "process";
 import { ITokens } from "../store/users/usersTypes";
 import { USERS_API } from "./consts";
 import axios from "axios";
@@ -81,4 +82,26 @@ export const randomString = () => {
   }
 
   return result;
+};
+export const getTotalPages = async (url: string) => {
+  const storedData = localStorage.getItem("reduxTokens");
+  let tokens: ITokens | null = null;
+
+  if (storedData) {
+    tokens = JSON.parse(storedData);
+  }
+
+  if (tokens) {
+    const Authorization = `Bearer ${tokens.access}`;
+    const config = {
+      headers: {
+        Authorization,
+      },
+    };
+    const { data } = await axios.get(url, config);
+    const totalPages = Math.ceil(data.length / 10);
+    console.log(data);
+
+    return totalPages;
+  }
 };
