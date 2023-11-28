@@ -14,7 +14,7 @@ export const getForumPosts = createAsyncThunk(
         Authorization,
       },
     });
-    return data;
+    return data.results;
   }
 );
 

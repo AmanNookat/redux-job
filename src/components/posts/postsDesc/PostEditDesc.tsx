@@ -63,6 +63,13 @@ export const PostEditDesc = () => {
               <div className="">
                 <input
                   type="text"
+                  placeholder="Title"
+                  onChange={(e) =>
+                    setNewDesc({ ...newDesc, title: e.target.value } as IDesc)
+                  }
+                  value={newDesc?.title}
+                />
+                <textarea
                   placeholder="Description"
                   onChange={(e) =>
                     setNewDesc({ ...newDesc, body: e.target.value } as IDesc)

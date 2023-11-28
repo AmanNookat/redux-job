@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addPost } from "../../store/posts/postsAction";
 import { IAddPost } from "../../store/posts/postTypes";
 import { RootState } from "../../store/store";
+import { useNavigate } from "react-router-dom";
+import { modalPostCreate } from "../../store/posts/postsSlice";
 
 export const PostsCreate = () => {
   const dispatch: any = useDispatch();
@@ -39,6 +41,7 @@ export const PostsCreate = () => {
       };
 
       dispatch(addPost({ post, type }));
+      dispatch(modalPostCreate());
     } else if (type === 1) {
       if (
         !newPost.title.trim() ||
@@ -59,43 +62,157 @@ export const PostsCreate = () => {
       };
 
       dispatch(addPost({ post, type }));
+      dispatch(modalPostCreate());
     }
   }
 
-  // function chekVacancy(newVacancy: IAddVacancy) {
-  //   if (
-  //     !newVacancy.title.trim() ||
-  //     !newVacancy.type_work.trim() ||
-  //     !newVacancy.position.trim() ||
-  //     !newVacancy.type_employment.trim()
-  //   ) {
-  //     alert("Заполните поле!");
-  //     return;
-  //   }
-
-  //   dispatch(addVacancy({ newVacancy }));
-  // }
-
   return (
-    <>
+    <div>
       <>
         {currentUser?.type_user === "Company" && !typePost && (
-          <select onChange={(e) => setTypePost(e.target.value)}>
-            <option hidden>Choose</option>
-            <option value="Freelancing">Freelancing</option>
-            <option value="Vacancy">Vacancy</option>
-          </select>
+          <div className="w-full flex flex-col items-center mt-10">
+            <h3 className="text-2xl font-bold mb-4">Type Post</h3>
+            <select onChange={(e) => setTypePost(e.target.value)}>
+              <option hidden>Choose</option>
+              <option value="Freelancing">Freelancing</option>
+              <option value="Vacancy">Vacancy</option>
+            </select>
+          </div>
         )}
         {typePost === "Freelancing" && (
-          <div className="">
-            <h3>Create fleelancing</h3>
+          <div className="w-full flex bg-[#19253C] h-screen pt-8">
+            <div className="flex flex-col w-5/6 items-center">
+              <div className="text-2xl font-bold py-2 w-full text-center text-white ">
+                Create fleelancing
+              </div>
+              <input
+                className="w-3/4 border border-black rounded-lg p-2 my-2"
+                type="text"
+                placeholder="Name"
+                maxLength={50}
+                onChange={(e) =>
+                  setNewPost({ ...newPost, name: e.target.value })
+                }
+              />
+              <select
+                className="w-3/4 border border-black rounded-lg p-2 my-2"
+                onChange={(e) =>
+                  setNewPost({ ...newPost, type_post: e.target.value })
+                }
+              >
+                <option hidden>Choose</option>
+                <option value="Teams">Teams</option>
+                <option value="Work">Work</option>
+              </select>
+              <textarea
+                className="w-3/4 border border-black rounded-lg p-2 my-2"
+                placeholder="Description"
+                onChange={(e) =>
+                  setNewPost({ ...newPost, description: e.target.value })
+                }
+              />
+              <input
+                className="w-3/4 border border-black rounded-lg p-2 my-2"
+                type="number"
+                placeholder="Celery"
+                maxLength={10}
+                onChange={(e) =>
+                  setNewPost({
+                    ...newPost,
+                    celery: parseFloat(e.target.value) || 0,
+                  })
+                }
+              />
+              <button
+                className="p-2 bg-[#265290] hover:bg-blue-700 text-white rounded-lg my-4"
+                onClick={() => chekPost(newPost, 0)}
+              >
+                Add fleelancing
+              </button>
+            </div>
+          </div>
+        )}
+        {typePost === "Vacancy" && (
+          <div className="w-full flex bg-[#19253C] h-screen pt-8">
+            <div className="flex flex-col w-5/6 items-center">
+              <div className="text-2xl font-bold py-2 w-full text-center text-white ">
+                Create vacancy
+              </div>
+              <input
+                className="w-3/4 border border-black rounded-lg p-2 my-2"
+                type="text"
+                placeholder="Title"
+                maxLength={50}
+                onChange={(e) =>
+                  setNewPost({ ...newPost, title: e.target.value })
+                }
+              />
+              <input
+                className="w-3/4 border border-black rounded-lg p-2 my-2"
+                type="text"
+                placeholder="Position"
+                maxLength={50}
+                onChange={(e) =>
+                  setNewPost({ ...newPost, position: e.target.value })
+                }
+              />
+              <select
+                className="w-3/4 border border-black rounded-lg p-2 my-2"
+                onChange={(e) =>
+                  setNewPost({ ...newPost, type_work: e.target.value })
+                }
+              >
+                <option hidden>Choose</option>
+                <option value="Work">Work</option>
+                <option value="Internship">Internship</option>
+              </select>
+              <select
+                className="w-3/4 border border-black rounded-lg p-2 my-2"
+                onChange={(e) =>
+                  setNewPost({ ...newPost, type_employment: e.target.value })
+                }
+              >
+                <option hidden>Choose</option>
+                <option value="Office">Office</option>
+                <option value="Online">Online</option>
+              </select>
+              <input
+                className="w-3/4 border border-black rounded-lg p-2 my-2"
+                type="number"
+                placeholder="Celery"
+                maxLength={10}
+                onChange={(e) =>
+                  setNewPost({
+                    ...newPost,
+                    celery: parseFloat(e.target.value) || 0,
+                  })
+                }
+              />
+              <button
+                className="p-2 bg-[#265290] hover:bg-blue-700 text-white rounded-lg my-4"
+                onClick={() => chekPost(newPost, 1)}
+              >
+                Add fleelancing
+              </button>
+            </div>
+          </div>
+        )}
+      </>
+      {currentUser?.type_user === "Human" && (
+        <div className="w-full flex bg-[#19253C] pt-8">
+          <div className="flex flex-col w-5/6 items-center">
+            <div className="text-2xl font-bold py-2 w-full text-center text-white ">
+              Create post
+            </div>
             <input
+              className="w-3/4 border border-black rounded-lg p-2 my-2"
               type="text"
-              placeholder="Name"
+              placeholder="name"
               maxLength={50}
               onChange={(e) => setNewPost({ ...newPost, name: e.target.value })}
             />
             <select
+              className="w-3/4 border border-black rounded-lg p-2 my-2"
               onChange={(e) =>
                 setNewPost({ ...newPost, type_post: e.target.value })
               }
@@ -105,12 +222,14 @@ export const PostsCreate = () => {
               <option value="Work">Work</option>
             </select>
             <textarea
+              className="w-3/4 border border-black rounded-lg p-2 my-2"
               placeholder="Description"
               onChange={(e) =>
                 setNewPost({ ...newPost, description: e.target.value })
               }
             />
             <input
+              className="w-3/4 border border-black rounded-lg p-2 my-2"
               type="number"
               placeholder="Celery"
               maxLength={10}
@@ -121,104 +240,16 @@ export const PostsCreate = () => {
                 })
               }
             />
-            <button onClick={() => chekPost(newPost, 0)}>
-              Add fleelancing
+            <button
+              className="p-2 bg-[#265290] hover:bg-blue-700 text-white rounded-lg my-4"
+              onClick={() => chekPost(newPost, 2)}
+            >
+              Add post
             </button>
           </div>
-        )}
-        {typePost === "Vacancy" && (
-          <div className="">
-            <h3>Create vacancy</h3>
-            <input
-              type="text"
-              placeholder="Title"
-              maxLength={50}
-              onChange={(e) =>
-                setNewPost({ ...newPost, title: e.target.value })
-              }
-            />
-            <input
-              type="text"
-              placeholder="Position"
-              maxLength={50}
-              onChange={(e) =>
-                setNewPost({ ...newPost, position: e.target.value })
-              }
-            />
-            <select
-              onChange={(e) =>
-                setNewPost({ ...newPost, type_work: e.target.value })
-              }
-            >
-              <option hidden>Choose</option>
-              <option value="Work">Work</option>
-              <option value="Internship">Internship</option>
-            </select>
-            <select
-              onChange={(e) =>
-                setNewPost({ ...newPost, type_employment: e.target.value })
-              }
-            >
-              <option hidden>Choose</option>
-              <option value="Office">Office</option>
-              <option value="Online">Online</option>
-            </select>
-            <input
-              type="number"
-              placeholder="Celery"
-              maxLength={10}
-              onChange={(e) =>
-                setNewPost({
-                  ...newPost,
-                  celery: parseFloat(e.target.value) || 0,
-                })
-              }
-            />
-            <button onClick={() => chekPost(newPost, 1)}>
-              Add fleelancing
-            </button>
-          </div>
-        )}
-      </>
-      {currentUser?.type_user === "Human" && (
-        <div className="">
-          <h3>Create post</h3>
-          <input
-            type="text"
-            placeholder="name"
-            maxLength={50}
-            onChange={(e) => setNewPost({ ...newPost, name: e.target.value })}
-          />
-          <select
-            onChange={(e) =>
-              setNewPost({ ...newPost, type_post: e.target.value })
-            }
-          >
-            <option hidden>Choose</option>
-            <option value="Teams">Teams</option>
-            <option value="Work">Work</option>
-          </select>
-          <textarea
-            placeholder="Description"
-            onChange={(e) =>
-              setNewPost({ ...newPost, description: e.target.value })
-            }
-          />
-          <input
-            type="number"
-            placeholder="Celery"
-            maxLength={10}
-            onChange={(e) =>
-              setNewPost({
-                ...newPost,
-                celery: parseFloat(e.target.value) || 0,
-              })
-            }
-          />
-          <button onClick={() => chekPost(newPost, 2)}>Add post</button>
         </div>
       )}
-    </>
+    </div>
     // <div>
     //   <h3>comp_post</h3>
     //   <h3>comp_vacancy</h3>

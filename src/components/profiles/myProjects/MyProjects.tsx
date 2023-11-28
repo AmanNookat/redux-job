@@ -17,8 +17,6 @@ const MyProjects = () => {
     dispatch(getOneProfile({ user: +id! }));
   }, [dispatch]);
 
-  console.log(oneProfile);
-
   return (
     <div className="my--projects--container">
       <div className="my--projects">

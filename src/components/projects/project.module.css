@@ -124,8 +124,7 @@
 .face:nth-child(5) {
   transform: rotateY(-90deg) translateZ(50px);
 }
-ц
-.face:nth-child(6) {
+ц .face:nth-child(6) {
   transform: rotateY(180deg) translateZ(50px);
 }
 

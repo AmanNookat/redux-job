@@ -4,12 +4,10 @@ import HomePage from "./pages/home/HomePage";
 import RegistrationPage from "./pages/users/RegistrationPage";
 import AuthorizationPage from "./pages/users/AuthorizationPage";
 import ChatRoomsPage from "./pages/chats/ChatRoomsPage";
-import ChatPage from "./pages/chats/ChatPage";
 import ProjectsPage from "./pages/projects/ProjectsPage";
 import CreateResume from "./components/resume/CreateResume";
 import RoadmapsMain from "./components/roadmaps/RoadmapsMain";
 import PostsPage from "./pages/posts/PostsPage";
-import { PostsCreate } from "./components/posts/PostsCreate";
 import { PostsDetails } from "./components/posts/PostsDetails";
 import { PostsEdit } from "./components/posts/PostsEdit";
 import { PostCreateDesc } from "./components/posts/postsDesc/PostCreateDesc";
@@ -43,7 +41,7 @@ const MainRoutes = () => {
       <Route path="/resume" element={<CreateResume />} />
       <Route path="/roadmaps" element={<RoadmapsMain />} />
       <Route path="/posts" element={<PostsPage />} />
-      <Route path="/add-post" element={<PostsCreate />} />
+      {/* <Route path="/add-post" element={<PostsCreate />} /> */}
       <Route path="/details-post/:id" element={<PostsDetails />} />
       <Route path="/edit-post/:id" element={<PostsEdit />} />
       <Route path="/add-post-desc/:id" element={<PostCreateDesc />} />
@@ -61,9 +59,7 @@ const MainRoutes = () => {
       <Route path="/er_code-edit/:id" element={<Er_codeEdit />} />
       <Route path="/roadmaps/frontend" element={<RoadMapFront />} />
       <Route path="/roadmaps/backend" element={<RoadMapBack />} />
-      <Route path="/chats" element={<ChatRoomsPage />} />
       <Route path="/chatrooms" element={<ChatRoomsPage />} />
-      <Route path="/chat/:id" element={<ChatPage />} />
       <Route path="*" element={<Navigate to="/" />} />
       <Route path="/education" element={<Education />} />
       <Route path="/roadmaps/frontend" element={<RoadMapFront />} />

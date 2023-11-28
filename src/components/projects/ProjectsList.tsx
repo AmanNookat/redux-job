@@ -38,36 +38,37 @@ const ProjectsList = () => {
                 an employer and view other projects.
               </p>
             </div>
-          {/* animation kub */}
-          <div className="flex">
-            <div className={style.loader}>
-              <div className={style.cube}>
-                <div className={style.face}></div>
-                <div className={style.face}></div>
-                <div className={style.face}></div>
-                <div className={style.face}></div>
-                <div className={style.face}></div>
-                <div className={style.face}></div>
+            {/* animation kub */}
+            <div className="flex">
+              <div className={style.loader}>
+                <div className={style.cube}>
+                  <div className={style.face}></div>
+                  <div className={style.face}></div>
+                  <div className={style.face}></div>
+                  <div className={style.face}></div>
+                  <div className={style.face}></div>
+                  <div className={style.face}></div>
+                </div>
               </div>
             </div>
           </div>
-          </div>
 
           <div>
-              <button
-                className={style.project_butt_create}
-                onClick={() => setModal(true)}
-              >
-                + create project
-              </button>
-            </div>
+            <button
+              className={style.project_butt_create}
+              onClick={() => setModal(true)}
+            >
+              + create project
+            </button>
+          </div>
 
           <div className="flex flex-col items-center">
             <>{modal && <ProjectCreate setModal={setModal} />}</>
             <Suspense fallback={<div>Loading ProjectCard...</div>}>
-              {projects.map((project: IProject) => (
-                <ProjectCard key={project.id} project={project} />
-              ))}
+              {projects.length &&
+                projects.map((project: IProject) => (
+                  <ProjectCard key={project.id} project={project} />
+                ))}
             </Suspense>
           </div>
         </div>

@@ -30,50 +30,63 @@ const ForumPostDetails = () => {
       ) : (
         <>
           {forumOnePost && (
-            <div className="flex">
-              <div className="border-2 border-black w-1/2">
-                <p>{forumOnePost?.name}</p>
-                <p>{forumOnePost?.user}</p>
-                <p>{forumOnePost?.description}</p>
+            <div className="flex flex-wrap h-auto w-full bg-gray-800 text-white font-sans">
+              <div className="w-1/2 p-4 bg-gray-900">
+                <h2 className="text-3xl font-bold mb-6 underline">
+                  {forumOnePost?.name}
+                </h2>
+                <p className="w-full max-h-[300px] overflow-auto mb-3 scrollbarDerma border-b-2 border-b-white">
+                  {forumOnePost?.description}
+                </p>
+
                 {forumOnePost?.file &&
                 typeof forumOnePost?.file === "string" ? (
-                  <img src={forumOnePost.file} alt="" width="300" />
+                  <img
+                    src={forumOnePost.file}
+                    alt=""
+                    width="300"
+                    className="w-full max-h-[400px] object-cover mx-auto mb-3 border-2 border-white p-1"
+                  />
                 ) : (
                   <span>No image available</span>
                 )}
-                {
-                  <span
-                    onClick={() =>
-                      dispatch(toggleLikeForumPost({ id: forumOnePost?.id! }))
-                    }
-                    className="bg-red-300 p-1 cursor-pointer"
-                  >
-                    likes: {forumOnePost?.like}
-                  </span>
-                }
-                {currentUser?.email == forumOnePost?.user && (
-                  <>
+                <div className="w-full flex justify-between">
+                  {
+                    <span
+                      onClick={() =>
+                        dispatch(toggleLikeForumPost({ id: forumOnePost?.id! }))
+                      }
+                      className="bg-red-500 p-1 cursor-pointer"
+                    >
+                      {forumOnePost?.like}
+                    </span>
+                  }
+                  <p className="font-bold">{forumOnePost?.user}</p>
+                </div>
+
+                {currentUser?.email === forumOnePost?.user && (
+                  <div className="flex justify-end gap-x-4 mt-2">
                     <button
                       onClick={() => {
                         dispatch(deleteForumPost({ id: forumOnePost.id! }));
                         navigate("/forum");
                       }}
-                      className="bg-red-500 p-2"
+                      className="font-bold p-2 rounded-md border-2 border-white hover:bg-white hover:text-gray-800"
                     >
                       Delete
                     </button>
                     <button
-                      className="bg-green-500 p-2"
+                      className="px-4 font-bold p-2 rounded-md border-2 border-white hover:bg-white hover:text-gray-800"
                       onClick={() =>
                         navigate(`/forum-edit-post/${forumOnePost?.id}`)
                       }
                     >
                       Edit
                     </button>
-                  </>
+                  </div>
                 )}
               </div>
-              <div className="flex flex-col justify-between border-2 border-black w-1/2 h-screen">
+              <div className="flex flex-col justify-between border-2 border-black w-1/2">
                 <ForumPostComment
                   comments={forumOnePost?.comments!}
                   id={+id!}

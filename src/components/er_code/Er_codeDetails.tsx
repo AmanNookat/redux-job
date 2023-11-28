@@ -25,7 +25,7 @@ const Er_codeDetails = () => {
   return (
     <>
       {loading ? (
-       <LazyLoading />
+        <LazyLoading />
       ) : (
         <>
           {er_codeOnePost && (
@@ -42,7 +42,7 @@ const Er_codeDetails = () => {
                 )}
                 {currentUser?.email == er_codeOnePost?.user && (
                   <>
-                   <button
+                    <button
                       className="border text-white hover:text-black uppercase hover:bg-white p-2"
                       onClick={() =>
                         navigate(`/er_code-edit/${er_codeOnePost?.id}`)
@@ -59,7 +59,6 @@ const Er_codeDetails = () => {
                     >
                       Delete
                     </button>
-                   
                   </>
                 )}
               </div>

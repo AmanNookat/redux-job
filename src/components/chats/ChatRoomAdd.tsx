@@ -56,7 +56,9 @@ const ChatRoomAdd = ({ setModal }: IModalProps) => {
               setChatroom({ ...chatroom, title: e.target.value });
             }}
           />
-          <label className="text-lg mb-1 font-bold">Add users to your chatroom</label>
+          <label className="text-lg mb-1 font-bold">
+            Add users to your chatroom
+          </label>
 
           <select className="mb-4" onChange={(e) => addMember(e.target.value)}>
             <option hidden>users</option>
@@ -72,7 +74,10 @@ const ChatRoomAdd = ({ setModal }: IModalProps) => {
               <option>users not found</option>
             )}
           </select>
-          <button className="border-2 p-1 border-gray-600 text-xl rounded-md hover:bg-gray-900 hover:text-white" onClick={() => dispatch(createChatroom({ chatroom }))}>
+          <button
+            className="border-2 p-1 border-gray-600 text-xl rounded-md hover:bg-gray-900 hover:text-white"
+            onClick={() => dispatch(createChatroom({ chatroom }))}
+          >
             Create
           </button>
         </div>
