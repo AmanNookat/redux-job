@@ -95,13 +95,7 @@ const ForumPostComment = ({
           <p>No comments</p>
         )}
       </div>
-      <form
-        className="flex mx-2 h-[100px]"
-        onSubmit={(e) => {
-          e.preventDefault();
-          dispatch(addCommentToForumPost({ comment }));
-        }}
-      >
+      <form className="flex mx-2 h-[100px]">
         <textarea
           onChange={(e) => setComment({ ...comment, body: e.target.value })}
           className="border-2 border-black w-full h-full text-black p-1 rounded-md bg-gray-100s"

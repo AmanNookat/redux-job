@@ -18,7 +18,7 @@ const CreateResume = () => {
           email: currentUser?.email,
         },
         birth: "",
-        appliedVac: "kchau",
+        appliedVac: 5,
         specialization: "",
         sex: "",
         city: "",

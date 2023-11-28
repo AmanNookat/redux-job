@@ -43,14 +43,6 @@ const Navbar = () => {
               <NavLink to="/er_code">Code Help</NavLink>
               <NavLink to="/education">Education</NavLink>
             </div>
-            <NavLink
-              to="/"
-              onClick={() => {
-                logout();
-              }}
-            >
-              Log Out
-            </NavLink>
 
             <div className="flex-grow"></div>
 
@@ -68,7 +60,7 @@ const Navbar = () => {
               </button>
               {usersModal && (
                 <div className="top-0 absolute right-0">
-                  <UsersModal />
+                  <UsersModal setUsersModal={setUsersModal} />
                   <div className="overlay" onClick={closeUsersModal}></div>
                 </div>
               )}
