@@ -1,5 +1,6 @@
 import React from "react";
 import "./RoadMapFront.css";
+// @ts-ignore
 import Tree from "react-d3-tree";
 
 const RoadMapFront = () => {
