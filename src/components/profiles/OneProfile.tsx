@@ -34,8 +34,6 @@ const OneProfile = () => {
 
   const [edit, setEdit] = useState<any>(null);
 
-  console.log(edit);
-
   return (
     <div>
       {resumeModal && (

@@ -7,10 +7,16 @@ import ChatRoomAdd from "./ChatRoomAdd";
 import { useNavigate } from "react-router-dom";
 import { randomString } from "../../helpers/functions";
 import icons_chat from "../../assets/icons_chat.jpg";
-import style from "./chat.module.css"
+import style from "./chat.module.css";
+import { getOneChatroom } from "../../store/chats/ChatsSlice";
+import ChatMessages from "./ChatMessages";
+import Chat from "./Chat";
 
 const ChatRoomsList = () => {
-  const { chats, loading } = useSelector((state: RootState) => state.chats);
+  const { chats, loading, chatroom } = useSelector(
+    (state: RootState) => state.chats
+  );
+  const { currentUser } = useSelector((state: RootState) => state.users);
   const [modal, setModal] = useState(false);
 
   const dispatch: AppDispatch = useDispatch();
@@ -26,10 +32,10 @@ const ChatRoomsList = () => {
         <h1>Loading...</h1>
       ) : (
         <>
-          <div className="bg-gray-800 text-gray-100 flex">
+          <div className="bg-gray-800 text-gray-100 flex h-screen">
             <div className="border-l-2 border-gray-500 ">
               {modal && <ChatRoomAdd setModal={setModal} />}
-              <div className="flex items-center justify-center flex-col h-28 bg-gray-900 w-[70vh] border-r-2 border-t-2 border-b-2 border-gray-500">
+              <div className="flex items-center justify-center flex-col h-28 bg-gray-900 w-full border-r-2 border-t-2 border-b-2 border-gray-500">
                 <div className="flex w-full items-center justify-center mb-2">
                   <h3 className="text-2xl mr-5">Chat</h3>
                   <button
@@ -48,28 +54,34 @@ const ChatRoomsList = () => {
                   />
                 </div>
               </div>
-              <div className="bg-gray-900 w-[70vh] h-[80vh] overflow-auto border-r-2 text-xl border-gray-500">
+              <div className="bg-gray-900 w-[30rem] h-[85vh] overflow-auto border-r-2 text-xl border-gray-500">
                 {chats.length ? (
                   <>
-                    {chats.map((chat: IChatRoom) => (
-                      <div
-                        onClick={() => {
-                          navigate(`/chat/${chat.id + randomString()}`);
-                        }}
-                        key={chat.id}
-                        className="border-b-2 h-20 p-3 border-gray-500"
-                      >
-                        <p>{chat.title}</p>
-                        <p>members: {chat.participants.length}</p>
-                      </div>
-                    ))}
+                    {chats.map((chat: IChatRoom) => {
+                      if (chat.participants.includes(currentUser?.id)) {
+                        return (
+                          <div
+                            onClick={() => {
+                              dispatch(getOneChatroom(chat));
+                            }}
+                            key={chat.id}
+                            className="border-2 h-20 p-3 m-1 border-gray-500 cursor-pointer"
+                          >
+                            <p>{chat.title}</p>
+                            <p>members: {chat.participants.length}</p>
+                          </div>
+                        );
+                      }
+                    })}
                   </>
                 ) : (
                   <>No chats</>
                 )}
               </div>
             </div>
-            <div>
+            {chatroom ? (
+              <Chat id={chatroom?.id!} />
+            ) : (
               <div className={style.scene}>
                 <div className={style.forest}>
                   <div className={`${style.tree} ${style.tree1}`}>
@@ -227,7 +239,7 @@ const ChatRoomsList = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </>
       )}

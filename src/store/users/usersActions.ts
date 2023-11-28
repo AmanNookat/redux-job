@@ -100,3 +100,12 @@ export const changePassword = createAsyncThunk(
     alert("пароль успешно изменен");
   }
 );
+
+export const returnUsersEmails = createAsyncThunk(
+  "users/returnUsersEmails",
+  async ({ id }: { id: number }) => {
+    const { data } = await axios.get(`${USERS_API}/users/`);
+    const userObj = data.find((user: IUser) => user.id === id);
+    return userObj.email;
+  }
+);

@@ -29,7 +29,7 @@ const ChatRoomAdd = ({ setModal }: IModalProps) => {
   };
 
   return (
-    <div className="flex fixed top-0 bottom-0 right-0 left-0 w-full h-full bg-black/30">
+    <div className="flex fixed top-0 bottom-0 right-0 left-0 w-full h-full text-black z-[1000] bg-black/30">
       <div
         className="m-auto bg-white p-16 rounded-lg flex flex-col text-center items-center gap-5 w-[30rem]"
         style={{ position: "relative" }}
