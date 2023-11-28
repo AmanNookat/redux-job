@@ -209,7 +209,7 @@ export const createResume = createAsyncThunk(
 
       formData.append("user", JSON.stringify(userFormData));
       formData.append("date_of_birth", dateOfBirth);
-      formData.append("applied_vacancies", resumeObj.appliedVac);
+      // formData.append("applied_vacancies", resumeObj.appliedVac);
       formData.append("specialization", resumeObj.specialization);
       formData.append("sex", resumeObj.sex);
       formData.append("city_of_residence", resumeObj.city);
@@ -227,7 +227,8 @@ export const createResume = createAsyncThunk(
       });
       alert("Все по кайфу");
     } catch (err) {
-      console.log(err);
+      // @ts-ignore
+      console.log(err.response.data);
     }
   }
 );

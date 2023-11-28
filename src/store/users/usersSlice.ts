@@ -62,9 +62,9 @@ const usersSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
-        addTokensToLocalStorage(action.payload.data);
+        addTokensToLocalStorage(action.payload!.data);
         updateTokens();
-        action.payload.navigate("/");
+        action.payload!.navigate("/");
       })
       .addCase(loginUser.rejected, (state) => {
         state.loading = false;
@@ -92,7 +92,7 @@ const usersSlice = createSlice({
       })
       .addCase(getCurrentUser.rejected, (state) => {
         state.loading = false;
-        state.error = true;
+        // state.error = true;
       });
   },
 });

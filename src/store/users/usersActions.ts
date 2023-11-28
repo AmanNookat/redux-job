@@ -48,18 +48,22 @@ export const loginUser = createAsyncThunk(
     },
     { dispatch }
   ) => {
-    const formData = new FormData();
-    formData.append("email", userLogin.email);
-    formData.append("password", userLogin.password);
+    try {
+      const formData = new FormData();
+      formData.append("email", userLogin.email);
+      formData.append("password", userLogin.password);
 
-    localStorage.setItem("reduxEmail", JSON.stringify(userLogin.email));
+      localStorage.setItem("reduxEmail", JSON.stringify(userLogin.email));
 
-    const { data } = await axios.post(`${USERS_API}/login/`, formData);
+      const { data } = await axios.post(`${USERS_API}/login/`, formData);
 
-    console.log(data);
+      console.log(data);
 
-    dispatch(getCurrentUser());
-    return { data, navigate };
+      dispatch(getCurrentUser());
+      return { data, navigate };
+    } catch (err) {
+      console.log(err);
+    }
   }
 );
 
