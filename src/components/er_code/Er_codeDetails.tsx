@@ -25,7 +25,7 @@ const Er_codeDetails = () => {
   return (
     <>
       {loading ? (
-       <LazyLoading />
+        <LazyLoading />
       ) : (
         <>
           {er_codeOnePost && (
@@ -40,28 +40,30 @@ const Er_codeDetails = () => {
                 ) : (
                   <span>No image</span>
                 )}
-                {currentUser?.email == er_codeOnePost?.user && (
-                  <>
-                   <button
-                      className="border text-white hover:text-black uppercase hover:bg-white p-2"
-                      onClick={() =>
-                        navigate(`/er_code-edit/${er_codeOnePost?.id}`)
-                      }
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => {
-                        dispatch(deleteEr_codePost({ id: er_codeOnePost.id! }));
-                        navigate("/er_code");
-                      }}
-                      className="bg-white border hover:bg-transparent text-black hover:text-white uppercase p-2"
-                    >
-                      Delete
-                    </button>
-                   
-                  </>
-                )}
+                {currentUser?.email == er_codeOnePost?.user ||
+                  (currentUser?.is_superuser && (
+                    <>
+                      <button
+                        className="border text-white hover:text-black uppercase hover:bg-white p-2"
+                        onClick={() =>
+                          navigate(`/er_code-edit/${er_codeOnePost?.id}`)
+                        }
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => {
+                          dispatch(
+                            deleteEr_codePost({ id: er_codeOnePost.id! })
+                          );
+                          navigate("/er_code");
+                        }}
+                        className="bg-white border hover:bg-transparent text-black hover:text-white uppercase p-2"
+                      >
+                        Delete
+                      </button>
+                    </>
+                  ))}
               </div>
             </div>
           )}

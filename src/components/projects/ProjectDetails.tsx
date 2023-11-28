@@ -44,27 +44,30 @@ const ProjectDetails = () => {
                 LINK TO THE PROJECT
               </a>
             </div>
-            {currentUser?.email == oneProject?.user && (
-              <div className="mt-3 text-gray-900">
-                <>
-                  <button
-                    onClick={() => {
-                      dispatch(deleteProject({ id }));
-                      navigate("/projects");
-                    }}
-                    className="bg-white p-2"
-                  >
-                    Delete
-                  </button>
-                  <button
-                    className="bg-green-500 p-2"
-                    onClick={() => navigate(`/project-edit/${oneProject?.id}`)}
-                  >
-                    Edit
-                  </button>
-                </>
-              </div>
-            )}
+            {currentUser?.email == oneProject?.user ||
+              (currentUser?.is_superuser && (
+                <div className="mt-3 text-gray-900">
+                  <>
+                    <button
+                      onClick={() => {
+                        dispatch(deleteProject({ id }));
+                        navigate("/projects");
+                      }}
+                      className="bg-white p-2"
+                    >
+                      Delete
+                    </button>
+                    <button
+                      className="bg-green-500 p-2"
+                      onClick={() =>
+                        navigate(`/project-edit/${oneProject?.id}`)
+                      }
+                    >
+                      Edit
+                    </button>
+                  </>
+                </div>
+              ))}
           </div>
         </div>
       )}

@@ -33,7 +33,7 @@ const ChatRoomsList = () => {
       ) : (
         <>
           <div className="bg-gray-800 text-gray-100 flex h-screen">
-            <div className="border-l-2 border-gray-500 ">
+            <div className="border-l-2 border-gray-500 w-2/5">
               {modal && <ChatRoomAdd setModal={setModal} />}
               <div className="flex items-center justify-center flex-col h-28 bg-gray-900 w-full border-r-2 border-t-2 border-b-2 border-gray-500">
                 <div className="flex w-full items-center justify-center mb-2">
@@ -54,11 +54,24 @@ const ChatRoomsList = () => {
                   />
                 </div>
               </div>
-              <div className="bg-gray-900 w-[30rem] h-[85vh] overflow-auto border-r-2 text-xl border-gray-500">
+              <div className="bg-gray-900 w-full h-[85vh] overflow-auto border-r-2 text-xl border-gray-500">
                 {chats.length ? (
                   <>
                     {chats.map((chat: IChatRoom) => {
                       if (chat.participants.includes(currentUser?.id)) {
+                        return (
+                          <div
+                            onClick={() => {
+                              dispatch(getOneChatroom(chat));
+                            }}
+                            key={chat.id}
+                            className="border-2 h-20 p-3 m-1 border-gray-500 cursor-pointer"
+                          >
+                            <p>{chat.title}</p>
+                            <p>members: {chat.participants.length}</p>
+                          </div>
+                        );
+                      } else if (currentUser.is_superuser) {
                         return (
                           <div
                             onClick={() => {

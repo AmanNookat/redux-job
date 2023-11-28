@@ -51,27 +51,28 @@ const ForumPostDetails = () => {
                     likes: {forumOnePost?.like}
                   </span>
                 }
-                {currentUser?.email == forumOnePost?.user && (
-                  <>
-                    <button
-                      onClick={() => {
-                        dispatch(deleteForumPost({ id: forumOnePost.id! }));
-                        navigate("/forum");
-                      }}
-                      className="bg-red-500 p-2"
-                    >
-                      Delete
-                    </button>
-                    <button
-                      className="bg-green-500 p-2"
-                      onClick={() =>
-                        navigate(`/forum-edit-post/${forumOnePost?.id}`)
-                      }
-                    >
-                      Edit
-                    </button>
-                  </>
-                )}
+                {currentUser?.email == forumOnePost?.user ||
+                  (currentUser?.is_superuser && (
+                    <>
+                      <button
+                        onClick={() => {
+                          dispatch(deleteForumPost({ id: forumOnePost.id! }));
+                          navigate("/forum");
+                        }}
+                        className="bg-red-500 p-2"
+                      >
+                        Delete
+                      </button>
+                      <button
+                        className="bg-green-500 p-2"
+                        onClick={() =>
+                          navigate(`/forum-edit-post/${forumOnePost?.id}`)
+                        }
+                      >
+                        Edit
+                      </button>
+                    </>
+                  ))}
               </div>
               <div className="flex flex-col justify-between border-2 border-black w-1/2 h-screen">
                 <ForumPostComment

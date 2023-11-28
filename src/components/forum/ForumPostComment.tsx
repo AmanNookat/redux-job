@@ -45,51 +45,52 @@ const ForumPostComment = ({
               ) : (
                 <p>{comment.body}</p>
               )}
-              {comment.author === currentUser?.email && (
-                <>
-                  {editedComment?.id == comment.id ? (
-                    <button
-                      onClick={() => {
-                        dispatch(
-                          editForumPostComment({
-                            id: +id!,
-                            commentBody: editedComment?.body,
-                            commentId: editedComment?.id,
-                          })
-                        );
-                      }}
-                    >
-                      Save
-                    </button>
-                  ) : (
-                    <>
-                      <button
-                        onClick={() =>
-                          dispatch(
-                            deleteCommentFromForumPost({
-                              id: +id!,
-                              commentId: +comment.id!,
-                            })
-                          )
-                        }
-                        className="bg-red-300"
-                      >
-                        Delete
-                      </button>
-
+              {comment.author === currentUser?.email ||
+                (currentUser?.is_superuser && (
+                  <>
+                    {editedComment?.id == comment.id ? (
                       <button
                         onClick={() => {
-                          setEdit(true);
-                          setEditedComment(comment);
+                          dispatch(
+                            editForumPostComment({
+                              id: +id!,
+                              commentBody: editedComment?.body,
+                              commentId: editedComment?.id,
+                            })
+                          );
                         }}
-                        className="bg-green-300"
                       >
-                        Edit
+                        Save
                       </button>
-                    </>
-                  )}
-                </>
-              )}
+                    ) : (
+                      <>
+                        <button
+                          onClick={() =>
+                            dispatch(
+                              deleteCommentFromForumPost({
+                                id: +id!,
+                                commentId: +comment.id!,
+                              })
+                            )
+                          }
+                          className="bg-red-300"
+                        >
+                          Delete
+                        </button>
+
+                        <button
+                          onClick={() => {
+                            setEdit(true);
+                            setEditedComment(comment);
+                          }}
+                          className="bg-green-300"
+                        >
+                          Edit
+                        </button>
+                      </>
+                    )}
+                  </>
+                ))}
             </div>
           ))
         ) : (
