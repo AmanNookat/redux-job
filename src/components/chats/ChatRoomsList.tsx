@@ -27,9 +27,9 @@ const ChatRoomsList = () => {
       ) : (
         <>
           <div className="bg-gray-800 text-gray-100 flex">
-            <div className="border-l-2 border-gray-500 ">
+            <div className="border-l-2 border-gray-500 w-2/5">
               {modal && <ChatRoomAdd setModal={setModal} />}
-              <div className="flex items-center justify-center flex-col h-28 bg-gray-900 w-[70vh] border-r-2 border-t-2 border-b-2 border-gray-500">
+              <div className="flex items-center justify-center flex-col h-28 bg-gray-900 border-r-2 border-t-2 border-b-2 border-gray-500">
                 <div className="flex w-full items-center justify-center mb-2">
                   <h3 className="text-2xl mr-5">Chat</h3>
                   <button
@@ -48,7 +48,7 @@ const ChatRoomsList = () => {
                   />
                 </div>
               </div>
-              <div className="bg-gray-900 w-[70vh] h-[80vh] overflow-auto border-r-2 text-xl border-gray-500">
+              <div className="bg-gray-900 h-[80vh] overflow-auto border-r-2 text-xl border-gray-500">
                 {chats.length ? (
                   <>
                     {chats.map((chat: IChatRoom) => (
