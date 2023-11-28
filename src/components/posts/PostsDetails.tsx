@@ -87,6 +87,7 @@ export const PostsDetails = () => {
                   currentUser?.email === (onePost as IPost).user &&
                   (onePost as IPost).desc.map((desc: IDesc) => (
                     <div key={desc.id} className="">
+                      <h3 className="text-xl font-semibold">{desc.title}</h3>
                       <h3>{desc.body}</h3>
                       <button
                         onClick={() =>

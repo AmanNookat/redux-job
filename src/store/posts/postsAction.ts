@@ -139,6 +139,9 @@ export const addDesc = createAsyncThunk(
       : 0;
     const type = typeL + 3;
     const config: any = postToken();
+    console.log(post);
+    console.log(type);
+
     await axios.post(`${API[type]}`, post, config);
     dispatch(getOnePost(id));
   }
