@@ -1,12 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getOneDesc, getOnePost, getPosts } from "./postsAction";
+import { IPost } from "./postTypes";
 
 interface PostsState {
-  posts: [];
-  onePost: null;
+  posts: IPost[];
+  onePost: null | IPost;
   oneDesc: null;
   loading: boolean;
   error: boolean;
+  search: string;
+  currentPage: number;
+  totalPages: number;
+  modalPost: boolean;
 }
 
 const initialState: PostsState = {
@@ -15,6 +20,10 @@ const initialState: PostsState = {
   oneDesc: null,
   loading: false,
   error: false,
+  search: "",
+  currentPage: 1,
+  totalPages: 1,
+  modalPost: false,
 };
 
 const postsSlice = createSlice({
@@ -27,6 +36,17 @@ const postsSlice = createSlice({
     clearOneDesc: (state) => {
       state.oneDesc = null;
     },
+    setSearchVal: (state, action) => {
+      state.search = action.payload;
+      state.currentPage = 1;
+    },
+    changePage: (state, action) => {
+      state.currentPage = action.payload.page;
+      console.log(state.currentPage);
+    },
+    modalPostCreate: (state) => {
+      state.modalPost = !state.modalPost;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -37,7 +57,8 @@ const postsSlice = createSlice({
       .addCase(getPosts.fulfilled, (state, action) => {
         state.loading = false;
         state.error = false;
-        state.posts = action.payload;
+        state.posts = action.payload.filteredData;
+        state.totalPages = action.payload.totalPages!;
       })
       .addCase(getPosts.rejected, (state) => {
         state.loading = false;
@@ -73,5 +94,11 @@ const postsSlice = createSlice({
   },
 });
 
-export const { clearOnePost, clearOneDesc } = postsSlice.actions;
+export const {
+  clearOnePost,
+  clearOneDesc,
+  setSearchVal,
+  modalPostCreate,
+  changePage,
+} = postsSlice.actions;
 export default postsSlice.reducer;

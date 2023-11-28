@@ -8,7 +8,6 @@ import ProjectsPage from "./pages/projects/ProjectsPage";
 import CreateResume from "./components/resume/CreateResume";
 import RoadmapsMain from "./components/roadmaps/RoadmapsMain";
 import PostsPage from "./pages/posts/PostsPage";
-import { PostsCreate } from "./components/posts/PostsCreate";
 import { PostsDetails } from "./components/posts/PostsDetails";
 import { PostsEdit } from "./components/posts/PostsEdit";
 import { PostCreateDesc } from "./components/posts/postsDesc/PostCreateDesc";
@@ -42,7 +41,7 @@ const MainRoutes = () => {
       <Route path="/resume" element={<CreateResume />} />
       <Route path="/roadmaps" element={<RoadmapsMain />} />
       <Route path="/posts" element={<PostsPage />} />
-      <Route path="/add-post" element={<PostsCreate />} />
+      {/* <Route path="/add-post" element={<PostsCreate />} /> */}
       <Route path="/details-post/:id" element={<PostsDetails />} />
       <Route path="/edit-post/:id" element={<PostsEdit />} />
       <Route path="/add-post-desc/:id" element={<PostCreateDesc />} />

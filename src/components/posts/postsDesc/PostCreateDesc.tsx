@@ -10,6 +10,7 @@ export const PostCreateDesc = () => {
   const { id } = useParams();
   const [postId, setPostId] = useState<null | number>(null);
   const [newDesc, setNewDesc] = useState({
+    title: "",
     body: "",
     post: id,
   });
@@ -26,6 +27,10 @@ export const PostCreateDesc = () => {
       <div className="">
         <input
           type="text"
+          placeholder="title"
+          onChange={(e) => setNewDesc({ ...newDesc, title: e.target.value })}
+        />
+        <textarea
           placeholder="Description"
           onChange={(e) => setNewDesc({ ...newDesc, body: e.target.value })}
           maxLength={50}
