@@ -54,7 +54,7 @@ const Navbar = () => {
 
             <div className="flex-grow"></div>
 
-            <div className="users--modal bg-gray-900 z-40">
+            <div className="users--modal bg-gray-900  z-40">
               <button className="modalBtn" onClick={toggleMenu}>
                 {usersModal ? (
                   <div className="close--modal">
@@ -67,7 +67,7 @@ const Navbar = () => {
                 )}
               </button>
               {usersModal && (
-                <div className="mt-72">
+                <div className="top-0 absolute right-0">
                   <UsersModal />
                   <div className="overlay" onClick={closeUsersModal}></div>
                 </div>

@@ -16,6 +16,11 @@ import boy from "../../assets/icon-boy.png";
 import comtexno from "../../assets/comtexno.png";
 import kgyst from "../../assets/kgustahaha.png";
 import fissman from "../../assets/fissman.png";
+import Transition from "../../components/ui/Transition";
+import Footer from "../../components/ui/Footer";
+
+
+
 
 const HomePage = () => {
   return (
@@ -219,7 +224,10 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+      <Transition/>
+      <Footer/>
     </div>
+
   );
 };
 
