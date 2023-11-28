@@ -67,7 +67,7 @@ const Navbar = () => {
                 )}
               </button>
               {usersModal && (
-                <div className="mt-48">
+                <div className="mt-72">
                   <UsersModal />
                   <div className="overlay" onClick={closeUsersModal}></div>
                 </div>

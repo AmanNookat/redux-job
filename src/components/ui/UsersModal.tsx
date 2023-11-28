@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "../../store/store";
+import style from "./navbar.module.css";
 
 const UsersModal = () => {
   const navigate = useNavigate();
@@ -9,36 +10,42 @@ const UsersModal = () => {
   const { currentUser } = useSelector((state: RootState) => state.users);
 
   return (
-    <div>
+    <div className={style.usermodal} >
       <div
-        style={{ display: "flex", flexDirection: "column" }}
-        className="users--modal__features"
+        className="users--modal__features bg-black p-4"
       >
         <p
-          style={{ cursor: "pointer", zIndex: 10 }}
+          className="bg-[#111827] w-36 p-3 cursor-pointer rounded-t-2xl hover:bg-[#233050] duration-300"
           onClick={() => navigate(`/profiles/${currentUser?.id}`)}
         >
           My profile
         </p>
         <p
-          style={{ cursor: "pointer", zIndex: 10 }}
+          className="bg-[#111827] w-36 p-3 cursor-pointer hover:bg-[#233050] duration-300"
           onClick={() => navigate("/myPosts")}
         >
           My Post
         </p>
         <p
-          style={{ cursor: "pointer", zIndex: 5 }}
+          className="bg-[#111827] w-36 p-3 cursor-pointer hover:bg-[#233050] duration-300"
           onClick={() => navigate(`/myProjects/${currentUser?.id}`)}
         >
           My Projects
         </p>
-        <p style={{ cursor: "pointer" }} onClick={() => navigate("/myResume")}>
+
+        <p
+          className="bg-[#111827] w-36 p-3 cursor-pointer hover:bg-[#233050] duration-300"
+          onClick={() => navigate("/myResume")}
+        >
           Resume
         </p>
-        <p style={{cursor: "pointer", zIndex: 10}} onClick={() => navigate("/chatrooms")}>
+        <p
+          className="bg-[#111827] w-36 p-3 cursor-pointer rounded-b-2xl hover:bg-[#233050] duration-300"
+          onClick={() => navigate("/chatrooms")}
+        >
           Chats
         </p>
-      </div>
+      </div>  
     </div>
   );
 };
