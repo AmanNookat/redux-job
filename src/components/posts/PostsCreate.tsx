@@ -80,9 +80,11 @@ export const PostsCreate = () => {
           </div>
         )}
         {typePost === "Freelancing" && (
-          <div className="w1/2 bg-[#19253C] h-screen flex justify-center">
-            <div className="">
-              <div className="">Create fleelancing</div>
+          <div className="w-full flex bg-[#19253C] h-screen pt-8">
+            <div className="flex flex-col w-5/6 items-center">
+              <div className="text-2xl font-bold py-2 w-full text-center text-white ">
+                Create fleelancing
+              </div>
               <input
                 className="w-3/4 border border-black rounded-lg p-2 my-2"
                 type="text"
@@ -121,14 +123,17 @@ export const PostsCreate = () => {
                   })
                 }
               />
-              <button onClick={() => chekPost(newPost, 0)}>
+              <button
+                className="p-2 bg-[#265290] hover:bg-blue-700 text-white rounded-lg my-4"
+                onClick={() => chekPost(newPost, 0)}
+              >
                 Add fleelancing
               </button>
             </div>
           </div>
         )}
         {typePost === "Vacancy" && (
-          <div className="w-full flex bg-[#19253C] h-screen">
+          <div className="w-full flex bg-[#19253C] h-screen pt-8">
             <div className="flex flex-col w-5/6 items-center">
               <div className="text-2xl font-bold py-2 w-full text-center text-white ">
                 Create vacancy
@@ -183,7 +188,10 @@ export const PostsCreate = () => {
                   })
                 }
               />
-              <button onClick={() => chekPost(newPost, 1)}>
+              <button
+                className="p-2 bg-[#265290] hover:bg-blue-700 text-white rounded-lg my-4"
+                onClick={() => chekPost(newPost, 1)}
+              >
                 Add fleelancing
               </button>
             </div>
@@ -191,7 +199,7 @@ export const PostsCreate = () => {
         )}
       </>
       {currentUser?.type_user === "Human" && (
-        <div className="w-full flex bg-[#19253C]">
+        <div className="w-full flex bg-[#19253C] pt-8">
           <div className="flex flex-col w-5/6 items-center">
             <div className="text-2xl font-bold py-2 w-full text-center text-white ">
               Create post
@@ -232,7 +240,12 @@ export const PostsCreate = () => {
                 })
               }
             />
-            <button onClick={() => chekPost(newPost, 2)}>Add post</button>
+            <button
+              className="p-2 bg-[#265290] hover:bg-blue-700 text-white rounded-lg my-4"
+              onClick={() => chekPost(newPost, 2)}
+            >
+              Add post
+            </button>
           </div>
         </div>
       )}

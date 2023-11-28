@@ -8,7 +8,6 @@ import ProjectsPage from "./pages/projects/ProjectsPage";
 import CreateResume from "./components/resume/CreateResume";
 import RoadmapsMain from "./components/roadmaps/RoadmapsMain";
 import PostsPage from "./pages/posts/PostsPage";
-import { PostsCreate } from "./components/posts/PostsCreate";
 import { PostsDetails } from "./components/posts/PostsDetails";
 import { PostsEdit } from "./components/posts/PostsEdit";
 import { PostCreateDesc } from "./components/posts/postsDesc/PostCreateDesc";

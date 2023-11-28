@@ -39,10 +39,10 @@ const postsSlice = createSlice({
     setSearchVal: (state, action) => {
       state.search = action.payload;
       state.currentPage = 1;
-      console.log(state.totalPages);
     },
     changePage: (state, action) => {
       state.currentPage = action.payload.page;
+      console.log(state.currentPage);
     },
     modalPostCreate: (state) => {
       state.modalPost = !state.modalPost;
@@ -58,7 +58,7 @@ const postsSlice = createSlice({
         state.loading = false;
         state.error = false;
         state.posts = action.payload.filteredData;
-        // state.totalPages = action.payload.totalPages;
+        state.totalPages = action.payload.totalPages!;
       })
       .addCase(getPosts.rejected, (state) => {
         state.loading = false;
@@ -94,6 +94,11 @@ const postsSlice = createSlice({
   },
 });
 
-export const { clearOnePost, clearOneDesc, setSearchVal, modalPostCreate } =
-  postsSlice.actions;
+export const {
+  clearOnePost,
+  clearOneDesc,
+  setSearchVal,
+  modalPostCreate,
+  changePage,
+} = postsSlice.actions;
 export default postsSlice.reducer;

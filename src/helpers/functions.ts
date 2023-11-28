@@ -99,8 +99,7 @@ export const getTotalPages = async (url: string) => {
       },
     };
     const { data } = await axios.get(url, config);
-    const totalPages = Math.ceil(data.length / 10);
-    console.log(data);
+    const totalPages = Math.ceil(data.count / 10);
 
     return totalPages;
   }

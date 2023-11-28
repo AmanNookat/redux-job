@@ -9,6 +9,7 @@ import LazyLoading from "../loading/LazyLoading";
 import { PostsCreate } from "./PostsCreate";
 import { modalPostCreate, setSearchVal } from "../../store/posts/postsSlice";
 import { type } from "os";
+import PostPagination from "./PostPagination";
 
 export const PostsList = () => {
   const { posts, loading, modalPost } = useSelector(
@@ -40,15 +41,23 @@ export const PostsList = () => {
         </div>
       )}
       <div className="w-2/3">
-        <input type="text" onChange={(e) => setSearch(e.target.value)} />
-        <button
-          onClick={() => {
-            searchCheck();
-          }}
-        >
-          search
-        </button>
         <div className="flex justify-center">
+          <div className="p-2 m-4">
+            <input
+              type="text"
+              className="border-2 p-2 rounded-lg"
+              placeholder="Search..."
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <button
+              className="mx-2 p-2  bg-slate-400 rounded-lg"
+              onClick={() => {
+                searchCheck();
+              }}
+            >
+              search
+            </button>
+          </div>
           <button
             className="p-2 m-4 rounded-lg bg-[#9F96BB] hover:bg-blue-700"
             onClick={() => {
@@ -94,6 +103,9 @@ export const PostsList = () => {
               posts.map((post: IPost) => (
                 <PostsItem key={post.id} post={post} />
               ))}
+            <div className="">
+              <PostPagination />
+            </div>
           </div>
         )}
       </div>
