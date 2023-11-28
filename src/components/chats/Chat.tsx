@@ -4,73 +4,76 @@ import { useParams } from "react-router-dom";
 import { AppDispatch, RootState } from "../../store/store";
 import { addMessage, getOneChat } from "../../store/chats/ChatsActions";
 import ChatMessages from "./ChatMessages";
+import ChatMembersModal from "./ChatMembersModal";
 
-const Chat = () => {
+const Chat = ({ id }: { id: number }) => {
   const { chatroom, loading } = useSelector((state: RootState) => state.chats);
   const [message, setMessage] = useState({
     chatroom: 0,
     content: "",
   });
   const [prikol, setPrikol] = useState(false);
-  const { id } = useParams();
-
+  const [modal, setModal] = useState(false);
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
-    if (id) {
-      dispatch(getOneChat({ chatroomId: parseInt(id) }));
-      setMessage({ ...message, chatroom: parseInt(id) });
-    }
+    setMessage({ ...message, chatroom: id });
   }, [id, dispatch, prikol]);
-
-  // useEffect(() => {
-  //   const realTime = setInterval(() => {
-  //     setPrikol(!prikol);
-  //   }, 5000);
-
-  //   return () => clearInterval(realTime);
-  // }, [prikol]);
 
   return (
     <>
+      {modal && (
+        <ChatMembersModal
+          setModal={setModal}
+          members={chatroom?.participants}
+        />
+      )}
       {loading ? (
         <h1>Loading</h1>
       ) : (
         <>
           {chatroom && (
-            <div>
-              <h2>{chatroom.title}</h2>
-              <div className="border-2 border-black">
-                <h3>members</h3>
-                {chatroom.participants.map((member: any) => (
-                  <p key={member}>id: {member}</p>
-                ))}
-              </div>
-              <div className="border-2 border-black">
-                <h3>messages</h3>
+            <div className="text-white w-full h-full flex flex-col">
+              <h2
+                className="bg-gray-900 py-5 px-3 text-xl font-bold cursor-pointer"
+                onClick={() => setModal(true)}
+              >
+                {chatroom.title}
+              </h2>
+              {chatroom.messages.length ? (
+                <ChatMessages messages={chatroom.messages} />
+              ) : (
+                <span className="m-auto text-center">No messages...</span>
+              )}
 
-                {chatroom.messages.length ? (
-                  <ChatMessages messages={chatroom.messages} />
-                ) : (
-                  <h2>No messages</h2>
-                )}
-              </div>
-              <div className="flex fixed bottom-5 left-3">
-                <input
-                  type="text"
-                  placeholder="Введите текст..."
-                  className="w-96 border-2 border-black p-1"
-                  onChange={(e: any) =>
-                    setMessage({ ...message, content: e.target.value })
-                  }
-                  value={message.content}
-                />
+              <div className="flex items-center">
+                <form
+                  action=""
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    dispatch(addMessage({ message }));
+                    setMessage({ ...message, content: "" });
+                    setPrikol(!prikol);
+                  }}
+                  className="w-full"
+                >
+                  <input
+                    type="text"
+                    placeholder="Введите текст..."
+                    className="border-2 border-black p-1 w-full text-black"
+                    onChange={(e: any) =>
+                      setMessage({ ...message, content: e.target.value })
+                    }
+                    value={message.content}
+                  />
+                </form>
                 <button
                   onClick={() => {
                     dispatch(addMessage({ message }));
                     setMessage({ ...message, content: "" });
                     setPrikol(!prikol);
                   }}
+                  className="p-2"
                 >
                   Send
                 </button>

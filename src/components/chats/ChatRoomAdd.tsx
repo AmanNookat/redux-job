@@ -29,7 +29,7 @@ const ChatRoomAdd = ({ setModal }: IModalProps) => {
   };
 
   return (
-    <div className="flex fixed top-0 bottom-0 right-0 left-0 w-full h-full bg-black/30">
+    <div className="flex fixed top-0 bottom-0 right-0 left-0 w-full h-full bg-black/30 text-gray-900 z-30">
       <div
         className="m-auto bg-white p-16 rounded-lg flex flex-col text-center items-center gap-5 w-[30rem]"
         style={{ position: "relative" }}
@@ -47,17 +47,20 @@ const ChatRoomAdd = ({ setModal }: IModalProps) => {
           X
         </button>
         <div className="flex flex-col">
-          <h2 className="text-xl font-bold">Create your chatroom</h2>
+          <h2 className="text-xl font-bold mb-4">Create your chatroom</h2>
           <input
             type="text"
             placeholder="title"
+            className="h-8 border-2 border-gray-500 rounded-md mb-4"
             onChange={(e) => {
               setChatroom({ ...chatroom, title: e.target.value });
             }}
           />
-          <label>add users to your chatroom</label>
+          <label className="text-lg mb-1 font-bold">
+            Add users to your chatroom
+          </label>
 
-          <select onChange={(e) => addMember(e.target.value)}>
+          <select className="mb-4" onChange={(e) => addMember(e.target.value)}>
             <option hidden>users</option>
             {users.length ? (
               <>
@@ -71,7 +74,10 @@ const ChatRoomAdd = ({ setModal }: IModalProps) => {
               <option>users not found</option>
             )}
           </select>
-          <button onClick={() => dispatch(createChatroom({ chatroom }))}>
+          <button
+            className="border-2 p-1 border-gray-600 text-xl rounded-md hover:bg-gray-900 hover:text-white"
+            onClick={() => dispatch(createChatroom({ chatroom }))}
+          >
             Create
           </button>
         </div>

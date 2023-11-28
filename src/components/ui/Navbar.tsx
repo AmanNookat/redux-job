@@ -25,22 +25,24 @@ const Navbar = () => {
 
   return (
     <div onClick={() => setNavClick(!navClick)}>
-      {/* max-w-full h-20 bg-slate-900 text-white flex gap-6 items-center text-lg */}
       <div className={style.nav_oll}>
+        <div>
+          <img className="w-24" src={icon_logo} alt="" />
+        </div>
         <NavLink className={"ml-4"} to="/">
           Home
         </NavLink>
 
         {checkUserLogin() ? (
           <>
-            <NavLink to="/chatrooms">Chats</NavLink>
-            <NavLink to="/projects">Projects</NavLink>
-            <NavLink to="/forum">Forum</NavLink>
-            <NavLink to="/roadmaps">Road Maps</NavLink>
-            <NavLink to="/posts">Posts</NavLink>
-            <NavLink to="/er_code">Code Help</NavLink>
-            <NavLink to="/education">Education</NavLink>
-
+            <div className="flex gap-5">
+              <NavLink to="/projects">Projects</NavLink>
+              <NavLink to="/forum">Forum</NavLink>
+              <NavLink to="/roadmaps">Road Maps</NavLink>
+              <NavLink to="/posts">Posts</NavLink>
+              <NavLink to="/er_code">Code Help</NavLink>
+              <NavLink to="/education">Education</NavLink>
+            </div>
             <NavLink
               to="/"
               onClick={() => {
@@ -49,9 +51,10 @@ const Navbar = () => {
             >
               Log Out
             </NavLink>
-            {/* Оставляйте модалку последней */}
 
-            <div className="users--modal ">
+            <div className="flex-grow"></div>
+
+            <div className="users--modal bg-gray-900 z-40">
               <button className="modalBtn" onClick={toggleMenu}>
                 {usersModal ? (
                   <div className="close--modal">
@@ -77,9 +80,6 @@ const Navbar = () => {
             <NavLink to="/sign-in">Authorization</NavLink>
           </>
         )}
-        <div>
-          <img className={style.nav_img} src={icon_logo} alt="" />
-        </div>
       </div>
       <div className={style.nav_line}></div>
     </div>

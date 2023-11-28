@@ -23,6 +23,9 @@ const chatsSlice = createSlice({
     clearErrorState: (state) => {
       state.error = false;
     },
+    getOneChatroom: (state, action) => {
+      state.chatroom = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -64,5 +67,5 @@ const chatsSlice = createSlice({
   },
 });
 
-export const { clearErrorState } = chatsSlice.actions;
+export const { clearErrorState, getOneChatroom } = chatsSlice.actions;
 export default chatsSlice.reducer;

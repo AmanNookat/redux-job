@@ -76,3 +76,68 @@
   background-color: rgba(0, 0, 0, 0.858);
   color: rgb(17, 24, 39);
 }
+
+/* kube animation */
+
+.loader {
+  perspective: 700px;
+  width: 250px;
+  height: 250px;
+  margin-left: 10rem;
+  margin-right: 10rem;
+  margin-top: 5rem;
+}
+
+.cube {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: rotate 15s linear infinite;
+}
+
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #3498db, #e74c3c);
+  opacity: 0.8;
+  border: 0.5px solid #fff;
+  border-radius: 25%;
+}
+
+.face:nth-child(1) {
+  transform: rotateX(90deg) translateZ(50px);
+}
+
+.face:nth-child(2) {
+  transform: rotateX(-90deg) translateZ(50px);
+}
+
+.face:nth-child(3) {
+  transform: translateZ(50px);
+}
+
+.face:nth-child(4) {
+  transform: rotateY(90deg) translateZ(50px);
+}
+
+.face:nth-child(5) {
+  transform: rotateY(-90deg) translateZ(50px);
+}
+ц .face:nth-child(6) {
+  transform: rotateY(180deg) translateZ(50px);
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+
+  100% {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+}
+
+/* .forum_bg{
+  background-image: url("../../assets/earth.png");
+} */
