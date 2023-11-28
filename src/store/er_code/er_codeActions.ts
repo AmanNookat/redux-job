@@ -14,7 +14,7 @@ export const getEr_codePosts = createAsyncThunk(
         Authorization,
       },
     });
-    return data;
+    return data.results;
   }
 );
 
