@@ -71,7 +71,7 @@ const ChatRoomsList = () => {
                             <p>members: {chat.participants.length}</p>
                           </div>
                         );
-                      } else if (currentUser.is_superuser) {
+                      } else if (currentUser?.is_superuser) {
                         return (
                           <div
                             onClick={() => {

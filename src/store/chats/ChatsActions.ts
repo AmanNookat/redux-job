@@ -11,7 +11,7 @@ export const getChatrooms = createAsyncThunk("chats/getChatrooms", async () => {
       Authorization,
     },
   });
-  return data;
+  return data.results;
 });
 
 export const createChatroom = createAsyncThunk(
@@ -22,7 +22,7 @@ export const createChatroom = createAsyncThunk(
       formData.append("title", chatroom.title);
       formData.append("participants", chatroom.participants.toString());
 
-      console.log(Object.fromEntries(formData.entries()));
+      // console.log(Object.fromEntries(formData.entries()));
 
       const Authorization = `Bearer ${getAccessToken()}`;
 
@@ -57,7 +57,6 @@ export const addMessage = createAsyncThunk(
   "chats/addMessage",
   async ({ message }: { message: any }) => {
     try {
-      console.log(message);
       const Authorization = `Bearer ${getAccessToken()}`;
       const formData = new FormData();
 

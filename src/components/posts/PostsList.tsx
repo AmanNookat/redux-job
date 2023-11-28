@@ -50,9 +50,8 @@ export const PostsList = () => {
         <LazyLoading />
       ) : (
         <div className="">
-          {posts.map((post: IPost) => (
-            <PostsItem key={post.id} post={post} />
-          ))}
+          {posts.length &&
+            posts.map((post: IPost) => <PostsItem key={post.id} post={post} />)}
         </div>
       )}
     </div>

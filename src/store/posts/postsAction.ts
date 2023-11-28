@@ -39,7 +39,7 @@ export const getPosts = createAsyncThunk(
     localStorage.setItem("typePost", JSON.stringify(type));
     const config: any = postToken();
     const { data } = await axios.get(`${API[type]}`, config);
-    return data;
+    return data.results;
   }
 );
 

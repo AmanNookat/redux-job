@@ -14,7 +14,7 @@ export const getUsersProfiles = createAsyncThunk(
       headers: { Authorization },
     });
 
-    return data;
+    return data.results;
   }
 );
 
@@ -27,7 +27,7 @@ export const getCompaniesProfiles = createAsyncThunk(
       headers: { Authorization },
     });
 
-    return data;
+    return data.results;
   }
 );
 
@@ -69,7 +69,6 @@ export const editProfile = createAsyncThunk(
   async ({ profile }: { profile: IProfile }, { dispatch }) => {
     try {
       const formData = new FormData();
-      console.log(profile.achievements);
 
       formData.append("languages", profile.languages);
       formData.append("programming_languages", profile.programming_languages);
@@ -206,7 +205,6 @@ export const createResume = createAsyncThunk(
 
     let dateArr = resumeObj.birth.split("-");
     const dateOfBirth = dateArr.reverse().join(".");
-    console.log(resumeObj.education);
 
     formData.append("user", JSON.stringify(userFormData));
     formData.append("date_of_birth", dateOfBirth);

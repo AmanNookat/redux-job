@@ -14,29 +14,34 @@ export const getEr_codePosts = createAsyncThunk(
         Authorization,
       },
     });
-    return data;
+    return data.results;
   }
 );
 
 export const addEr_codePost = createAsyncThunk(
   "forum/addForumPost",
   async ({ er_codePost }: { er_codePost: IEr_codePost }, { dispatch }) => {
-    const Authorization = `Bearer ${getAccessToken()}`;
+    try {
+      const Authorization = `Bearer ${getAccessToken()}`;
 
-    const formData = new FormData();
+      const formData = new FormData();
 
-    formData.append("name", er_codePost.name);
-    formData.append("description", er_codePost.description);
-    formData.append("file", er_codePost.file!);
+      formData.append("name", er_codePost.name);
+      formData.append("description", er_codePost.description);
+      formData.append("file", er_codePost.file!);
 
-    await axios.post(`${POSTS_API}/er_code/`, formData, {
-      headers: {
-        Authorization,
-        "Content-Type": "multipart/form-data",
-      },
-    });
+      await axios.post(`${POSTS_API}/er_code/`, formData, {
+        headers: {
+          Authorization,
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
-    dispatch(getEr_codePosts());
+      dispatch(getEr_codePosts());
+    } catch (err) {
+      // @ts-ignore
+      console.log(err.response.data);
+    }
   }
 );
 
@@ -50,6 +55,7 @@ export const getOneEr_codePost = createAsyncThunk(
         Authorization,
       },
     });
+
     return data;
   }
 );
@@ -75,8 +81,6 @@ export const editEr_codePost = createAsyncThunk(
     { dispatch }
   ) => {
     const Authorization = `Bearer ${getAccessToken()}`;
-
-    console.log(er_codePost);
 
     const formData = new FormData();
 

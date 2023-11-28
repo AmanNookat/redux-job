@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { IUser, IUserActivate, IUserLogin, IUserReg } from "./usersTypes";
-import { USERS_API } from "../../helpers/consts";
+import { PROFILES_API, USERS_API } from "../../helpers/consts";
 import axios from "axios";
 import { getAccessToken } from "../../helpers/functions";
 
@@ -15,7 +15,6 @@ export const registerUser = createAsyncThunk(
     formData.append("type_user", user.type_user);
 
     await axios.post(`${USERS_API}/register/`, formData);
-    alert("Регистрация прошла успешно");
   }
 );
 
@@ -33,7 +32,6 @@ export const activateCode = createAsyncThunk(
     formData.append("code", userActivate.code);
 
     await axios.post(`${USERS_API}/activate_code/`, formData);
-    alert("Аккаунт активирован");
     return { navigate };
   }
 );
@@ -45,7 +43,7 @@ export const loginUser = createAsyncThunk(
       userLogin,
       navigate,
     }: {
-      userLogin: IUserLogin;
+      userLogin: any;
       navigate: (value: string) => void;
     },
     { dispatch }
@@ -58,6 +56,8 @@ export const loginUser = createAsyncThunk(
 
     const { data } = await axios.post(`${USERS_API}/login/`, formData);
 
+    console.log(data);
+
     dispatch(getCurrentUser());
     return { data, navigate };
   }
@@ -65,7 +65,9 @@ export const loginUser = createAsyncThunk(
 
 export const getUsers = createAsyncThunk("users/getUsers", async () => {
   const { data } = await axios.get(`${USERS_API}/users/`);
-  return data;
+  console.log(data);
+
+  return data.results;
 });
 
 export const getCurrentUser = createAsyncThunk(
@@ -75,7 +77,9 @@ export const getCurrentUser = createAsyncThunk(
     if (storedData) {
       const userEmail = JSON.parse(storedData);
       const { data } = await axios.get(`${USERS_API}/users/`);
-      const email = data.find((user: IUser) => user.email === userEmail);
+      const email = data.results.find(
+        (user: IUser) => user.email === userEmail
+      );
       return email;
     }
   }
@@ -105,7 +109,36 @@ export const returnUsersEmails = createAsyncThunk(
   "users/returnUsersEmails",
   async ({ id }: { id: number }) => {
     const { data } = await axios.get(`${USERS_API}/users/`);
-    const userObj = data.find((user: IUser) => user.id === id);
+    const userObj = data.results.find((user: IUser) => user.id === id);
     return userObj.email;
+  }
+);
+
+export const createProfile = createAsyncThunk(
+  "users/createProfile",
+  async ({ email }: { email: string }) => {
+    const { data } = await axios.get(`${USERS_API}/users/`);
+    const Authorization = `Bearer ${getAccessToken()}`;
+
+    const userObj = data.results.find((user: any) => user.email === email);
+
+    const formData = new FormData();
+    formData.append("user", userObj.id);
+
+    if (userObj.type_user === "Human") {
+      await axios.post(`${PROFILES_API}/user_profiles/`, formData, {
+        headers: {
+          Authorization,
+        },
+      });
+    } else {
+      await axios.post(`${PROFILES_API}/company_profiles/`, formData, {
+        headers: {
+          Authorization,
+        },
+      });
+    }
+
+    alert("e boy");
   }
 );

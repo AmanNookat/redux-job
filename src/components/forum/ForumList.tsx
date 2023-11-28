@@ -17,7 +17,6 @@ const ForumList = () => {
   useEffect(() => {
     dispatch(getForumPosts());
   }, []);
-  console.log(forumPosts[0]);
 
   return (
     <>
@@ -28,8 +27,13 @@ const ForumList = () => {
           <div className="bg-gray-900 text-white flex">
             <div className="w-1/2 z-10">
               <div className="p-6">
-                <h3 className="text-7xl">Have questions? <br/> Ask it here</h3>
-                <button className="mt-5 border-2 p-4 rounded-3xl text-xl hover:bg-slate-200 hover:text-gray-900" onClick={() => navigate("/forum-add-post")}>
+                <h3 className="text-7xl">
+                  Have questions? <br /> Ask it here
+                </h3>
+                <button
+                  className="mt-5 border-2 p-4 rounded-3xl text-xl hover:bg-slate-200 hover:text-gray-900"
+                  onClick={() => navigate("/forum-add-post")}
+                >
                   Add Post
                 </button>
               </div>
@@ -55,15 +59,16 @@ const ForumList = () => {
             </div>
             <div className="w-1/2 border h-[90vh] z-30 p-4 border-gray-500">
               <div className="flex flex-col">
-                {forumPosts.map((forumPost: IForumPost) => (
-                  <span
-                    className="border-b-2 border-gray-500 h-16 p-4 text-xl cursor-pointer hover:bg-gray-800 hover:rounded-sm"
-                    onClick={() => navigate(`/forum/${forumPost.id}`)}
-                    key={forumPost.id}
-                  >
-                    {forumPost.name}
-                  </span>
-                ))}
+                {forumPosts.length &&
+                  forumPosts.map((forumPost: IForumPost) => (
+                    <span
+                      className="border-b-2 border-gray-500 h-16 p-4 text-xl cursor-pointer hover:bg-gray-800 hover:rounded-sm"
+                      onClick={() => navigate(`/forum/${forumPost.id}`)}
+                      key={forumPost.id}
+                    >
+                      {forumPost.name}
+                    </span>
+                  ))}
               </div>
             </div>
           </div>
