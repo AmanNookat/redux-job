@@ -5,7 +5,6 @@
   font-size: 2rem;
   border: 3px solid rgba(17 24 39);
   border-radius: 2rem;
-
   margin: 6rem;
   margin-left: 20rem;
   width: 10rem;
@@ -27,9 +26,9 @@
 }
 
 .project_card_scrol {
-  height: 40vh;
-  overflow-y: auto;
-  border: 1px solid #ccc;
+  height: 40vh; /* Задаем фиксированную высоту */
+  overflow-y: auto; /* Разрешаем вертикальную прокрутку при необходимости */
+  border: 1px solid #ccc; /* Добавим границу для наглядности */
   border-radius: 2rem;
   padding: 1rem;
   margin-top: 3rem;

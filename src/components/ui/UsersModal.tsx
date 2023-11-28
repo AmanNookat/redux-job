@@ -35,7 +35,9 @@ const UsersModal = () => {
         <p style={{ cursor: "pointer" }} onClick={() => navigate("/myResume")}>
           Resume
         </p>
-        <p>Chats</p>
+        <p style={{cursor: "pointer", zIndex: 10}} onClick={() => navigate("/chatrooms")}>
+          Chats
+        </p>
       </div>
     </div>
   );
