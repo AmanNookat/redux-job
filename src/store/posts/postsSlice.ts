@@ -12,6 +12,8 @@ interface PostsState {
   currentPage: number;
   totalPages: number;
   modalPost: boolean;
+  modalDesc: boolean;
+  modalDescEdit: boolean;
 }
 
 const initialState: PostsState = {
@@ -24,6 +26,8 @@ const initialState: PostsState = {
   currentPage: 1,
   totalPages: 1,
   modalPost: false,
+  modalDesc: false,
+  modalDescEdit: false,
 };
 
 const postsSlice = createSlice({
@@ -42,10 +46,15 @@ const postsSlice = createSlice({
     },
     changePage: (state, action) => {
       state.currentPage = action.payload.page;
-      console.log(state.currentPage);
     },
     modalPostCreate: (state) => {
       state.modalPost = !state.modalPost;
+    },
+    modalDescCreate: (state) => {
+      state.modalDesc = !state.modalDesc;
+    },
+    modalDescEdit: (state) => {
+      state.modalDescEdit = !state.modalDescEdit;
     },
   },
   extraReducers: (builder) => {
@@ -100,5 +109,7 @@ export const {
   setSearchVal,
   modalPostCreate,
   changePage,
+  modalDescCreate,
+  modalDescEdit,
 } = postsSlice.actions;
 export default postsSlice.reducer;
