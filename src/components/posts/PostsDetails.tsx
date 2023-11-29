@@ -35,6 +35,7 @@ export const PostsDetails = () => {
       dispatch(clearOnePost());
     };
   }, []);
+  console.log(onePost);
 
   return (
     <>
@@ -99,7 +100,6 @@ export const PostsDetails = () => {
                 )}
                 <>
                   {onePost &&
-                    currentUser?.email === (onePost as IPost).user &&
                     (onePost as IPost).desc.map((desc: IDesc) => (
                       <div
                         key={desc.id}
@@ -107,31 +107,35 @@ export const PostsDetails = () => {
                       >
                         <h3 className="text-xl font-semibold">{desc.title}</h3>
                         <h3>{desc.body}</h3>
-                        <button
-                          className="p-2 m-4 rounded-lg mr-8 bg-blue-500 hover:bg-blue-700"
-                          onClick={() =>
-                            navigate(
-                              `/edit-post-desc/${desc.id}.${
-                                (onePost as IPost).id
-                              }`
-                            )
-                          }
-                        >
-                          Edit
-                        </button>
-                        <button
-                          className="p-2 m-4 rounded-lg mr-8 bg-blue-500 hover:bg-blue-700"
-                          onClick={() => {
-                            dispatch(
-                              deleteDesc({
-                                id: desc.id,
-                                postId: (onePost as IPost).id,
-                              })
-                            );
-                          }}
-                        >
-                          Delete
-                        </button>
+                        {currentUser?.email === (onePost as IPost).user && (
+                          <div>
+                            <button
+                              className="p-2 m-4 rounded-lg mr-8 bg-blue-500 hover:bg-blue-700"
+                              onClick={() =>
+                                navigate(
+                                  `/edit-post-desc/${desc.id}.${
+                                    (onePost as IPost).id
+                                  }`
+                                )
+                              }
+                            >
+                              Edit
+                            </button>
+                            <button
+                              className="p-2 m-4 rounded-lg mr-8 bg-blue-500 hover:bg-blue-700"
+                              onClick={() => {
+                                dispatch(
+                                  deleteDesc({
+                                    id: desc.id,
+                                    postId: (onePost as IPost).id,
+                                  })
+                                );
+                              }}
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        )}
                       </div>
                     ))}
                 </>

@@ -5,12 +5,14 @@ import { setChatGpt } from "../../store/chatGpt/gptAction";
 import { IGpt } from "../../store/chatGpt/typeGpt";
 import arow_up from "../../assets/arrow-up.png";
 import style from "./chatgpt.module.css";
+import LazyLoading from "../loading/LazyLoading";
+
 
 const ChatBot: React.FC = () => {
   const [messages, setMessages] = useState<IGpt[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [lastMessageLoading, setLastMessageLoading] = useState<boolean>(false);
   const messageInputRef = useRef<HTMLInputElement>(null);
-  const { mess } = useSelector((state: RootState) => state.chatGpt);
+  const { mess, loading } = useSelector((state: RootState) => state.chatGpt);
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
@@ -37,11 +39,12 @@ const ChatBot: React.FC = () => {
     };
 
     setMessages((prevMessages) => [...prevMessages, newUserMessage]);
-    setLoading(true);
 
     messageInputRef.current.value = "";
 
     try {
+      setLastMessageLoading(true);
+
       const response = await dispatch(setChatGpt(userMessage));
 
       setMessages((prevMessages) =>
@@ -54,11 +57,13 @@ const ChatBot: React.FC = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      setLoading(false);
+      setLastMessageLoading(false);
     }
   };
-  console.log(mess);
-  //   console.log(messages);
+
+  useEffect(() => {
+    dispatch(setChatGpt("Hello"));
+  }, []);
 
   return (
     <div className="flex flex-col h-auto p-2 bg-gray-900">
@@ -158,10 +163,12 @@ const ChatBot: React.FC = () => {
             >
               Send
             </button>
-          </div>
+              </div>
+            </div>
+          </form>
         </div>
-      </form>
-    </div>
+      )}
+    </>
   );
 };
 
