@@ -1,0 +1,8 @@
+.er_code_bg{
+    height: 100%;
+    background-image: url(../../assets/er_code_bg.jpeg);
+    display: flex;
+    justify-content: end;
+    background-color: rgb(17, 24, 39);
+    padding: 1rem;
+}
