@@ -13,19 +13,19 @@ export const PostsItem = ({ post }: { post: IPost }) => {
     <div className={modalPost ? "w-4/5" : "w-full"}>
       <div
         onClick={() => navigate(`/details-post/${post.id}`)}
-        className="bg-stone-300 rounded-lg p-4 mt-4"
+        className="bg-gray-900 text-gray-200 rounded-lg p-4 mt-4"
       >
-        {post.name ? <h2>{post.name}</h2> : <h2>{post.title}</h2>}
+        {post.name ? <h2 className="text-xl">{post.name}</h2> : <h2>{post.title}$</h2>}
         {post.type_post ? (
           <h3>{post.type_post}</h3>
         ) : (
           <div className="">
-            <h3>{post.type_work}</h3> <h3>{post.type_employment}</h3>
+            <h3>{post.type_work}</h3> <h3 className="text-4xl">{post.type_employment}</h3>
           </div>
         )}
         <h2>{post.celery}</h2>
         <div>
-          <h3 className="line-clamp-2 w-2/3">{post.description}</h3>
+          <h3 className="line-clamp-2 w-2/3 h-44">{post.description}</h3>
         </div>
       </div>
     </div>

@@ -26,7 +26,6 @@ const Er_codeList = () => {
         <LazyLoading />
       ) : (
         <>
-          {/* flex justify-end */}
           <div className={style.er_code_bg}>
             <div className="w-full">
               {er_codePosts.map((er_CodePost: IEr_codePost) => (
