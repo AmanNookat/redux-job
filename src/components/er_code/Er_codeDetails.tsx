@@ -29,21 +29,26 @@ const Er_codeDetails = () => {
       ) : (
         <>
           {er_codeOnePost && (
-            <div className="flex">
-              <div className="border bg-gray-800 text-white w-1/2">
-                <p>{er_codeOnePost?.name}</p>
-                <p>{er_codeOnePost?.user}</p>
-                <p>{er_codeOnePost?.description}</p>
+            <div className="flex w-full bg-gray-800 p-2 justify-center h-full items-center">
+              <div className=" flex text-white h-full bg-gray-800">
+                <div className="w-1/2">
+                <p className="text-6xl mb-4 w-[50vh] h-[30vh] overflow-auto">{er_codeOnePost?.name}</p>
+                <p className="text-xl mb-2 bg-slate-900 rounded-lg w-[50vh] p-2 h-[50vh] overflow-auto">{er_codeOnePost?.description}</p>
+                <p className="text-lg">{er_codeOnePost?.user}</p>
+                </div>
                 {er_codeOnePost?.file &&
                 typeof er_codeOnePost?.file === "string" ? (
-                  <img src={er_codeOnePost.file} alt="" width="250" />
+                  <div className="ml-6 mr-6">
+                  <img className="h-[70vh] w-full rounded-sm overflow-auto" src={er_codeOnePost.file} alt="" width="250" />
+                  </div>
                 ) : (
                   <span>No image</span>
                 )}
                 {currentUser?.email == er_codeOnePost?.user && (
                   <>
-                    <button
-                      className="border text-white hover:text-black uppercase hover:bg-white p-2"
+                    <div>
+                   <button
+                      className="border text-white hover:text-black uppercase hover:bg-white p-2 mr-4"
                       onClick={() =>
                         navigate(`/er_code-edit/${er_codeOnePost?.id}`)
                       }
@@ -59,6 +64,7 @@ const Er_codeDetails = () => {
                     >
                       Delete
                     </button>
+                    </div>
                   </>
                 )}
               </div>
