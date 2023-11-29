@@ -36,6 +36,8 @@ const OneProfile = () => {
 
   const [edit, setEdit] = useState<any>(null);
 
+  console.log(oneProfile);
+
   return (
     <>
       {loading ? (
@@ -202,7 +204,7 @@ const OneProfile = () => {
                       </a>
                       {modal && <ChangePassModal setModal={setModal} />}
                       <div>
-                        {oneProfile?.upload_resume.length ? (
+                        {oneProfile && oneProfile?.upload_resume.length ? (
                           <>
                             <p className="font-bold">Resume</p>
                             {oneProfile?.upload_resume[0].upload_file.includes(
@@ -275,7 +277,7 @@ const OneProfile = () => {
                           </>
                         )}
                       </div>
-                      {oneProfile?.resume1.length ? (
+                      {oneProfile && oneProfile?.resume1.length ? (
                         <button
                           onClick={() => setResumeModal(true)}
                           className="bg-yellow-500"

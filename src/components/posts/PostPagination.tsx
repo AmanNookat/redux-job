@@ -1,5 +1,7 @@
 import * as React from "react";
+// @ts-ignore
 import Pagination from "@mui/material/Pagination";
+// @ts-ignore
 import Stack from "@mui/material/Stack";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
