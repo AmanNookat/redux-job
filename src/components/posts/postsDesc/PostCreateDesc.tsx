@@ -7,7 +7,6 @@ import { modalDescCreate } from "../../../store/posts/postsSlice";
 
 export const PostCreateDesc = () => {
   const dispatch: AppDispatch = useDispatch();
-  const navigate = useNavigate();
   const { id } = useParams();
   const [postId, setPostId] = useState<null | number>(null);
   const { modalDesc } = useSelector((state: RootState) => state.posts);
@@ -38,12 +37,18 @@ export const PostCreateDesc = () => {
     };
   }, [modalDesc]);
 
+  const handleModalClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+  };
   return (
     <div
       className={`w-full bg-[#00000080] flex justify-center items-center fixed top-0 h-screen z-50`}
       onClick={() => dispatch(modalDescCreate())}
     >
-      <div className="flex flex-col items-center w-1/3 bg-white rounded-lg p-4">
+      <div
+        onClick={handleModalClick}
+        className="flex flex-col items-center w-1/3 bg-white rounded-lg p-4"
+      >
         <h3 className="text-2xl font-medium text-center">
           Add description post
         </h3>

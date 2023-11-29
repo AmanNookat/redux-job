@@ -30,6 +30,7 @@ import Education from "./components/education/Education";
 import MyPost from "./components/profiles/myPosts/MyPost";
 import MyProjects from "./components/profiles/myProjects/MyProjects";
 import MyResume from "./components/profiles/myResume/MyResume";
+import ChatBot from "./components/chatGPT/ChatBot";
 
 const MainRoutes = () => {
   return (
@@ -67,6 +68,7 @@ const MainRoutes = () => {
       <Route path="/myPosts" element={<MyPost />} />
       <Route path="/myProjects/:id" element={<MyProjects />} />
       <Route path="/myResume" element={<MyResume />} />
+      <Route path="/chat" element={<ChatBot />} />
     </Routes>
   );
 };

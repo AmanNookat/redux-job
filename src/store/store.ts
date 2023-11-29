@@ -6,6 +6,7 @@ import projectReducer from "./projects/projectsSlice";
 import forumReducer from "./forum/forumSlice";
 import profilesReducer from "./profiles/profilesSlice";
 import er_codeReducer from "./er_code/er_codeSlice";
+import chatGptReducer from "./chatGpt/gptSlice";
 
 export const store: any = configureStore({
   middleware: (getDefaultMiddleware) =>
@@ -20,6 +21,7 @@ export const store: any = configureStore({
     forum: forumReducer,
     profiles: profilesReducer,
     er_code: er_codeReducer,
+    chatGpt: chatGptReducer,
   },
 });
 
