@@ -11,14 +11,14 @@ const RoadmapsMain = () => {
         <h1 className="roadmaps--h1">ROADMAPS FOR DEVELOPERS</h1>
         <div className="select--page">
           <p
-            className="front--link"
+            className="front--link bg-slate-100 p-2 rounded-md"
             style={{ cursor: "pointer" }}
             onClick={() => navigate("/roadmaps/frontend")}
           >
             Front-End
           </p>
           <p
-            className="back--link"
+            className="back--link bg-slate-100 p-2 rounded-md"
             style={{ cursor: "pointer" }}
             onClick={() => navigate("/roadmaps/backend")}
           >
