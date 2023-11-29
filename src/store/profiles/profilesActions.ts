@@ -78,7 +78,6 @@ export const editProfile = createAsyncThunk(
   async ({ profile }: { profile: IProfile }, { dispatch }) => {
     try {
       const formData = new FormData();
-
       formData.append("languages", profile.languages);
       formData.append("programming_languages", profile.programming_languages);
       formData.append("education", profile.education);
@@ -113,39 +112,14 @@ export const editProfile = createAsyncThunk(
           },
         }
       );
-      dispatch(getCompaniesProfiles());
-      dispatch(getUsersProfiles());
+      // dispatch(getCompaniesProfiles());
+      // dispatch(getUsersProfiles());
+      dispatch(getOneProfile({ user: profile.user! }));
     } catch (err) {
       console.log(err);
     }
   }
 );
-
-// export const createProfile = createAsyncThunk(
-//   "profiles/createProfile",
-//   async ({ profile }: { profile: IProfile }) => {
-//     const formData = new FormData();
-
-//     formData.append("languages", profile.languages);
-//     formData.append("programming_languages", profile.programming_languages);
-//     formData.append("education", profile.education);
-//     formData.append("stack", profile.stack);
-//     formData.append("about", profile.about);
-//     formData.append("age", profile.age);
-//     formData.append("work_experience", profile.work_experience);
-//     formData.append("achievments", profile.achievments);
-//     formData.append("profile_image", profile.profile_image);
-
-//     const Authorization = `Bearer ${getAccessToken()}`;
-
-//     await axios.post(PROFILES_API, formData, {
-//       headers: {
-//         Authorization,
-//         "Content-Type": "multipart/form-data",
-//       },
-//     });
-//   }
-// );
 
 export const deleteprofile = createAsyncThunk(
   "profiles/deleteProfile",
@@ -207,7 +181,6 @@ export const createResume = createAsyncThunk(
       const Authorization = `Bearer ${getAccessToken()}`;
 
       const formData = new FormData();
-      console.log(resumeObj);
       formData.append("first_name", resumeObj.user.first_name);
       formData.append("last_name", resumeObj.user.last_name);
 

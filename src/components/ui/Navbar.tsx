@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { checkUserLogin, logout } from "../../helpers/functions";
 import UsersModal from "./UsersModal";
 import { useSelector } from "react-redux";
@@ -25,9 +25,12 @@ const Navbar = () => {
 
   return (
     <div onClick={() => setNavClick(!navClick)}>
-      <div className={style.nav_oll}>
+      <div className={`${style.nav_oll}`}>
+        <div></div>
         <div>
-          <img className="w-24" src={icon_logo} alt="" />
+          <Link to="/">
+            <img className="w-24" src={icon_logo} alt="" />
+          </Link>
         </div>
         <NavLink className={"ml-4"} to="/">
           Home
@@ -52,11 +55,11 @@ const Navbar = () => {
             <div className="users--modal bg-gray-900  z-40">
               <button className="modalBtn" onClick={toggleMenu}>
                 {usersModal ? (
-                  <div className="close--modal">
+                  <div className="close--modal mr-5">
                     <p>Your Account</p>
                   </div>
                 ) : (
-                  <div className="open--modal">
+                  <div className="open--modal mr-5">
                     <p>Your Account</p>
                   </div>
                 )}

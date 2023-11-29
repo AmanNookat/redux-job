@@ -9,8 +9,6 @@ const ResumeModal = ({
 }) => {
   const [editedResume, setEditedResume] = useState<any>(null);
 
-  console.log(resume);
-
   return (
     <div className="flex fixed top-0 bottom-0 right-0 left-0 w-full h-full bg-black/30">
       <div

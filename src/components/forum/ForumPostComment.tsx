@@ -8,6 +8,7 @@ import {
 } from "../../store/forum/forumActions";
 import { IForumPostComment } from "../../store/forum/forumSlice";
 import { FaTrashAlt } from "react-icons/fa";
+import { FaPencilAlt } from "react-icons/fa";
 
 const ForumPostComment = ({
   id,
@@ -83,8 +84,10 @@ const ForumPostComment = ({
                           setEdit(true);
                           setEditedComment(comment);
                         }}
-                        className="bg-green-400 absolute right-8 top-1 p-3 rounded-sm"
-                      ></button>
+                        className="bg-green-400 absolute right-8 top-1 p-1 rounded-sm"
+                      >
+                        <FaPencilAlt />
+                      </button>
                     </>
                   )}
                 </>

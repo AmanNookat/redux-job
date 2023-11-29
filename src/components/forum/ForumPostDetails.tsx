@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { useNavigate, useParams } from "react-router-dom";
@@ -8,11 +8,13 @@ import {
   toggleLikeForumPost,
 } from "../../store/forum/forumActions";
 import ForumPostComment from "./ForumPostComment";
+import { FaHeart } from "react-icons/fa";
 
 const ForumPostDetails = () => {
   const { forumOnePost, loading } = useSelector(
     (state: RootState) => state.forum
   );
+  const [liked, setLiked] = useState(true);
   const { currentUser } = useSelector((state: RootState) => state.users);
   const dispatch: AppDispatch = useDispatch();
 
@@ -30,7 +32,7 @@ const ForumPostDetails = () => {
       ) : (
         <>
           {forumOnePost && (
-            <div className="flex flex-wrap h-auto w-full bg-gray-800 text-white font-sans">
+            <div className="flex flex-wrap h-full w-full bg-gray-800 text-white font-sans">
               <div className="w-1/2 p-4 bg-gray-900">
                 <h2 className="text-3xl font-bold mb-6 underline">
                   {forumOnePost?.name}
@@ -56,12 +58,25 @@ const ForumPostDetails = () => {
                       onClick={() =>
                         dispatch(toggleLikeForumPost({ id: forumOnePost?.id! }))
                       }
-                      className="bg-red-500 p-1 cursor-pointer"
+                      className="p-1 cursor-pointer flex items-center"
                     >
-                      {forumOnePost?.like}
+                      {liked ? (
+                        <FaHeart
+                          className="text-3xl text-red-500 relative"
+                          onClick={() => setLiked(false)}
+                        />
+                      ) : (
+                        <FaHeart
+                          className="text-white text-3xl"
+                          onClick={() => setLiked(true)}
+                        />
+                      )}
+                      <span className="text-white ml-3">
+                        {forumOnePost?.like}
+                      </span>
                     </span>
                   }
-                  <p className="font-bold">{forumOnePost?.user}</p>
+                  <p className="font-bold ">{forumOnePost?.user}</p>
                 </div>
 
                 {currentUser?.email === forumOnePost?.user && (

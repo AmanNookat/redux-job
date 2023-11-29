@@ -42,7 +42,6 @@ const postsSlice = createSlice({
     },
     changePage: (state, action) => {
       state.currentPage = action.payload.page;
-      console.log(state.currentPage);
     },
     modalPostCreate: (state) => {
       state.modalPost = !state.modalPost;

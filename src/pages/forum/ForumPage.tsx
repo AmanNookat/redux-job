@@ -3,9 +3,9 @@ import ForumList from "../../components/forum/ForumList";
 
 const ForumPage = () => {
   return (
-    <div>
+    <>
       <ForumList />
-    </div>
+    </>
   );
 };
 

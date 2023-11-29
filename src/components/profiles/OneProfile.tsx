@@ -36,8 +36,6 @@ const OneProfile = () => {
 
   const [edit, setEdit] = useState<any>(null);
 
-  console.log(oneProfile);
-
   return (
     <>
       {loading ? (
@@ -194,7 +192,7 @@ const OneProfile = () => {
                         onClick={() => setEdit(oneProfile)}
                         className="profile--btn"
                       >
-                        Edit Profile:
+                        Edit Profile
                       </button>
                       <a
                         onClick={() => setModal(true)}
