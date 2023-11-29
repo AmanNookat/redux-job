@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { setChatGpt } from "../../store/chatGpt/gptAction";
 import { IGpt } from "../../store/chatGpt/typeGpt";
+import LazyLoading from "../loading/LazyLoading";
 
 const ChatBot: React.FC = () => {
   const [messages, setMessages] = useState<IGpt[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [lastMessageLoading, setLastMessageLoading] = useState<boolean>(false);
   const messageInputRef = useRef<HTMLInputElement>(null);
-  const { mess } = useSelector((state: RootState) => state.chatGpt);
+  const { mess, loading } = useSelector((state: RootState) => state.chatGpt);
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
@@ -35,11 +36,12 @@ const ChatBot: React.FC = () => {
     };
 
     setMessages((prevMessages) => [...prevMessages, newUserMessage]);
-    setLoading(true);
 
     messageInputRef.current.value = "";
 
     try {
+      setLastMessageLoading(true);
+
       const response = await dispatch(setChatGpt(userMessage));
 
       setMessages((prevMessages) =>
@@ -52,62 +54,74 @@ const ChatBot: React.FC = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      setLoading(false);
+      setLastMessageLoading(false);
     }
   };
-  console.log(mess);
-  //   console.log(messages);
+
+  useEffect(() => {
+    dispatch(setChatGpt("Hello"));
+  }, []);
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="card flex-grow-1">
-        <div className="card-header bg-primary text-white">Chat</div>
-        <div className="card-body messages-box overflow-auto" id="messages-box">
-          <ul className="list-none p-0">
-            {mess?.map((message: IGpt) => (
-              <li
-                key={message.id}
-                className={`message-container ${
-                  message.user === 5 ? "user-message" : "bot-message"
-                }`}
-              >
-                <div className="message p-4 rounded bg-slate-300 my-4">
-                  <div className="message-sender font-bold mb-2">
-                    {message.user === 5 ? "You" : "AI Chatbot"}
-                  </div>
-                  <div className="message-content">{message.message}</div>
-                  {loading && <div>Loading...</div>}
-                  {message.response && !loading && (
-                    <div className="message-response text-gray-500 mt-1">
-                      {/* Extract relevant information from the response object */}
-                      <div className="">{message.response}</div>
+    <>
+      {loading ? (
+        <LazyLoading />
+      ) : (
+        <div className="flex flex-col h-full">
+          <div className="card flex-grow-1">
+            <div className="card-header bg-primary text-white">Chat</div>
+            <div
+              className="card-body messages-box overflow-auto"
+              id="messages-box"
+            >
+              <ul className="list-none p-0">
+                {mess?.map((message: IGpt) => (
+                  <li
+                    key={message.id}
+                    className={`message-container ${
+                      message.user === 5 ? "user-message" : "bot-message"
+                    }`}
+                  >
+                    <div className="message p-4 rounded bg-slate-300 my-4">
+                      <div className="message-sender font-bold mb-2">
+                        {message.user === 5 ? "You" : "AI Chatbot"}
+                      </div>
+                      <div className="message-content">{message.message}</div>
+                      {lastMessageLoading && message.id === messages.length && (
+                        <div>Loading last message...</div>
+                      )}
+                      {message.response && !lastMessageLoading && (
+                        <div className="message-response text-gray-500 mt-1">
+                          <div className="">{message.response}</div>
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-      <form
-        className="message-form fixed bottom-0 bg-slate-100 w-full"
-        onSubmit={handleSubmit}
-      >
-        <div className="input-group">
-          <input
-            type="text"
-            className="form-control message-input h-94"
-            placeholder="Type your message..."
-            ref={messageInputRef}
-          />
-          <div className="input-group-append">
-            <button type="submit" className="btn btn-primary btn-send">
-              Send
-            </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
+          <form
+            className="message-form fixed bottom-0 bg-slate-100 w-full"
+            onSubmit={handleSubmit}
+          >
+            <div className="input-group">
+              <input
+                type="text"
+                className="form-control message-input h-94"
+                placeholder="Type your message..."
+                ref={messageInputRef}
+              />
+              <div className="input-group-append">
+                <button type="submit" className="btn btn-primary btn-send">
+                  Send
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
-      </form>
-    </div>
+      )}
+    </>
   );
 };
 
