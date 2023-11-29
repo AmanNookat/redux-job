@@ -18,6 +18,7 @@ import kgyst from "../../assets/kgustahaha.png";
 import fissman from "../../assets/fissman.png";
 import Transition from "../../components/ui/Transition";
 import Footer from "../../components/ui/Footer";
+import GPT from "../../components/GPT";
 // import homevideo from "../../assets/";
 
 const HomePage = () => {
@@ -230,6 +231,9 @@ const HomePage = () => {
       </div>
       <Transition />
       <Footer />
+      <div className="fixed right-0 bottom-0 z-[1000000]">
+        <GPT />
+      </div>
     </div>
   );
 };
