@@ -23,6 +23,7 @@
   height: 90vh;
   margin-bottom: 6rem;
   scroll-behavior: smooth;
+  border-radius: 10px;
 }
 
 .project_card_scrol {
@@ -35,6 +36,7 @@
 }
 
 .project_card_img {
+  margin: 10px;
   height: 90vh;
   width: 50vh;
   overflow-y: auto;

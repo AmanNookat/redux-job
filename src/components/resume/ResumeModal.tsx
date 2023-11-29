@@ -167,10 +167,8 @@ const ResumeModal = ({
             <p>Date of birth: {resume.date_of_birth}</p>
             <p>Email: {resume.email}</p>
             <p>City: {resume.city_of_residence}</p>
-            <p>Citizenship: {resume.citizenship}</p>
             <p>Cover letter: {resume.cover_letter}</p>
             <p>Education: {resume.education}</p>
-            <p>Phone number: {resume.phone_number}</p>
             <p>Sex: {resume.sex}</p>
             <p>Skills: {resume.skills}</p>
             <p>Specialization: {resume.specialization}</p>

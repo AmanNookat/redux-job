@@ -18,9 +18,8 @@ import kgyst from "../../assets/kgustahaha.png";
 import fissman from "../../assets/fissman.png";
 import Transition from "../../components/ui/Transition";
 import Footer from "../../components/ui/Footer";
-
-
-
+import GPT from "../../components/GPT";
+// import homevideo from "../../assets/";
 
 const HomePage = () => {
   return (
@@ -49,7 +48,7 @@ const HomePage = () => {
           Companies with which we <br /> started cooperation
         </p>
         <img className="w-20 ml-36" src={nasa} alt="nasa" />
-        <img className="w-44 h-14 ml-10" src={makers} alt="makers" />
+        <img className="w-44 ml-10" src={makers} alt="makers" />
         <img className="w-12 ml-10" src={comtexno} alt="nasa" />
         <img className="w-20 ml-10" src={kgyst} alt="nasa" />
         <img className="w-22 h-14 ml-10" src={fissman} alt="nasa" />
@@ -139,8 +138,14 @@ const HomePage = () => {
               </div>
             </div>
           </div>
+
           <div className={style.home_about}>
-            <img src="" alt="" />
+            <img
+              src="https://saamarketing.co.uk/wp-content/uploads/2022/08/The-Different-Types-of-Technology-GIF.gif"
+              alt=""
+              width="100%"
+              className="rounded-md object-cover"
+            />
           </div>
         </div>
       </div>
@@ -224,10 +229,12 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <Transition/>
-      <Footer/>
+      <Transition />
+      <Footer />
+      <div className="fixed right-0 bottom-0 z-[1000000]">
+        <GPT />
+      </div>
     </div>
-
   );
 };
 

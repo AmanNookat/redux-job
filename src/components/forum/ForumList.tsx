@@ -24,7 +24,7 @@ const ForumList = () => {
         <h1>Loading...</h1>
       ) : (
         <>
-          <div className="bg-gray-900 text-white flex">
+          <div className="bg-gray-900 text-white flex h-full">
             <div className="w-1/2 z-10">
               <div className="p-6">
                 <h3 className="text-7xl">

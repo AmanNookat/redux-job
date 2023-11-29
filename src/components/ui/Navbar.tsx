@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { checkUserLogin, logout } from "../../helpers/functions";
 import UsersModal from "./UsersModal";
 import { useSelector } from "react-redux";
@@ -25,9 +25,12 @@ const Navbar = () => {
 
   return (
     <div onClick={() => setNavClick(!navClick)}>
-      <div className={style.nav_oll}>
+      <div className={`${style.nav_oll}`}>
+        <div></div>
         <div>
-          <img className="w-24" src={icon_logo} alt="" />
+          <Link to="/">
+            <img className="w-24" src={icon_logo} alt="" />
+          </Link>
         </div>
         <NavLink className={"ml-4"} to="/">
           Home
@@ -42,33 +45,28 @@ const Navbar = () => {
               <NavLink to="/posts">Posts</NavLink>
               <NavLink to="/er_code">Code Help</NavLink>
               <NavLink to="/education">Education</NavLink>
+              <a href="https://guildhub-production.up.railway.app">
+                Video Chats
+              </a>
             </div>
-            <NavLink
-              to="/"
-              onClick={() => {
-                logout();
-              }}
-            >
-              Log Out
-            </NavLink>
 
             <div className="flex-grow"></div>
 
             <div className="users--modal bg-gray-900  z-40">
               <button className="modalBtn" onClick={toggleMenu}>
                 {usersModal ? (
-                  <div className="close--modal">
+                  <div className="close--modal mr-5">
                     <p>Your Account</p>
                   </div>
                 ) : (
-                  <div className="open--modal">
+                  <div className="open--modal mr-5">
                     <p>Your Account</p>
                   </div>
                 )}
               </button>
               {usersModal && (
                 <div className="top-0 absolute right-0">
-                  <UsersModal />
+                  <UsersModal setUsersModal={setUsersModal} />
                   <div className="overlay" onClick={closeUsersModal}></div>
                 </div>
               )}

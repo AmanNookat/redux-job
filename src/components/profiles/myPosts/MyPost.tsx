@@ -16,8 +16,6 @@ const MyPost = () => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log(posts);
-
   useEffect(() => {
     const userPosts = posts.filter(
       (post: IPost) => post.user === currentUser.id

@@ -9,12 +9,16 @@ import { RootState } from "../store";
 export const getUsersProfiles = createAsyncThunk(
   "profiles/getUsersProfiles",
   async () => {
-    const Authorization = `Bearer ${getAccessToken()}`;
-    const { data } = await axios.get(`${PROFILES_API}/user_profiles`, {
-      headers: { Authorization },
-    });
+    try {
+      const Authorization = `Bearer ${getAccessToken()}`;
+      const { data } = await axios.get(`${PROFILES_API}/user_profiles`, {
+        headers: { Authorization },
+      });
 
-    return data.results;
+      return data.results;
+    } catch (err) {
+      console.log(err);
+    }
   }
 );
 
@@ -34,33 +38,38 @@ export const getCompaniesProfiles = createAsyncThunk(
 export const getOneProfile = createAsyncThunk(
   "profiles/getOneProfile",
   async ({ user }: { user: number }, { getState, dispatch }) => {
-    const Authorization = `Bearer ${getAccessToken()}`;
+    try {
+      const Authorization = `Bearer ${getAccessToken()}`;
 
-    await dispatch(getCurrentUser());
+      await dispatch(getCurrentUser());
 
-    const { currentUser } = (getState() as RootState).users;
+      const { currentUser } = (getState() as RootState).users;
 
-    let profiles;
+      let profiles;
 
-    if (currentUser?.type_user === "Human") {
-      const { data } = await axios.get(
-        `${PROFILES_API}/user_profiles/${user}`,
-        {
-          headers: { Authorization },
-        }
-      );
-      profiles = data;
-    } else {
-      const { data } = await axios.get(
-        `${PROFILES_API}/company_profiles/${user}`,
-        {
-          headers: { Authorization },
-        }
-      );
-      profiles = data;
+      if (currentUser?.type_user === "Human") {
+        const { data } = await axios.get(
+          `${PROFILES_API}/user_profiles/${user}`,
+          {
+            headers: { Authorization },
+          }
+        );
+        profiles = data;
+      } else {
+        const { data } = await axios.get(
+          `${PROFILES_API}/company_profiles/${user}`,
+          {
+            headers: { Authorization },
+          }
+        );
+        profiles = data;
+      }
+
+      return profiles;
+    } catch (err) {
+      // @ts-ignore
+      console.log(err.response.data);
     }
-
-    return profiles;
   }
 );
 
@@ -69,7 +78,6 @@ export const editProfile = createAsyncThunk(
   async ({ profile }: { profile: IProfile }, { dispatch }) => {
     try {
       const formData = new FormData();
-
       formData.append("languages", profile.languages);
       formData.append("programming_languages", profile.programming_languages);
       formData.append("education", profile.education);
@@ -104,39 +112,14 @@ export const editProfile = createAsyncThunk(
           },
         }
       );
-      dispatch(getCompaniesProfiles());
-      dispatch(getUsersProfiles());
+      // dispatch(getCompaniesProfiles());
+      // dispatch(getUsersProfiles());
+      dispatch(getOneProfile({ user: profile.user! }));
     } catch (err) {
       console.log(err);
     }
   }
 );
-
-// export const createProfile = createAsyncThunk(
-//   "profiles/createProfile",
-//   async ({ profile }: { profile: IProfile }) => {
-//     const formData = new FormData();
-
-//     formData.append("languages", profile.languages);
-//     formData.append("programming_languages", profile.programming_languages);
-//     formData.append("education", profile.education);
-//     formData.append("stack", profile.stack);
-//     formData.append("about", profile.about);
-//     formData.append("age", profile.age);
-//     formData.append("work_experience", profile.work_experience);
-//     formData.append("achievments", profile.achievments);
-//     formData.append("profile_image", profile.profile_image);
-
-//     const Authorization = `Bearer ${getAccessToken()}`;
-
-//     await axios.post(PROFILES_API, formData, {
-//       headers: {
-//         Authorization,
-//         "Content-Type": "multipart/form-data",
-//       },
-//     });
-//   }
-// );
 
 export const deleteprofile = createAsyncThunk(
   "profiles/deleteProfile",
@@ -194,36 +177,38 @@ export const deleteResumeFile = createAsyncThunk(
 export const createResume = createAsyncThunk(
   "profiles/createResume",
   async ({ resumeObj }: { resumeObj: any }) => {
-    const Authorization = `Bearer ${getAccessToken()}`;
+    try {
+      const Authorization = `Bearer ${getAccessToken()}`;
 
-    const formData = new FormData();
-    const userFormData = new FormData();
+      const formData = new FormData();
+      formData.append("first_name", resumeObj.user.first_name);
+      formData.append("last_name", resumeObj.user.last_name);
 
-    userFormData.append("email", resumeObj.user.email);
-    userFormData.append("first_name", resumeObj.user.first_name);
-    userFormData.append("last_name", resumeObj.user.last_name);
+      let dateArr = resumeObj.birth.split("-");
+      const dateOfBirth = dateArr.reverse().join(".");
 
-    let dateArr = resumeObj.birth.split("-");
-    const dateOfBirth = dateArr.reverse().join(".");
+      formData.append("date_of_birth", dateOfBirth);
+      formData.append("specialization", resumeObj.specialization);
+      formData.append("sex", resumeObj.sex);
+      formData.append("city_of_residence", resumeObj.city);
+      formData.append("phone_number", resumeObj.phone);
+      formData.append("skills", resumeObj.skills);
+      formData.append("citizenship", resumeObj.citizenship);
+      formData.append("cover_letter", resumeObj.cover);
+      formData.append("education", resumeObj.education);
+      formData.append("profile", resumeObj.profile);
 
-    formData.append("user", JSON.stringify(userFormData));
-    formData.append("date_of_birth", dateOfBirth);
-    formData.append("applied_vacancies", resumeObj.appliedVac);
-    formData.append("specialization", resumeObj.specialization);
-    formData.append("sex", resumeObj.sex);
-    formData.append("city_of_residence", resumeObj.city);
-    formData.append("phone_number", resumeObj.phone);
-    formData.append("skills", resumeObj.skills);
-    formData.append("citizenship", resumeObj.citizenship);
-    formData.append("cover_letter", resumeObj.cover);
-    formData.append("education", resumeObj.education);
-    formData.append("profile", resumeObj.profile);
+      console.log(Object.fromEntries(formData.entries()));
 
-    await axios.post(`${RESUME_API}/resume/`, formData, {
-      headers: {
-        Authorization,
-      },
-    });
-    alert("Все по кайфу");
+      await axios.post(`${RESUME_API}/resume/`, formData, {
+        headers: {
+          Authorization,
+        },
+      });
+      alert("Все по кайфу");
+    } catch (err) {
+      // @ts-ignore
+      console.log(err.response.data);
+    }
   }
 );

@@ -20,8 +20,6 @@ const Er_codeList = () => {
     dispatch(getEr_codePosts());
   }, []);
 
-  console.log(currentUser);
-
   return (
     <>
       {loading ? (

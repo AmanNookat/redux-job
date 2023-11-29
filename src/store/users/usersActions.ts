@@ -15,6 +15,7 @@ export const registerUser = createAsyncThunk(
     formData.append("type_user", user.type_user);
 
     await axios.post(`${USERS_API}/register/`, formData);
+    alert("Регистрация прошла успешно, введите код активации с почты");
   }
 );
 
@@ -48,24 +49,25 @@ export const loginUser = createAsyncThunk(
     },
     { dispatch }
   ) => {
-    const formData = new FormData();
-    formData.append("email", userLogin.email);
-    formData.append("password", userLogin.password);
+    try {
+      const formData = new FormData();
+      formData.append("email", userLogin.email);
+      formData.append("password", userLogin.password);
 
-    localStorage.setItem("reduxEmail", JSON.stringify(userLogin.email));
+      localStorage.setItem("reduxEmail", JSON.stringify(userLogin.email));
 
-    const { data } = await axios.post(`${USERS_API}/login/`, formData);
+      const { data } = await axios.post(`${USERS_API}/login/`, formData);
 
-    console.log(data);
-
-    dispatch(getCurrentUser());
-    return { data, navigate };
+      dispatch(getCurrentUser());
+      return { data, navigate };
+    } catch (err) {
+      console.log(err);
+    }
   }
 );
 
 export const getUsers = createAsyncThunk("users/getUsers", async () => {
   const { data } = await axios.get(`${USERS_API}/users/`);
-  console.log(data);
 
   return data.results;
 });
@@ -139,6 +141,6 @@ export const createProfile = createAsyncThunk(
       });
     }
 
-    alert("e boy");
+    alert("Профиль создан");
   }
 );
