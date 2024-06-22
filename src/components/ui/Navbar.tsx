@@ -36,7 +36,7 @@ const Navbar = () => {
           Home
         </NavLink>
 
-        {checkUserLogin() ? (
+        {!checkUserLogin() ? (
           <>
             <div className="flex gap-5">
               <NavLink to="/projects">Projects</NavLink>
@@ -46,9 +46,9 @@ const Navbar = () => {
               <NavLink to="/chat">Chat</NavLink>
               <NavLink to="/er_code">Code Help</NavLink>
               {/* <NavLink to="/education">Education</NavLink> */}
-              <a href="https://guildhub-production.up.railway.app">
+              {/* <a href="https://guildhub-production.up.railway.app">
                 Video Chats
-              </a>
+              </a> */}
             </div>
 
             <div className="flex-grow"></div>

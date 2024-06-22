@@ -9,10 +9,7 @@ const ProjectCard = ({ project }: { project: IProject }) => {
   return (
     <div key={project.id} className={style.project_card}>
       <div className={style.project_card_img}>
-        <img
-          src={project.image_project}
-          alt="image"
-        />
+        <img src={project.image_project} alt="image" />
       </div>
       <div className={style.project_card_text}>
         <div>
@@ -29,12 +26,12 @@ const ProjectCard = ({ project }: { project: IProject }) => {
             LINK TO THE PROJECT
           </a>
           <br />
-          <button
+          {/* <button
             className={style.project_card_text_detail}
             onClick={() => navigate(`/project/${project.id}`)}
           >
             click for details
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

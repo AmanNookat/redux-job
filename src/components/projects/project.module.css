@@ -19,17 +19,15 @@
   background: rgba(17, 24, 39, 0.791);
   display: flex;
   color: rgb(233, 235, 255);
-  width: 140vh;
-  height: 90vh;
   margin-bottom: 6rem;
   scroll-behavior: smooth;
   border-radius: 10px;
 }
 
 .project_card_scrol {
-  height: 40vh; /* Задаем фиксированную высоту */
-  overflow-y: auto; /* Разрешаем вертикальную прокрутку при необходимости */
-  border: 1px solid #ccc; /* Добавим границу для наглядности */
+  min-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
   border-radius: 2rem;
   padding: 1rem;
   margin-top: 3rem;
@@ -37,14 +35,12 @@
 
 .project_card_img {
   margin: 10px;
-  height: 90vh;
   width: 50vh;
   overflow-y: auto;
 }
 
 .project_card_text {
   width: 70vh;
-  height: 80vh;
   background-color: rgba(17, 24, 39, 0.784);
   margin: 3rem;
   border-radius: 2rem;

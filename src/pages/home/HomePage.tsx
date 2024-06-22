@@ -150,8 +150,8 @@ const HomePage = () => {
       </div>
 
       <div className={style.home_second_block}>
-        <div className="ml-14 ">
-          <h3 className="text-7xl">Important information!</h3>
+        <div className="ml-14">
+          <h3 className="text-7xl mb-20">Important information!</h3>
           <img src={polygon} alt="" />
           <h5 className={style.home_second_block_text_h5}>Summary</h5>
           <p className={style.home_second_block_text}>
@@ -165,7 +165,7 @@ const HomePage = () => {
             or upload your own as a file!
           </p>
         </div>
-        <div className="flex ml-10 items-end justify-center text-zinc-900">
+        <div className="flex ml-20 items-center justify-center text-zinc-900">
           <div className="w-96 h-96 bg-slate-100 mr-10 rounded-3xl mb-6 p-4">
             <div className="flex">
               <div>
@@ -196,7 +196,7 @@ const HomePage = () => {
               </p>
             </div>
           </div>
-          <div className="w-96 h-96 bg-slate-100 text-base rounded-3xl mr-6 p-4 mb-6">
+          {/* <div className="w-96 h-96 bg-slate-100 text-base rounded-3xl mr-6 p-4 mb-6">
             <div className="flex">
               <div>
                 <img className="h-20" src={boy} alt="girl" />
@@ -225,7 +225,7 @@ const HomePage = () => {
                 JavaScript, Python, PHP,React, Laravel
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <Transition />

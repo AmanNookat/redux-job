@@ -5,6 +5,7 @@ import { getProjects } from "../../store/projects/projectsActions";
 import { IProject } from "../../store/projects/projectsTypes";
 import ProjectCreate from "./ProjectCreate";
 import style from "./project.module.css";
+import { projectsArr } from "../../helpers/data";
 
 const ProjectCard = lazy(() => import("./ProjectCard"));
 
@@ -65,8 +66,8 @@ const ProjectsList = () => {
           <div className="flex flex-col items-center">
             <>{modal && <ProjectCreate setModal={setModal} />}</>
             <Suspense fallback={<div>Loading ProjectCard...</div>}>
-              {projects.length &&
-                projects.map((project: IProject) => (
+              {projectsArr.length > 0 &&
+                projectsArr.map((project: IProject) => (
                   <ProjectCard key={project.id} project={project} />
                 ))}
             </Suspense>
